@@ -1,0 +1,858 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>China, the people's version — 20 Sep to 3 Oct 2026</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+:root{--ink:#202124;--muted:#5f6368;--line:#e0e0e0;--bg:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:17px;line-height:1.5;color:var(--ink);background:var(--bg)}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+header.top{padding:56px 0 24px}
+header.top h1{font-size:clamp(40px,6vw,76px);line-height:.98;letter-spacing:-.02em;margin:0 0 14px;font-weight:800}
+header.top .dates{font-size:20px;color:var(--muted);margin:0 0 28px}
+.citynav{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 28px}
+.citynav a{display:block;padding:18px 16px;color:#fff;text-decoration:none;font-weight:700;font-size:20px;border-radius:10px}
+.citynav a span{display:block;font-weight:400;font-size:14px;opacity:.9;margin-top:2px}
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.legend .chip{display:inline-flex;align-items:center;gap:8px;font-size:15px}
+.legend .dot{width:30px;height:30px;border-radius:50%;display:inline-grid;place-items:center;color:#fff;font-size:15px}
+.legend .how{margin-left:auto;font-size:15px;color:var(--muted)}
+.legend .how a{color:var(--ink)}
+.notice{background:#FFF8E1;border-left:6px solid #F9A825;padding:16px 20px;margin:28px 0 0;border-radius:0 10px 10px 0;font-size:16px}
+.notice b{display:block;margin-bottom:4px}
+
+section.city{margin-top:64px}
+.cityhead{color:#fff;padding:40px 0 34px;position:relative}
+.cityhead h2{font-size:clamp(44px,7vw,88px);line-height:.95;letter-spacing:-.025em;margin:0;font-weight:800}
+.cityhead .meta{display:flex;flex-wrap:wrap;gap:6px 28px;margin-top:14px;font-size:17px}
+.cityhead .meta b{font-weight:700}
+.cityhead .sub{font-size:22px;margin-top:10px;opacity:.95}
+.cityhead .quick{position:absolute;right:24px;top:44px;display:flex;gap:8px}
+.cityhead .quick a{color:#fff;text-decoration:none;border:1.5px solid rgba(255,255,255,.7);padding:6px 12px;border-radius:999px;font-size:14px}
+
+.day{display:grid;grid-template-columns:120px 1fr;gap:0 28px;padding:34px 0 10px;border-top:1px solid var(--line)}
+.day:first-of-type{border-top:0}
+.datecol{position:sticky;top:16px;align-self:start}
+.datecol .wd{font-size:15px;color:var(--muted)}
+.datecol .dn{font-size:52px;line-height:1;font-weight:800;letter-spacing:-.03em}
+.datecol .mo{font-size:16px;font-weight:700}
+.datecol .theme{margin-top:12px;font-size:15px;line-height:1.35;padding-left:10px;border-left:4px solid}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:18px;margin-bottom:20px}
+.card{border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;border-top:7px solid}
+.card .ph{position:relative;aspect-ratio:16/10;background:#eceff1;overflow:hidden}
+.card .ph img,.card .ph .noimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.card .badge{position:absolute;left:10px;top:10px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:18px;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.card .num{position:absolute;right:10px;top:10px;min-width:30px;height:30px;padding:0 8px;border-radius:15px;background:#202124;color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px}
+.card .bd{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .slot{font-size:13px;font-weight:700;letter-spacing:.02em}
+.card h4{margin:0;font-size:19px;line-height:1.2;letter-spacing:-.01em}
+.card .one{margin:0;font-size:15.5px;line-height:1.4}
+.card .tip{margin:2px 0 0;font-size:14px;color:var(--muted);line-height:1.4;padding-left:18px;position:relative}
+.card .tip:before{content:"↳";position:absolute;left:0;top:0}
+.card .more{margin-top:auto;padding-top:8px;font-size:14px;font-weight:700;text-decoration:none}
+.card .more:hover{text-decoration:underline}
+.transit{grid-column:1/-1;display:flex;align-items:center;gap:16px;background:#ECEFF1;border-radius:12px;padding:14px 18px;border-left:7px solid #607D8B}
+.transit .ic{font-size:28px}
+.transit b{font-size:18px}
+.transit .one{color:var(--ink);font-size:15.5px}
+.transit .tip{color:var(--muted);font-size:14px}
+
+.mapblock{margin:20px 0 0;padding-top:28px;border-top:1px solid var(--line)}
+.mapblock h3{font-size:28px;margin:0 0 6px;letter-spacing:-.015em}
+.mapblock p{margin:0 0 14px;color:var(--muted);font-size:15px}
+.map{height:520px;border-radius:14px;border:1px solid var(--line)}
+.mk{width:30px;height:30px;border-radius:50%;color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;border:2.5px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)}
+.mk.star{width:38px;height:38px;font-size:22px;background:#202124}
+.leaflet-popup-content{font-family:inherit;font-size:14px;line-height:1.35}
+.leaflet-popup-content b{font-size:15px}
+.far{margin:12px 0 0;font-size:15px;color:var(--muted)}
+.far span{display:inline-block;margin-right:14px}
+
+section.stories{margin-top:96px;padding-bottom:80px}
+section.stories>.wrap>h2{font-size:clamp(40px,6vw,72px);letter-spacing:-.025em;line-height:1;margin:0 0 8px;font-weight:800}
+section.stories>.wrap>p.lead{font-size:20px;color:var(--muted);margin:0 0 40px;max-width:720px}
+.storycity{margin-top:56px}
+.storycity h3{font-size:30px;margin:0 0 20px;padding:10px 16px;color:#fff;border-radius:8px;display:inline-block}
+.story{display:grid;grid-template-columns:280px 1fr;gap:24px;padding:26px 0;border-top:1px solid var(--line);scroll-margin-top:16px}
+.story .ph{border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:#eceff1;position:relative;border-top:7px solid}
+.story .ph img,.story .ph .noimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.story .ph .badge{position:absolute;left:10px;top:10px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:18px}
+.story h4{margin:0 0 4px;font-size:24px;letter-spacing:-.015em;line-height:1.15}
+.story .when{font-size:14px;color:var(--muted);margin-bottom:12px}
+.story .when b{color:var(--ink)}
+.story p{margin:0 0 10px;max-width:70ch;font-size:17px}
+.story .tip{color:var(--muted);font-size:15px;padding-left:18px;position:relative;max-width:70ch}
+.story .tip:before{content:"↳";position:absolute;left:0}
+.story .back{font-size:14px;text-decoration:none;font-weight:700;display:inline-block;margin-top:10px}
+.story .credit{font-size:12px;color:var(--muted);margin-top:6px}
+.story .credit a{color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color:var(--muted)}
+@media (max-width:760px){.citynav{grid-template-columns:1fr 1fr}.day{grid-template-columns:1fr}.datecol{position:static;display:flex;gap:12px;align-items:baseline;margin-bottom:14px}.datecol .dn{font-size:36px}.datecol .theme{border-left:0;padding-left:0;margin-top:0}.story{grid-template-columns:1fr}.cityhead .quick{position:static;margin-top:16px}.legend .how{margin-left:0}.map{height:400px}}
+@media print{.map,.citynav,.quick{display:none}.card{break-inside:avoid}.story{break-inside:avoid}}
+</style></head><body>
+
+<header class="top"><div class="wrap">
+<h1>China, the people's version</h1>
+<p class="dates">Beijing · Xi'an · Chengdu · Chongqing &nbsp;—&nbsp; 20 September to 3 October 2026 &nbsp;—&nbsp; Tarek's must-do list</p>
+<nav class="citynav">
+<a href="#beijing" style="background:#F9A825">Beijing<span>Sun 20 – Thu 24 Sep · 4 nights</span></a>
+<a href="#xian" style="background:#00897B">Xi'an<span>Thu 24 – Sun 27 Sep · 3 nights</span></a>
+<a href="#chengdu" style="background:#43A047">Chengdu<span>Sun 27 – Wed 30 Sep · 3 nights</span></a>
+<a href="#chongqing" style="background:#3949AB">Chongqing<span>Wed 30 Sep – Fri 2 Oct · 3 nights</span></a>
+</nav>
+<div class="legend">
+<span class="chip"><span class="dot" style="background:#E53935">✊</span>People's history</span>
+<span class="chip"><span class="dot" style="background:#8E24AA">🎸</span>Live music</span>
+<span class="chip"><span class="dot" style="background:#FB8C00">🍜</span>Local food</span>
+<span class="chip"><span class="dot" style="background:#1E88E5">🏛️</span>Landmark, reframed</span>
+<span class="chip"><span class="dot" style="background:#607D8B">🚄</span>Travel</span>
+<span class="how">Numbers on the cards match the pins on each city map. <a href="#stories">Full backstories</a> are at the bottom.</span>
+</div>
+<div class="notice"><b>Timing warning: Chongqing falls on National Day.</b>30 September is Martyrs' Day and 1 October starts Golden Week. Hongyadong, Ciqikou and Liziba will be jammed; security around monuments is heavy. Do the crowd-magnets before 09:00 or after 21:00. Tiananmen Square needs an advance reservation with passport details (WeChat mini-program), and Forbidden City and Panda Base tickets sell out days ahead. Install Showstart 秀动 and Damai 大麦 for gig tickets, and Amap 高德 for navigation.</div>
+</div></header>
+<section class="city" id="beijing"><div class="cityhead" style="background:#F9A825"><div class="wrap">
+<h2>Beijing</h2><div class="sub">The capital, read from the street, not the balcony</div>
+<div class="meta"><span><b>Sun 20 – Thu 24 Sep</b> · 4 nights</span><span>Hotel: Manxin Mansion, 2 West Tao Hutong, Jiugulou St (Houhai / Drum Tower)</span></div>
+<div class="quick"><a href="#map-beijing">Map</a><a href="#stories-beijing">Stories</a></div>
+</div></div><div class="wrap">
+<div class="day" id="day-beijing-0"><div class="datecol"><div class="wd">Sun</div><div class="dn">20</div><div class="mo">Sep</div><div class="theme" style="border-color:#F9A825">Arrival day</div></div><div class="cards">
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/China_Beijing_Drum_Tower.png/960px-China_Beijing_Drum_Tower.png" alt="Houhai &amp; Drum Tower" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">1</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Evening</div><h4>Houhai and the Drum Tower</h4><p class="one">Walk the lake and the towers from your front door, then eat.</p>
+<p class="tip">Your hotel is 5 minutes from everything here.</p>
+<a class="more" style="color:#1E88E5" href="#story-houhai">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/Beijing_breakfast_%283195979832%29.jpg/960px-Beijing_breakfast_%283195979832%29.jpg" alt="Yaoji Chaogan" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">2</span></div>
+<div class="bd"><div class="slot" style="color:#FB8C00">Dinner / breakfasts</div><h4>Yaoji Chaogan 姚记炒肝</h4><p class="one">Pork liver and intestine stew, Gulou old-timers, 5 min from the hotel.</p>
+<p class="tip">Also the breakfast spot for the 24th before the train.</p>
+<a class="more" style="color:#FB8C00" href="#story-yaoji">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Houhai_Lake_and_Drum_Tower_Beijing_2015_October.jpg/960px-Houhai_Lake_and_Drum_Tower_Beijing_2015_October.jpg" alt="East Shore Jazz Café" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">3</span></div>
+<div class="bd"><div class="slot" style="color:#8E24AA">Night</div><h4>East Shore Jazz Café 东岸</h4><p class="one">Serious jazz over the water, 5 min walk, first night.</p>
+<p class="tip">Sets from about 21:30. Arrive early for a window seat.</p>
+<a class="more" style="color:#8E24AA" href="#story-eastshore">Read the story</a>
+</div></article>
+</div></div>
+<div class="day" id="day-beijing-1"><div class="datecol"><div class="wd">Mon</div><div class="dn">21</div><div class="mo">Sep</div><div class="theme" style="border-color:#F9A825">The square and the silences</div></div><div class="cards">
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Beijing_China_Tiananmen-Square-Young_Pioneers_of_China-01.jpg/960px-Beijing_China_Tiananmen-Square-Young_Pioneers_of_China-01.jpg" alt="Tiananmen Square" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">4</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Morning</div><h4>Tiananmen Square</h4><p class="one">May Fourth 1919, April 1976, June 1989. Read the reliefs on the monument.</p>
+<p class="tip">Advance reservation with passport via WeChat mini-program is required. Book before you fly.</p>
+<a class="more" style="color:#E53935" href="#story-tiananmen">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Platform_of_L1_Muxidi_Station_%2820230520154327%29.jpg/960px-Platform_of_L1_Muxidi_Station_%2820230520154327%29.jpg" alt="Muxidi" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">5</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Late morning</div><h4>Chang&#x27;an Avenue west to Muxidi</h4><p class="one">Walk the avenue the army came down. Most of the 1989 dead fell here, not in the square.</p>
+<p class="tip">Stay on the north pavement past Xidan; Muxidi is 3.5 km. Or ride the metro two stops and walk back.</p>
+<a class="more" style="color:#E53935" href="#story-muxidi">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/South_end_of_Xidan_North_St_%2820211007134200%29.jpg/960px-South_end_of_Xidan_North_St_%2820211007134200%29.jpg" alt="Xidan" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">6</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Late morning</div><h4>Xidan Democracy Wall (site)</h4><p class="one">Where the 1978–79 posters went up. Now a shopping district.</p>
+<p class="tip">On your route to Muxidi; a two-minute stop.</p>
+<a class="more" style="color:#E53935" href="#story-xidan">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Sunset_of_the_Forbidden_City_2006.JPG/960px-Sunset_of_the_Forbidden_City_2006.JPG" alt="Forbidden City" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">7</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Afternoon</div><h4>Forbidden City</h4><p class="one">For the group. Enter from the square, exit north to Jingshan.</p>
+<p class="tip">Tickets sell out days ahead; book online with passports.</p>
+<a class="more" style="color:#1E88E5" href="#story-forbidden">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/The_Forbidden_City_-_View_from_Coal_Hill.jpg/960px-The_Forbidden_City_-_View_from_Coal_Hill.jpg" alt="Jingshan Park" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">8</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Sunset</div><h4>Jingshan Park</h4><p class="one">The hill north of the palace. Sunset over the yellow roofs.</p>
+<p class="tip">Free-ish; 10 minutes to the top.</p>
+<a class="more" style="color:#1E88E5" href="#story-jingshan">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/Zhajiangmian_before_stirring_at_Fangzhuanchang_%2820210115130756%29.jpg/960px-Zhajiangmian_before_stirring_at_Fangzhuanchang_%2820210115130756%29.jpg" alt="Fangzhuanchang 69 noodles" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">9</span></div>
+<div class="bd"><div class="slot" style="color:#FB8C00">Dinner</div><h4>Fangzhuanchang 69 方砖厂69号炸酱面</h4><p class="one">Beijing&#x27;s fried-sauce noodles, done properly, walking distance from the hotel.</p>
+<p class="tip">Cash-free; queue at peak hours.</p>
+<a class="more" style="color:#FB8C00" href="#story-fangzhuan">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Beijing_hutong_Wudaoying_3.jpg/960px-Beijing_hutong_Wudaoying_3.jpg" alt="School Bar" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">10</span></div>
+<div class="bd"><div class="slot" style="color:#8E24AA">Night</div><h4>School Bar 学校酒吧</h4><p class="one">Beijing&#x27;s punk dive. Wudaoying Hutong, 10 min from the hotel.</p>
+<p class="tip">Check the venue&#x27;s WeChat or Showstart for the night&#x27;s bill. Cover ¥50–150.</p>
+<a class="more" style="color:#8E24AA" href="#story-schoolbar">Read the story</a>
+</div></article>
+</div></div>
+<div class="day" id="day-beijing-2"><div class="datecol"><div class="wd">Tue</div><div class="dn">22</div><div class="mo">Sep</div><div class="theme" style="border-color:#F9A825">The Wall, built by conscripts</div></div><div class="cards">
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Great_Wall_of_China_July_2006.JPG/960px-Great_Wall_of_China_July_2006.JPG" alt="Great Wall, Mutianyu" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">11</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Full day <span style="font-weight:400;color:#5f6368">(out of town)</span></div><h4>Great Wall at Mutianyu</h4><p class="one">The Wall as a labour project: conscripts, convicts and the widow Meng Jiangnü.</p>
+<p class="tip">Hire a driver for the group (about 1h30 each way). Leave by 07:30.</p>
+<a class="more" style="color:#1E88E5" href="#story-mutianyu">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Hutong_at_Night_%286228122499%29.jpg/960px-Hutong_at_Night_%286228122499%29.jpg" alt="DDC (Dusk Dawn Club)" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">12</span></div>
+<div class="bd"><div class="slot" style="color:#8E24AA">Night</div><h4>DDC – Dusk Dawn Club 黄昏黎明俱乐部</h4><p class="one">Relaunched hutong venue, ~700 capacity, jazz to punk most nights.</p>
+<p class="tip">Programme on WeChat/Showstart. Now in a bigger space near Wangfujing.</p>
+<a class="more" style="color:#8E24AA" href="#story-ddc">Read the story</a>
+</div></article>
+</div></div>
+<div class="day" id="day-beijing-3"><div class="datecol"><div class="wd">Wed</div><div class="dn">23</div><div class="mo">Sep</div><div class="theme" style="border-color:#F9A825">South of the square</div></div><div class="cards">
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg/960px-Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg" alt="Temple of Heaven" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">13</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Early morning</div><h4>Temple of Heaven</h4><p class="one">Go at 07:00 for the retirees: opera, tai chi, cards, choirs. The building is secondary.</p>
+<p class="tip">Buy the park ticket only unless the group wants the hall.</p>
+<a class="more" style="color:#1E88E5" href="#story-tiantan">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Niujie_Mosque_-_CIMG3716.JPG/960px-Niujie_Mosque_-_CIMG3716.JPG" alt="Niujie Muslim neighbourhood" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">14</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Late morning</div><h4>Niujie 牛街</h4><p class="one">The Hui Muslim neighbourhood since the Yuan dynasty. Mosque, market, real residents.</p>
+<p class="tip">Mosque visits are fine outside prayer times; dress modestly.</p>
+<a class="more" style="color:#E53935" href="#story-niujie">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Instant-boiled_mutton_hot_pot_at_Yangfang_Shengli_%2820200111153612%29.jpg/960px-Instant-boiled_mutton_hot_pot_at_Yangfang_Shengli_%2820200111153612%29.jpg" alt="Jubaoyuan hotpot" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">15</span></div>
+<div class="bd"><div class="slot" style="color:#FB8C00">Lunch</div><h4>Jubaoyuan 聚宝源</h4><p class="one">Copper-pot mutton hotpot on Niujie. Join the queue with the neighbourhood.</p>
+<p class="tip">Order hand-cut lamb, sesame sauce, sugar-garlic and the sesame flatbread.</p>
+<a class="more" style="color:#FB8C00" href="#story-jubaoyuan">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Dashala_Enterance_2010.jpg/960px-Dashala_Enterance_2010.jpg" alt="Dashilar &amp; Yangmeizhu Xiejie" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">16</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Afternoon</div><h4>Dashilar and Yangmeizhu Xiejie</h4><p class="one">The old commercial-worker hutongs south of Qianmen. Skip Qianmen Street itself.</p>
+<p class="tip">Walk from Niujie via Baodu Feng for a tripe snack.</p>
+<a class="more" style="color:#E53935" href="#story-dashilar">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/Mao_Xuewang_1.jpg/960px-Mao_Xuewang_1.jpg" alt="Baodu Feng" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">17</span></div>
+<div class="bd"><div class="slot" style="color:#FB8C00">Snack</div><h4>Baodu Feng 爆肚冯</h4><p class="one">Boiled tripe, a Hui family business over a century old.</p>
+<p class="tip">Dip in sesame sauce; eat immediately while it&#x27;s crunchy.</p>
+<a class="more" style="color:#FB8C00" href="#story-baodu">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/PKU_Red_Building_%2820220908152758%29.jpg/960px-PKU_Red_Building_%2820220908152758%29.jpg" alt="Peking University Red Building" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">18</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Late afternoon</div><h4>Peking University Red Building 北大红楼</h4><p class="one">Where May Fourth 1919 was organised and China&#x27;s first Marxist study groups met.</p>
+<p class="tip">Free with passport; closes 17:00. State-run, but the story is students and teachers.</p>
+<a class="more" style="color:#E53935" href="#story-redbuilding">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/National_cultural_heritage_stele_at_Dongjiaominxiang_Former_Japanese_Legation_%2820250102132831%29.jpg/960px-National_cultural_heritage_stele_at_Dongjiaominxiang_Former_Japanese_Legation_%2820250102132831%29.jpg" alt="Legation Quarter" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">19</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Late afternoon</div><h4>Legation Quarter 东交民巷</h4><p class="one">The walled foreign enclave the Boxers besieged in 1900 and May Fourth marched on in 1919.</p>
+<p class="tip">A 20-minute walk along Dongjiaominxiang; the buildings are intact but mostly closed.</p>
+<a class="more" style="color:#E53935" href="#story-legation">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/National_Art_Museum_of_China_%2820211212161924%29.jpg/960px-National_Art_Museum_of_China_%2820211212161924%29.jpg" alt="fRUITYSPACE" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">20</span></div>
+<div class="bd"><div class="slot" style="color:#8E24AA">Night</div><h4>fRUITYSPACE 果空间</h4><p class="one">DIY experimental basement by the National Art Museum. 40 people, no compromise.</p>
+<p class="tip">Small, cheap, cash-free. Programme via WeChat &#x27;fRUITYSPACE&#x27;.</p>
+<a class="more" style="color:#8E24AA" href="#story-fruity">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/7/76/Banana_Club.jpg" alt="Zhao Dai" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">21</span></div>
+<div class="bd"><div class="slot" style="color:#8E24AA">Late night (alt.)</div><h4>Zhao Dai 招待所</h4><p class="one">Beijing&#x27;s best small club for electronic music, if the group wants to dance.</p>
+<p class="tip">Opens late; check for a live set.</p>
+<a class="more" style="color:#8E24AA" href="#story-zhaodai">Read the story</a>
+</div></article>
+</div></div>
+<div class="day" id="day-beijing-4"><div class="datecol"><div class="wd">Thu</div><div class="dn">24</div><div class="mo">Sep</div><div class="theme" style="border-color:#F9A825">Breakfast, then the 12:55 train</div></div><div class="cards">
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Beijing_Lu_Xun_Museum_-_tree_2_planted_by_Lu_Xun.jpg/960px-Beijing_Lu_Xun_Museum_-_tree_2_planted_by_Lu_Xun.jpg" alt="Lu Xun Museum" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">22</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Morning (optional)</div><h4>Lu Xun Museum 鲁迅博物馆</h4><p class="one">The writer of the people&#x27;s anger, at his old courtyard house.</p>
+<p class="tip">Only if you skip Yaoji; near Fuchengmen, 20 min from the station.</p>
+<a class="more" style="color:#E53935" href="#story-luxun">Read the story</a>
+</div></article>
+<div class="transit"><span class="ic">🚄</span><div><b>Beijing West → Xi&#x27;an North</b> <span class="slot" style="color:#607D8B;font-weight:700"> 12:55</span><div class="one">High-speed rail, 2nd class, ref 1658114142363333. Arrives about 17:30.</div><div class="tip">Be at Beijing West by 12:00; security and ID checks take time.</div></div></div>
+</div></div>
+<div class="mapblock" id="map-beijing"><h3>Beijing on the map</h3><p>Pins are numbered like the cards and coloured by category. Tap a pin for the name and the day. The black pin is your hotel.</p><div class="map" id="lmap-beijing"></div>
+<p class="far">Out of town, off the edge of the map: <span><b>11</b> Great Wall at Mutianyu</span></p>
+</div></div></section>
+<section class="city" id="xian"><div class="cityhead" style="background:#00897B"><div class="wrap">
+<h2>Xi&#x27;an</h2><div class="sub">Conscripts, mutineers and mill workers behind the walls</div>
+<div class="meta"><span><b>Thu 24 – Sun 27 Sep</b> · 3 nights</span><span>Hotel: Jinjiang Bell Tower Original Copy Hotel, 290 West 1st Rd, Xincheng</span></div>
+<div class="quick"><a href="#map-xian">Map</a><a href="#stories-xian">Stories</a></div>
+</div></div><div class="wrap">
+<div class="day" id="day-xian-0"><div class="datecol"><div class="wd">Thu</div><div class="dn">24</div><div class="mo">Sep</div><div class="theme" style="border-color:#00897B">Arrive ~17:30, evening inside the walls</div></div><div class="cards">
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Xi%27an_bell_tower.jpg/960px-Xi%27an_bell_tower.jpg" alt="Bell Tower &amp; Drum Tower" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">1</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Evening</div><h4>Bell Tower and City Wall</h4><p class="one">Your hotel is at the Bell Tower. Walk the wall at dusk.</p>
+<p class="tip">Wall night tickets to about 22:00 from the South Gate.</p>
+<a class="more" style="color:#1E88E5" href="#story-belltower">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Xi%27an_Muslim_Quarter.jpg/960px-Xi%27an_Muslim_Quarter.jpg" alt="Sajinqiao street" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">2</span></div>
+<div class="bd"><div class="slot" style="color:#FB8C00">Dinner</div><h4>Sajinqiao street 洒金桥</h4><p class="one">The Muslim Quarter locals eat on. Same food as Beiyuanmen, none of the tourists.</p>
+<p class="tip">Mutton paomo, roast meat skewers, persimmon cakes, cold noodles. Go after 19:00.</p>
+<a class="more" style="color:#FB8C00" href="#story-sajinqiao">Read the story</a>
+</div></article>
+</div></div>
+<div class="day" id="day-xian-1"><div class="datecol"><div class="wd">Fri</div><div class="dn">25</div><div class="mo">Sep</div><div class="theme" style="border-color:#00897B">The 700,000</div></div><div class="cards">
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Terracotta_Army_-_Pit_1%2C_Xi%27an%2C_China_%2814148051282%29.jpg/960px-Terracotta_Army_-_Pit_1%2C_Xi%27an%2C_China_%2814148051282%29.jpg" alt="Terracotta Army" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">3</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Full day <span style="font-weight:400;color:#5f6368">(out of town)</span></div><h4>Terracotta Army</h4><p class="one">Not the emperor: the 700,000 conscripts, the first peasant uprising, and the farmer who found it.</p>
+<p class="tip">About 1h by car or the tourist bus from the station. Hire a guide who will talk about the workers.</p>
+<a class="more" style="color:#1E88E5" href="#story-terracotta">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/2015-01-04_street_food_vendor_at_%28a_night_market%29_in_Xi%27an.jpg/960px-2015-01-04_street_food_vendor_at_(a_night_market)_in_Xi%27an.jpg" alt="Dongxin Jie night market" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">4</span></div>
+<div class="bd"><div class="slot" style="color:#FB8C00">Dinner</div><h4>Dongxin Jie night market 东新街夜市</h4><p class="one">Where Xi&#x27;an eats after dark. No tourists.</p>
+<p class="tip">10 min walk east of the hotel. Peaks 21:00–midnight.</p>
+<a class="more" style="color:#FB8C00" href="#story-dongxinjie">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Naran_Singer.png" alt="Aperture Club" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">5</span></div>
+<div class="bd"><div class="slot" style="color:#8E24AA">Night</div><h4>Aperture Club 光圈CLUB</h4><p class="one">Xi&#x27;an&#x27;s main independent venue: rock, folk, hip-hop, indie film.</p>
+<p class="tip">Check Showstart; Xi&#x27;an&#x27;s scene is small, so if nothing&#x27;s on, stay at the night market.</p>
+<a class="more" style="color:#8E24AA" href="#story-aperture">Read the story</a>
+</div></article>
+</div></div>
+<div class="day" id="day-xian-2"><div class="datecol"><div class="wd">Sat</div><div class="dn">26</div><div class="mo">Sep</div><div class="theme" style="border-color:#00897B">Mutiny and mills</div></div><div class="cards">
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Reuni%C3%B3nDeCaudillosMilitaresChinos_%28format_4to3_portrait%29.jpeg" alt="Zhang Xueliang Residence" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">6</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Morning</div><h4>Zhang Xueliang Residence 张学良公馆</h4><p class="one">The Xi&#x27;an Incident, 1936: soldiers force their leader to fight Japan instead of Communists.</p>
+<p class="tip">Jianguo Road, 15 min from the hotel. Small museum; an hour.</p>
+<a class="more" style="color:#E53935" href="#story-zhangxueliang">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Yang_Hucheng.jpg" alt="Zhiyuan (Yang Hucheng)" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">7</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Morning</div><h4>Zhiyuan (Yang Hucheng&#x27;s residence) 止园</h4><p class="one">The other mutineer&#x27;s house. Pairs with Zhang&#x27;s.</p>
+<p class="tip">Qingnian Road, north-west of the Bell Tower.</p>
+<a class="more" style="color:#E53935" href="#story-zhiyuan">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Baqiao%2C_Xi%27an%2C_Shaanxi%2C_China_-_panoramio.jpg/960px-Baqiao%2C_Xi%27an%2C_Shaanxi%2C_China_-_panoramio.jpg" alt="Textile City (Banpo Art Zone)" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">8</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Afternoon</div><h4>Textile City 纺织城</h4><p class="one">1950s cotton mills that employed tens of thousands of women, gutted in the 1990s, now half ruin.</p>
+<p class="tip">Baqiao District, 30 min by taxi east. Ask for 半坡国际艺术区.</p>
+<a class="more" style="color:#E53935" href="#story-textilecity">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/8/80/Xi%27an_Great_Mosque_1910s.jpg" alt="Great Mosque of Xi&#x27;an" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">9</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Late afternoon</div><h4>Great Mosque and the Hui quarter</h4><p class="one">A community since the Tang, survivor of the 1860s massacres, under pressure today.</p>
+<p class="tip">Entry ¥25; the courtyards are Chinese, the prayer hall is Islamic. Closed to non-Muslims at prayer.</p>
+<a class="more" style="color:#E53935" href="#story-greatmosque">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Biang_Biang_Noodles_at_Qintangyizhan%2C_Tianzhu%2C_Beijing_%2820200412133323%29.jpg/960px-Biang_Biang_Noodles_at_Qintangyizhan%2C_Tianzhu%2C_Beijing_%2820200412133323%29.jpg" alt="Biangbiang Mian" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">10</span></div>
+<div class="bd"><div class="slot" style="color:#FB8C00">Dinner</div><h4>Biangbiang Mian 南院门 biangbiang面</h4><p class="one">The belt-wide noodles. Nanyuanmen, 5 min from the hotel.</p>
+<p class="tip">Order the &#x27;three-in-one&#x27; topping: tomato-egg, minced pork, chilli.</p>
+<a class="more" style="color:#FB8C00" href="#story-biangbiang">Read the story</a>
+</div></article>
+</div></div>
+<div class="day" id="day-xian-3"><div class="datecol"><div class="wd">Sun</div><div class="dn">27</div><div class="mo">Sep</div><div class="theme" style="border-color:#00897B">Train to Chengdu 11:25</div></div><div class="cards">
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Xi%27an_roujiamo_05.jpg/960px-Xi%27an_roujiamo_05.jpg" alt="Ziwu Lu Zhang Ji roujiamo" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">11</span></div>
+<div class="bd"><div class="slot" style="color:#FB8C00">Breakfast</div><h4>Ziwu Lu Zhang Ji 子午路张记肉夹馍</h4><p class="one">The roujiamo locals argue about. On the way south if you have time.</p>
+<p class="tip">Slightly out of the way (south); skip if the train is tight.</p>
+<a class="more" style="color:#FB8C00" href="#story-ziwulu">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Glazed_ceramic_earthenware_tomb_model_of_a_building_%28mingqi%29_Han_Dynasty_%28206_BCE_-_220_CE%29_Shaanxi_Province_China.jpg/960px-Glazed_ceramic_earthenware_tomb_model_of_a_building_(mingqi)_Han_Dynasty_(206_BCE_-_220_CE)_Shaanxi_Province_China.jpg" alt="Shaanxi History Museum" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">12</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Morning (optional)</div><h4>Shaanxi History Museum</h4><p class="one">For the group, if there&#x27;s time before the train.</p>
+<p class="tip">Free but timed tickets; book in advance. Near Ziwu Lu.</p>
+<a class="more" style="color:#1E88E5" href="#story-shaanximuseum">Read the story</a>
+</div></article>
+<div class="transit"><span class="ic">🚄</span><div><b>Xi&#x27;an North → Chengdu East</b> <span class="slot" style="color:#607D8B;font-weight:700"> 11:25</span><div class="one">High-speed rail, 2nd class, ref 1658114208828314. Arrives about 15:30.</div><div class="tip">Xi&#x27;an North is 30–40 min from the Bell Tower by metro. Leave by 10:00.</div></div></div>
+</div></div>
+<div class="mapblock" id="map-xian"><h3>Xi&#x27;an on the map</h3><p>Pins are numbered like the cards and coloured by category. Tap a pin for the name and the day. The black pin is your hotel.</p><div class="map" id="lmap-xian"></div>
+<p class="far">Out of town, off the edge of the map: <span><b>3</b> Terracotta Army</span></p>
+</div></div></section>
+<section class="city" id="chengdu"><div class="cityhead" style="background:#43A047"><div class="wrap">
+<h2>Chengdu</h2><div class="sub">Teahouse politics, the best unofficial museum in China, and the rap capital</div>
+<div class="meta"><span><b>Sun 27 – Wed 30 Sep</b> · 3 nights</span><span>Hotel: Wenjun Courtyard Hotel, 180 Qintai Rd, Qingyang</span></div>
+<div class="quick"><a href="#map-chengdu">Map</a><a href="#stories-chengdu">Stories</a></div>
+</div></div><div class="wrap">
+<div class="day" id="day-chengdu-0"><div class="datecol"><div class="wd">Sun</div><div class="dn">27</div><div class="mo">Sep</div><div class="theme" style="border-color:#43A047">Arrive ~15:30</div></div><div class="cards">
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Chengdu_Sichuan_China_Du-Fu-Thatched-Cottage-Park-01.jpg/960px-Chengdu_Sichuan_China_Du-Fu-Thatched-Cottage-Park-01.jpg" alt="Du Fu Thatched Cottage" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">1</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Late afternoon</div><h4>Du Fu Thatched Cottage</h4><p class="one">The poet of the conscript and the starving. Near your hotel.</p>
+<p class="tip">Read &#x27;Ballad of the Army Carts&#x27; first.</p>
+<a class="more" style="color:#1E88E5" href="#story-dufu">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Chengdu_Kuanzhai_Alley_Touristic_Spot_Relics_%E6%88%90%E9%83%BD%E5%AE%BD%E7%AA%84%E5%B7%B7%E5%AD%90%E6%96%87%E7%89%A9%E5%8F%91%E6%8E%98%E9%81%97%E4%BA%A7.jpg/960px-Chengdu_Kuanzhai_Alley_Touristic_Spot_Relics_%E6%88%90%E9%83%BD%E5%AE%BD%E7%AA%84%E5%B7%B7%E5%AD%90%E6%96%87%E7%89%A9%E5%8F%91%E6%8E%98%E9%81%97%E4%BA%A7.jpg" alt="Kuanzhai Alley" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">2</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Evening</div><h4>Kuanzhai Alley</h4><p class="one">Restored Qing lanes. Walk through; don&#x27;t eat here.</p>
+<p class="tip">NU Space is two streets away.</p>
+<a class="more" style="color:#1E88E5" href="#story-kuanzhai">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/%E5%86%B7%E9%94%85_%E4%B8%B2_Cold-pot_Skewers_Y1_per_skewer_%281495465364%29.jpg/960px-%E5%86%B7%E9%94%85_%E4%B8%B2_Cold-pot_Skewers_Y1_per_skewer_(1495465364).jpg" alt="Kang Er Jie chuanchuan" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">3</span></div>
+<div class="bd"><div class="slot" style="color:#FB8C00">Dinner</div><h4>Kang Er Jie 康二姐串串</h4><p class="one">Skewer hotpot where the neighbourhood eats. Zhongdao Street.</p>
+<p class="tip">Pick skewers from the fridge, they count the sticks at the end.</p>
+<a class="more" style="color:#FB8C00" href="#story-kangerjie">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Dub_Joint_band_performing_live%3B_Caribbean_Club%2C_Kyiv_2022.jpg/960px-Dub_Joint_band_performing_live%3B_Caribbean_Club%2C_Kyiv_2022.jpg" alt="NU Space" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">4</span></div>
+<div class="bd"><div class="slot" style="color:#8E24AA">Night</div><h4>NU Space</h4><p class="one">Chengdu&#x27;s serious live venue: post-punk, hip-hop, touring bands, a real sound system.</p>
+<p class="tip">Kuixinglou Street, next to Kuanzhai. Programme on Showstart.</p>
+<a class="more" style="color:#8E24AA" href="#story-nuspace">Read the story</a>
+</div></article>
+</div></div>
+<div class="day" id="day-chengdu-1"><div class="datecol"><div class="wd">Mon</div><div class="dn">28</div><div class="mo">Sep</div><div class="theme" style="border-color:#43A047">Pandas, then the park where 1911 started</div></div><div class="cards">
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Chengdu-pandas-d10.jpg/960px-Chengdu-pandas-d10.jpg" alt="Panda Base" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">5</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Early morning</div><h4>Panda Base</h4><p class="one">Go at opening (07:30) for the feeding; leave by 10:30.</p>
+<p class="tip">Book online; the group will want this. Metro line 3 to Panda Avenue.</p>
+<a class="more" style="color:#1E88E5" href="#story-pandas">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Billyfoodmabodofu3.jpg/960px-Billyfoodmabodofu3.jpg" alt="Chen Mapo Tofu" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">6</span></div>
+<div class="bd"><div class="slot" style="color:#FB8C00">Lunch</div><h4>Chen Mapo Tofu 陈麻婆豆腐</h4><p class="one">The original shop of the dish, state-run since 1956.</p>
+<p class="tip">Xiyulong Street; order the tofu and the twice-cooked pork.</p>
+<a class="more" style="color:#FB8C00" href="#story-chenmapo">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Monument_to_the_Martyrs_of_the_Railway_Protection_Movement_%281911%29_%2813913374751%29.jpg/960px-Monument_to_the_Martyrs_of_the_Railway_Protection_Movement_(1911)_(13913374751).jpg" alt="People&#x27;s Park &amp; Railway Protection Monument" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">7</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Afternoon</div><h4>People&#x27;s Park: Railway Protection Monument 辛亥保路死事纪念碑</h4><p class="one">1911: Sichuan rose against selling the railway to foreign banks. It triggered the revolution.</p>
+<p class="tip">The obelisk is near the north gate; read the four sides.</p>
+<a class="more" style="color:#E53935" href="#story-peoplespark">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/20250519_Heming_Qiao.jpg/960px-20250519_Heming_Qiao.jpg" alt="Heming Teahouse" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">8</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Afternoon</div><h4>Heming Teahouse 鹤鸣茶社</h4><p class="one">Chengdu politics happened in teahouses. Sit for two hours.</p>
+<p class="tip">Order jasmine or Mengding green; ear-cleaners and fortune-tellers will find you.</p>
+<a class="more" style="color:#E53935" href="#story-heming">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Mao_Zedong_Statue_%28Tianfu_Square%29.jpg/960px-Mao_Zedong_Statue_(Tianfu_Square).jpg" alt="Tianfu Square" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">9</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Late afternoon</div><h4>Tianfu Square</h4><p class="one">Chengdu&#x27;s own June 1989, under the Mao statue. Unmarked.</p>
+<p class="tip">10 min walk from the park. The Jinjiang Hotel is on the south side.</p>
+<a class="more" style="color:#E53935" href="#story-tianfu">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Intersection_of_Yulin_West_Road_and_Yulin_North_Road_20241007194803.jpg/960px-Intersection_of_Yulin_West_Road_and_Yulin_North_Road_20241007194803.jpg" alt="Little Bar (Yulin)" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">10</span></div>
+<div class="bd"><div class="slot" style="color:#8E24AA">Night</div><h4>Little Bar 小酒馆 (Yulin West Road)</h4><p class="one">Birthplace of Chengdu indie since 1997, in the neighbourhood the song &#x27;Chengdu&#x27; is about.</p>
+<p class="tip">Yulin is 15 min by taxi south. Eat rabbit heads from a stall on the way.</p>
+<a class="more" style="color:#8E24AA" href="#story-littlebar">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Name_Wall_of_Dongjiao_Memory_Station%2C_Chengdu_Metro_Line_8.jpg/960px-Name_Wall_of_Dongjiao_Memory_Station%2C_Chengdu_Metro_Line_8.jpg" alt="Dongjiao Memory" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">11</span></div>
+<div class="bd"><div class="slot" style="color:#8E24AA">If time</div><h4>Dongjiao Memory 东郊记忆</h4><p class="one">Soviet-era electronics factory turned music quarter. Workers&#x27; blocks still around it.</p>
+<p class="tip">East side; combine with a NU Space or MAO night if a show is on there.</p>
+<a class="more" style="color:#8E24AA" href="#story-dongjiao">Read the story</a>
+</div></article>
+</div></div>
+<div class="day" id="day-chengdu-2"><div class="datecol"><div class="wd">Tue</div><div class="dn">29</div><div class="mo">Sep</div><div class="theme" style="border-color:#43A047">Jianchuan day trip</div></div><div class="cards">
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg/960px-Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg" alt="Jianchuan Museum Cluster" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">12</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Full day <span style="font-weight:400;color:#5f6368">(out of town)</span></div><h4>Jianchuan Museum Cluster 建川博物馆</h4><p class="one">Private. 30+ halls: the Cultural Revolution, Sichuan&#x27;s forgotten soldiers, the 2008 earthquake.</p>
+<p class="tip">Anren town, about 1h15 by car; hire a driver for the day. Allow five hours inside.</p>
+<a class="more" style="color:#E53935" href="#story-jianchuan">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Lamb_and_Carrot_Dumplings_-_Original_Taste_-_Alpha.jpg/960px-Lamb_and_Carrot_Dumplings_-_Original_Taste_-_Alpha.jpg" alt="Ming Ting fly restaurant" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">13</span></div>
+<div class="bd"><div class="slot" style="color:#FB8C00">Dinner</div><h4>Ming Ting 明婷饭店</h4><p class="one">The most famous &#x27;fly restaurant&#x27; in Chengdu. Brains in mapo sauce.</p>
+<p class="tip">Caojia Alley; go early, it&#x27;s a queue.</p>
+<a class="more" style="color:#FB8C00" href="#story-mingting">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Club_Tigerheat_on_the_Dance_Floor_with_Laser_Lights.jpg/960px-Club_Tigerheat_on_the_Dance_Floor_with_Laser_Lights.jpg" alt="·TAG club" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">14</span></div>
+<div class="bd"><div class="slot" style="color:#8E24AA">Late night</div><h4>.TAG</h4><p class="one">One of China&#x27;s best-regarded underground electronic clubs.</p>
+<p class="tip">Poly Centre; opens late. Alternative: MAO Livehouse for a touring band.</p>
+<a class="more" style="color:#8E24AA" href="#story-tag">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Bian_lian_1.jpg/960px-Bian_lian_1.jpg" alt="Jinjiang Theatre (Sichuan opera)" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">15</span></div>
+<div class="bd"><div class="slot" style="color:#8E24AA">Alternative</div><h4>Jinjiang Theatre 锦江剧场 (Sichuan opera)</h4><p class="one">Proper repertory Sichuan opera for locals. Not the face-changing tourist show.</p>
+<p class="tip">Ask at Heming Teahouse what&#x27;s on; performances are mostly afternoons and weekends.</p>
+<a class="more" style="color:#8E24AA" href="#story-jinjiangtheatre">Read the story</a>
+</div></article>
+</div></div>
+<div class="day" id="day-chengdu-3"><div class="datecol"><div class="wd">Wed</div><div class="dn">30</div><div class="mo">Sep</div><div class="theme" style="border-color:#43A047">Train G8619 12:50 → 14:01</div></div><div class="cards">
+<div class="transit"><span class="ic">🚄</span><div><b>Chengdu East → Chongqing Shapingba</b> <span class="slot" style="color:#607D8B;font-weight:700"> 12:50</span><div class="one">Train G8619, arrives 14:01. Ref 1658114333265511.</div><div class="tip">Shapingba station is on the west side; Yuzhong hotel is 30–40 min by metro/taxi.</div></div></div>
+</div></div>
+<div class="mapblock" id="map-chengdu"><h3>Chengdu on the map</h3><p>Pins are numbered like the cards and coloured by category. Tap a pin for the name and the day. The black pin is your hotel.</p><div class="map" id="lmap-chengdu"></div>
+<p class="far">Out of town, off the edge of the map: <span><b>12</b> Jianchuan Museum Cluster 建川博物馆</span></p>
+</div></div></section>
+<section class="city" id="chongqing"><div class="cityhead" style="background:#3949AB"><div class="wrap">
+<h2>Chongqing</h2><div class="sub">Bombed capital, steel city, trap city</div>
+<div class="meta"><span><b>Wed 30 Sep – Fri 2 Oct</b> · 3 nights</span><span>Hotel: Miss Xie&#x27;s House With Riverview, 16F Kairui Bldg, 153 Changbin Rd, Yuzhong</span></div>
+<div class="quick"><a href="#map-chongqing">Map</a><a href="#stories-chongqing">Stories</a></div>
+</div></div><div class="wrap">
+<div class="day" id="day-chongqing-0"><div class="datecol"><div class="wd">Wed</div><div class="dn">30</div><div class="mo">Sep</div><div class="theme" style="border-color:#3949AB">Steps, shelters, hotpot underground</div></div><div class="cards">
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Shibati_%E5%8D%81%E5%85%AB%E6%A2%AF_2022.1.1.jpg/960px-Shibati_%E5%8D%81%E5%85%AB%E6%A2%AF_2022.1.1.jpg" alt="Shibati &amp; Shancheng Alley" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">1</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Afternoon</div><h4>Shancheng Alley and Shibati 山城巷 · 十八梯</h4><p class="one">The last working-class hillside of the old city, cleared in 2017. Shancheng Alley is what it was.</p>
+<p class="tip">Start at Shancheng Alley (10 min from the hotel), end at Shibati.</p>
+<a class="more" style="color:#E53935" href="#story-shibati">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Bombing_of_Chongqing.png/960px-Bombing_of_Chongqing.png" alt="Jiaochangkou tunnel tragedy memorial" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">2</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Afternoon</div><h4>Jiaochangkou tunnel tragedy memorial 较场口</h4><p class="one">5 June 1941: thousands of civilians suffocated in one air-raid shelter.</p>
+<p class="tip">Small memorial at the top of Shibati. Two minutes, but stop.</p>
+<a class="more" style="color:#E53935" href="#story-jiaochangkou">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Jiefangbei_CBD_20240721.jpg/960px-Jiefangbei_CBD_20240721.jpg" alt="Jiefangbei" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">3</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Late afternoon</div><h4>Jiefangbei 解放碑</h4><p class="one">The monument started life in 1941 as the wartime &#x27;Spirit of Resistance&#x27; pillar.</p>
+<p class="tip">On the way from Shibati to the hotel. Crowded, but 15 minutes is enough.</p>
+<a class="more" style="color:#1E88E5" href="#story-jiefangbei">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Chongqing_hotpot_2.jpg/960px-Chongqing_hotpot_2.jpg" alt="Cave hotpot (bomb shelter)" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">4</span></div>
+<div class="bd"><div class="slot" style="color:#FB8C00">Dinner</div><h4>Cave hotpot 洞子火锅</h4><p class="one">Chongqing hotpot inside a wartime bomb shelter. Full red broth, tripe, duck intestine.</p>
+<p class="tip">Dongting Hotpot 洞亭火锅 near the hotel is one; any 洞子 restaurant works. Order 特辣.</p>
+<a class="more" style="color:#FB8C00" href="#story-cavehotpot">Read the story</a>
+</div></article>
+</div></div>
+<div class="day" id="day-chongqing-1"><div class="datecol"><div class="wd">Thu</div><div class="dn">1</div><div class="mo">Oct</div><div class="theme" style="border-color:#3949AB">National Day: go west early</div></div><div class="cards">
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/028_Sichuan-160811_28_%2829868006911%29.jpg/960px-028_Sichuan-160811_28_(29868006911).jpg" alt="Ciqikou" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">5</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Early morning</div><h4>Ciqikou Ancient Town</h4><p class="one">Go at 07:30 before Golden Week hits. In Shapingba, on the way to the cemetery and prisons.</p>
+<p class="tip">Metro line 1 to Ciqikou. Leave by 09:30.</p>
+<a class="more" style="color:#1E88E5" href="#story-ciqikou">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/8/84/Liu_Shaoqi%2C_Deng_Xiaoping_and_Tao_Zhu_must_get_out.jpg" alt="Red Guard Cemetery" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">6</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Morning</div><h4>Red Guard Cemetery 红卫兵墓园</h4><p class="one">The only preserved Cultural Revolution cemetery in China. About 400 young people, 1967–68.</p>
+<p class="tip">Inside Shapingba Park, west corner. The gate is normally locked; the graves are visible over the wall.</p>
+<a class="more" style="color:#E53935" href="#story-redguard">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/ChongqingZhazidong.jpg/960px-ChongqingZhazidong.jpg" alt="Zhazidong &amp; Baigongguan prisons" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">7</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Afternoon <span style="font-weight:400;color:#5f6368">(out of town)</span></div><h4>Zhazidong and Baigongguan prisons 渣滓洞 · 白公馆</h4><p class="one">KMT political prisons run jointly with US intelligence. Hundreds executed in 1949.</p>
+<p class="tip">Geleshan, 20 min by taxi from Shapingba Park. Free with ID. A Party pilgrimage site, so expect groups.</p>
+<a class="more" style="color:#E53935" href="#story-zhazidong">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Hongyadong_night_lights_Chongqing.jpg/960px-Hongyadong_night_lights_Chongqing.jpg" alt="Hongyadong" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">8</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Evening</div><h4>Hongyadong and the Yangtze cableway</h4><p class="one">See the stilt-houses lit up from across the river, then ride the cableway over.</p>
+<p class="tip">Golden Week crowds are extreme. View from Qiansimen Bridge, ride the cableway from the north side at 21:00 or later.</p>
+<a class="more" style="color:#1E88E5" href="#story-hongyadong">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Night_in_Chongqing_%2820250501%29.jpg/960px-Night_in_Chongqing_(20250501).jpg" alt="Nuts Live House" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">9</span></div>
+<div class="bd"><div class="slot" style="color:#8E24AA">Night</div><h4>Nuts Live House 坚果</h4><p class="one">Chongqing&#x27;s home for live indie bands, young local crowd.</p>
+<p class="tip">Check Showstart; Golden Week is festival season, so bills are good. Shapingba side.</p>
+<a class="more" style="color:#8E24AA" href="#story-nuts">Read the story</a>
+</div></article>
+</div></div>
+<div class="day" id="day-chongqing-2"><div class="datecol"><div class="wd">Fri</div><div class="dn">2</div><div class="mo">Oct</div><div class="theme" style="border-color:#3949AB">Steel, porters, and a 01:50 flight</div></div><div class="cards">
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Chongqing_Xiaomian_with_fried_eggs.jpg/960px-Chongqing_Xiaomian_with_fried_eggs.jpg" alt="Xiaomian breakfast" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">10</span></div>
+<div class="bd"><div class="slot" style="color:#FB8C00">Breakfast</div><h4>Xiaomian 小面: Hua Shi Wanza Mian 花市豌杂面</h4><p class="one">Chongqing&#x27;s breakfast: spicy &#x27;small noodles&#x27; on plastic stools.</p>
+<p class="tip">Any pavement stall with a queue; this one has the following. Order 二两 with peas and minced pork.</p>
+<a class="more" style="color:#FB8C00" href="#story-xiaomian">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Zhongxing_Branch_of_Chongqing_Iron_and_Steel_Group_2002_SIK_03-056638-Print.jpg/960px-Zhongxing_Branch_of_Chongqing_Iron_and_Steel_Group_2002_SIK_03-056638-Print.jpg" alt="Chongqing Industrial Museum" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">11</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Morning <span style="font-weight:400;color:#5f6368">(out of town)</span></div><h4>Chongqing Industrial Museum 重庆工业博物馆</h4><p class="one">Inside the old Iron and Steel works, moved upriver in 1938 to keep the war going. Steelworkers&#x27; story.</p>
+<p class="tip">Dadukou, 40 min by taxi or metro line 2. Free.</p>
+<a class="more" style="color:#E53935" href="#story-industrial">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/The_People%27s_Great_Hall_of_Chongqing.jpg/960px-The_People%27s_Great_Hall_of_Chongqing.jpg" alt="Three Gorges Museum &amp; People&#x27;s Great Hall" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">12</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Afternoon</div><h4>Three Gorges Museum and People&#x27;s Great Hall</h4><p class="one">For the group. The wartime-capital gallery is the one worth your time.</p>
+<p class="tip">Free; the Hall is a 1950s Soviet-Chinese hybrid. Then walk to Liziba.</p>
+<a class="more" style="color:#1E88E5" href="#story-threegorges">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Model_of_Liziba_Station_at_MetroTrans_2019_%2820190726142641%29.jpg/960px-Model_of_Liziba_Station_at_MetroTrans_2019_(20190726142641).jpg" alt="Liziba Monorail Station" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">13</span></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Afternoon</div><h4>Liziba Monorail Station</h4><p class="one">The train through the building. Two minutes, and it&#x27;s on the way.</p>
+<p class="tip">Line 2; watch from the viewing platform below.</p>
+<a class="more" style="color:#1E88E5" href="#story-liziba">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Chaotianmen_Yangtze_River_Bridge.JPG/960px-Chaotianmen_Yangtze_River_Bridge.JPG" alt="Chaotianmen &amp; bangbang porters" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">14</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Late afternoon</div><h4>Chaotianmen and the bangbang porters 棒棒军</h4><p class="one">The docks where Chongqing&#x27;s story starts. Watch for the last porters with bamboo poles.</p>
+<p class="tip">The Raffles City complex sits on top now; go down to the river steps.</p>
+<a class="more" style="color:#E53935" href="#story-bangbang">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Nanbin_Road_night_scene_-_panoramio.jpg" alt="Nanbin Road consulates" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">15</span></div>
+<div class="bd"><div class="slot" style="color:#E53935">Evening</div><h4>Nanbin Road: the treaty-port consulates</h4><p class="one">Chongqing was opened to Britain by force in 1891. The consulates and customs house are still here.</p>
+<p class="tip">Across the river from the hotel. Cross by the Dongshuimen bridge on foot.</p>
+<a class="more" style="color:#E53935" href="#story-nanbin">Read the story</a>
+</div></article>
+<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Live_rock_concert_featuring_musicians_playing_electric_guitars_on_stage_at_night_with_vibrant_lights_and_an_enthusiastic_crowd_present.jpg/960px-Live_rock_concert_featuring_musicians_playing_electric_guitars_on_stage_at_night_with_vibrant_lights_and_an_enthusiastic_crowd_present.jpg" alt="MAO Livehouse Chongqing" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">16</span></div>
+<div class="bd"><div class="slot" style="color:#8E24AA">Night (before the airport)</div><h4>MAO Livehouse Chongqing or a rap night</h4><p class="one">One last show before a 22:30 taxi to the airport.</p>
+<p class="tip">Flight QR 881 departs 01:50; leave the hotel by 22:30. Check out and store bags earlier.</p>
+<a class="more" style="color:#8E24AA" href="#story-maocq">Read the story</a>
+</div></article>
+</div></div>
+<div class="mapblock" id="map-chongqing"><h3>Chongqing on the map</h3><p>Pins are numbered like the cards and coloured by category. Tap a pin for the name and the day. The black pin is your hotel.</p><div class="map" id="lmap-chongqing"></div>
+<p class="far">Out of town, off the edge of the map: <span><b>7</b> Zhazidong and Baigongguan prisons 渣滓洞 · 白公馆</span> <span><b>11</b> Chongqing Industrial Museum 重庆工业博物馆</span></p>
+</div></div></section>
+<section class="stories" id="stories"><div class="wrap"><h2>The stories behind each stop</h2><p class="lead">The long version, in the same order as the days. Read on the train, not on the street; most of what follows is not for conversation with strangers.</p>
+<div class="storycity" id="stories-beijing"><h3 style="background:#F9A825">Beijing</h3>
+<article class="story" id="story-houhai"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/China_Beijing_Drum_Tower.png/960px-China_Beijing_Drum_Tower.png" alt="Houhai &amp; Drum Tower" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:China_Beijing_Drum_Tower.png" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Houhai and the Drum Tower</h4><div class="when"><b>Sun 20 Sep</b> · Evening · Landmark, reframed</div>
+<p>The Drum and Bell Towers kept time for the imperial city; the lakes behind them were where ordinary Beijingers swam, skated and drank. This is still one of the last hutong districts with residents in it, though the pressure to hollow it out is constant. Use tonight to get your bearings; everything on the Beijing list radiates from here.</p>
+<p class="tip">Your hotel is 5 minutes from everything here.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-0">Back to Sun 20 Sep</a></div></article>
+<article class="story" id="story-yaoji"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/Beijing_breakfast_%283195979832%29.jpg/960px-Beijing_breakfast_%283195979832%29.jpg" alt="Yaoji Chaogan" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Beijing_breakfast_(3195979832).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Yaoji Chaogan 姚记炒肝</h4><div class="when"><b>Sun 20 Sep</b> · Dinner / breakfasts · Local food</div>
+<p>Chaogan is old-Beijing working breakfast: a thick starchy stew of pork liver and intestine eaten with steamed buns, standing or perched on a stool. Yaoji on Gulou East Street has been serving it since the 1980s and the clientele is retirees and cab drivers. It&#x27;s the opposite of Nanluoguxiang, which is two streets away.</p>
+<p class="tip">Also the breakfast spot for the 24th before the train.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-0">Back to Sun 20 Sep</a></div></article>
+<article class="story" id="story-eastshore"><div><div class="ph" style="border-top-color:#8E24AA"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Houhai_Lake_and_Drum_Tower_Beijing_2015_October.jpg/960px-Houhai_Lake_and_Drum_Tower_Beijing_2015_October.jpg" alt="East Shore Jazz Café" loading="lazy"><span class="badge" style="background:#8E24AA">🎸</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Houhai_Lake_and_Drum_Tower_Beijing_2015_October.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>East Shore Jazz Café 东岸</h4><div class="when"><b>Sun 20 Sep</b> · Night · Live music</div>
+<p>Founded by saxophonist Liu Yuan, who played in Cui Jian&#x27;s original band, East Shore is where Beijing&#x27;s jazz musicians play for each other. No cover, no tourist show, a view over Houhai. A soft landing for jet-lagged night one, and a direct link to the rock godfather whose song the 1989 students sang.</p>
+<p class="tip">Sets from about 21:30. Arrive early for a window seat.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-0">Back to Sun 20 Sep</a></div></article>
+<article class="story" id="story-tiananmen"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Beijing_China_Tiananmen-Square-Young_Pioneers_of_China-01.jpg/960px-Beijing_China_Tiananmen-Square-Young_Pioneers_of_China-01.jpg" alt="Tiananmen Square" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Beijing_China_Tiananmen-Square-Young_Pioneers_of_China-01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Tiananmen Square</h4><div class="when"><b>Mon 21 Sep</b> · Morning · People's history</div>
+<p>Every popular movement of the 20th century met here. May Fourth 1919: students marched against the Versailles handover of German concessions to Japan, and against their own government&#x27;s weakness. April 1976: the mass mourning for Zhou Enlai became the first open defiance of the Cultural Revolution leadership; the crowd was cleared by force on 5 April. April to June 1989: students, then workers (the Beijing Workers&#x27; Autonomous Federation set up its tents on the north-west corner), held the square for seven weeks. None of this is marked. The one thing to read is the ten marble reliefs at the base of the Monument to the People&#x27;s Heroes: the state&#x27;s own selection, but the subjects are the Opium War burning, the Taiping, the 1911 uprising, May Fourth, the May Thirtieth strike of 1925, and the Nanchang mutiny. The Party tells the story of popular revolt right up to the day it took power.</p>
+<p class="tip">Advance reservation with passport via WeChat mini-program is required. Book before you fly.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-1">Back to Mon 21 Sep</a></div></article>
+<article class="story" id="story-muxidi"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Platform_of_L1_Muxidi_Station_%2820230520154327%29.jpg/960px-Platform_of_L1_Muxidi_Station_%2820230520154327%29.jpg" alt="Muxidi" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Platform_of_L1_Muxidi_Station_(20230520154327).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Chang&#x27;an Avenue west to Muxidi</h4><div class="when"><b>Mon 21 Sep</b> · Late morning · People's history</div>
+<p>On the night of 3–4 June 1989 the 38th Army entered the city from the west along Chang&#x27;an Avenue. The heaviest killing was at Muxidi, where residents of the apartment blocks (many of them retired officials) threw up barricades; the death toll there dwarfed the square itself. Muxidi is now a metro station and a row of ministries. There is nothing to see, and that is the point of walking it.</p>
+<p class="tip">Stay on the north pavement past Xidan; Muxidi is 3.5 km. Or ride the metro two stops and walk back.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-1">Back to Mon 21 Sep</a></div></article>
+<article class="story" id="story-xidan"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/South_end_of_Xidan_North_St_%2820211007134200%29.jpg/960px-South_end_of_Xidan_North_St_%2820211007134200%29.jpg" alt="Xidan" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:South_end_of_Xidan_North_St_(20211007134200).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Xidan Democracy Wall (site)</h4><div class="when"><b>Mon 21 Sep</b> · Late morning · People's history</div>
+<p>From November 1978 a 200-metre brick wall along Xidan became the place where people posted big-character posters calling for democracy, human rights and an accounting for the Cultural Revolution. Wei Jingsheng&#x27;s essay &#x27;The Fifth Modernization&#x27; went up here. Deng tolerated it while it helped him against the old guard, then closed it in December 1979 and jailed Wei for fifteen years. The wall is gone; the site is a mall.</p>
+<p class="tip">On your route to Muxidi; a two-minute stop.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-1">Back to Mon 21 Sep</a></div></article>
+<article class="story" id="story-forbidden"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Sunset_of_the_Forbidden_City_2006.JPG/960px-Sunset_of_the_Forbidden_City_2006.JPG" alt="Forbidden City" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Sunset_of_the_Forbidden_City_2006.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Forbidden City</h4><div class="when"><b>Mon 21 Sep</b> · Afternoon · Landmark, reframed</div>
+<p>The imperial palace complex, 1420 to 1912. The people&#x27;s-history note is the exits: in 1900 the Boxers and then the eight foreign armies came through these gates; in 1924 the warlord Feng Yuxiang finally evicted the last emperor. It&#x27;s the group&#x27;s landmark; treat it as the walk to Jingshan.</p>
+<p class="tip">Tickets sell out days ahead; book online with passports.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-1">Back to Mon 21 Sep</a></div></article>
+<article class="story" id="story-jingshan"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/The_Forbidden_City_-_View_from_Coal_Hill.jpg/960px-The_Forbidden_City_-_View_from_Coal_Hill.jpg" alt="Jingshan Park" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:The_Forbidden_City_-_View_from_Coal_Hill.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Jingshan Park</h4><div class="when"><b>Mon 21 Sep</b> · Sunset · Landmark, reframed</div>
+<p>The artificial hill built from the palace moat&#x27;s spoil. Locals come here to sing in choirs, dance and practise instruments in the evening; the last Ming emperor hanged himself on the slope in 1644 as a peasant army entered the city. Best view of the Forbidden City for no money.</p>
+<p class="tip">Free-ish; 10 minutes to the top.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-1">Back to Mon 21 Sep</a></div></article>
+<article class="story" id="story-fangzhuan"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/Zhajiangmian_before_stirring_at_Fangzhuanchang_%2820210115130756%29.jpg/960px-Zhajiangmian_before_stirring_at_Fangzhuanchang_%2820210115130756%29.jpg" alt="Fangzhuanchang 69 noodles" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Zhajiangmian_before_stirring_at_Fangzhuanchang_(20210115130756).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Fangzhuanchang 69 方砖厂69号炸酱面</h4><div class="when"><b>Mon 21 Sep</b> · Dinner · Local food</div>
+<p>Zhajiangmian is the dish Beijingers actually eat at home: hand-pulled noodles, a fermented soybean and pork sauce, eight little dishes of raw vegetables you mix in yourself. Fangzhuanchang is a tiny hutong shop near Gulou that does the definitive version.</p>
+<p class="tip">Cash-free; queue at peak hours.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-1">Back to Mon 21 Sep</a></div></article>
+<article class="story" id="story-schoolbar"><div><div class="ph" style="border-top-color:#8E24AA"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Beijing_hutong_Wudaoying_3.jpg/960px-Beijing_hutong_Wudaoying_3.jpg" alt="School Bar" loading="lazy"><span class="badge" style="background:#8E24AA">🎸</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Beijing_hutong_Wudaoying_3.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>School Bar 学校酒吧</h4><div class="when"><b>Mon 21 Sep</b> · Night · Live music</div>
+<p>Co-founded by Liu Hao of the band Joyside, School Bar is the room where a generation of Chinese punk and garage bands played their first shows: sweaty, loud, cheap beer, a local crowd that shows up on weeknights. Beijing rock has been a protest form since Cui Jian&#x27;s &#x27;Nothing to My Name&#x27; became the anthem of the 1989 square, and School is its dive-bar descendant.</p>
+<p class="tip">Check the venue&#x27;s WeChat or Showstart for the night&#x27;s bill. Cover ¥50–150.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-1">Back to Mon 21 Sep</a></div></article>
+<article class="story" id="story-mutianyu"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Great_Wall_of_China_July_2006.JPG/960px-Great_Wall_of_China_July_2006.JPG" alt="Great Wall, Mutianyu" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Great_Wall_of_China_July_2006.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Great Wall at Mutianyu</h4><div class="when"><b>Tue 22 Sep</b> · Full day · Landmark, reframed</div>
+<p>The Wall is the one landmark where the popular story is older than the official one. It was built and rebuilt by conscript labour, convicts and soldiers; the folk legend of Meng Jiangnü, the widow who walked to the Wall to find her husband, learned he&#x27;d been buried inside it, and wept until a section collapsed, has been sung for two thousand years as the peasant&#x27;s verdict on imperial glory. Mutianyu is less crowded than Badaling and the woods around it are the Wall&#x27;s best setting.</p>
+<p class="tip">Hire a driver for the group (about 1h30 each way). Leave by 07:30.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-2">Back to Tue 22 Sep</a></div></article>
+<article class="story" id="story-ddc"><div><div class="ph" style="border-top-color:#8E24AA"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Hutong_at_Night_%286228122499%29.jpg/960px-Hutong_at_Night_%286228122499%29.jpg" alt="DDC (Dusk Dawn Club)" loading="lazy"><span class="badge" style="background:#8E24AA">🎸</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Hutong_at_Night_(6228122499).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>DDC – Dusk Dawn Club 黄昏黎明俱乐部</h4><div class="when"><b>Tue 22 Sep</b> · Night · Live music</div>
+<p>DDC started as a tiny courtyard club in Shanlao Hutong and grew into one of the city&#x27;s key stages for both novices and touring acts. It relaunched after the pandemic in a larger room and keeps a commitment to new bands alongside jazz, folk and experimental nights. A good bet for a weeknight when School&#x27;s bill is thin.</p>
+<p class="tip">Programme on WeChat/Showstart. Now in a bigger space near Wangfujing.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-2">Back to Tue 22 Sep</a></div></article>
+<article class="story" id="story-tiantan"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg/960px-Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg" alt="Temple of Heaven" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Temple of Heaven</h4><div class="when"><b>Wed 23 Sep</b> · Early morning · Landmark, reframed</div>
+<p>The imperial altar where emperors prayed for harvests is now the biggest public living room in Beijing. Every morning thousands of pensioners, many of them laid-off state workers of the 1990s, take over the cypress groves to sing, dance, play instruments and argue. It&#x27;s the best hour of people-watching in the city, and it&#x27;s free before the tour buses.</p>
+<p class="tip">Buy the park ticket only unless the group wants the hall.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-3">Back to Wed 23 Sep</a></div></article>
+<article class="story" id="story-niujie"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Niujie_Mosque_-_CIMG3716.JPG/960px-Niujie_Mosque_-_CIMG3716.JPG" alt="Niujie Muslim neighbourhood" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Niujie_Mosque_-_CIMG3716.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Niujie 牛街</h4><div class="when"><b>Wed 23 Sep</b> · Late morning · People's history</div>
+<p>Niujie (&#x27;Ox Street&#x27;) has been Beijing&#x27;s Muslim quarter for a thousand years; the mosque dates to 996. It&#x27;s one of the few genuinely working-class Beijing neighbourhoods left inside the second ring, a community that survived Qing persecution, the Cultural Revolution&#x27;s closure of its mosque, and now the &#x27;sinicization&#x27; pressure on Islam in China. Come for the street, stay for lunch.</p>
+<p class="tip">Mosque visits are fine outside prayer times; dress modestly.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-3">Back to Wed 23 Sep</a></div></article>
+<article class="story" id="story-jubaoyuan"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Instant-boiled_mutton_hot_pot_at_Yangfang_Shengli_%2820200111153612%29.jpg/960px-Instant-boiled_mutton_hot_pot_at_Yangfang_Shengli_%2820200111153612%29.jpg" alt="Jubaoyuan hotpot" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Instant-boiled_mutton_hot_pot_at_Yangfang_Shengli_(20200111153612).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Jubaoyuan 聚宝源</h4><div class="when"><b>Wed 23 Sep</b> · Lunch · Local food</div>
+<p>Shuan yangrou is Beijing&#x27;s own hotpot: a charcoal-fired copper pot with a chimney, plain water, paper-thin lamb, a sesame dipping sauce. Jubaoyuan is the Hui institution locals queue for; nobody will speak English and the meat is the best in the city.</p>
+<p class="tip">Order hand-cut lamb, sesame sauce, sugar-garlic and the sesame flatbread.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-3">Back to Wed 23 Sep</a></div></article>
+<article class="story" id="story-dashilar"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Dashala_Enterance_2010.jpg/960px-Dashala_Enterance_2010.jpg" alt="Dashilar &amp; Yangmeizhu Xiejie" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Dashala_Enterance_2010.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Dashilar and Yangmeizhu Xiejie</h4><div class="when"><b>Wed 23 Sep</b> · Afternoon · People's history</div>
+<p>South of the imperial city was where the workers, entertainers and traders lived, outside the walls and beneath notice. Dashilar was the crafts and shops district; Yangmeizhu Xiejie a street of printers and booksellers, and later the hub of pre-1949 leftist publishing. The area has been half-gentrified by a design scheme but the residents are still mostly there, unlike the theme-park version on Qianmen Street.</p>
+<p class="tip">Walk from Niujie via Baodu Feng for a tripe snack.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-3">Back to Wed 23 Sep</a></div></article>
+<article class="story" id="story-baodu"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/Mao_Xuewang_1.jpg/960px-Mao_Xuewang_1.jpg" alt="Baodu Feng" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Mao_Xuewang_1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Baodu Feng 爆肚冯</h4><div class="when"><b>Wed 23 Sep</b> · Snack · Local food</div>
+<p>Baodu is lamb or beef tripe blanched for seconds and eaten with a sesame-and-chive sauce: a poor man&#x27;s dish that became a Beijing obsession. Baodu Feng has been run by the same Hui family since the 1880s, originally from a stall at Dong&#x27;anmen.</p>
+<p class="tip">Dip in sesame sauce; eat immediately while it&#x27;s crunchy.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-3">Back to Wed 23 Sep</a></div></article>
+<article class="story" id="story-redbuilding"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/PKU_Red_Building_%2820220908152758%29.jpg/960px-PKU_Red_Building_%2820220908152758%29.jpg" alt="Peking University Red Building" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:PKU_Red_Building_(20220908152758).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Peking University Red Building 北大红楼</h4><div class="when"><b>Wed 23 Sep</b> · Late afternoon · People's history</div>
+<p>The old Peking University campus building was the intellectual engine of the 1910s: Chen Duxiu edited New Youth here, Li Dazhao ran the library and the first Marxist study circle (with a young library clerk named Mao Zedong), and Lu Xun taught. On 4 May 1919 the students marched from here to Tiananmen. It&#x27;s now a museum with a heavy Party frame, but the exhibits are the students&#x27; leaflets, the professors&#x27; journals, and the argument about what China should become before anyone had won it.</p>
+<p class="tip">Free with passport; closes 17:00. State-run, but the story is students and teachers.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-3">Back to Wed 23 Sep</a></div></article>
+<article class="story" id="story-legation"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/National_cultural_heritage_stele_at_Dongjiaominxiang_Former_Japanese_Legation_%2820250102132831%29.jpg/960px-National_cultural_heritage_stele_at_Dongjiaominxiang_Former_Japanese_Legation_%2820250102132831%29.jpg" alt="Legation Quarter" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:National_cultural_heritage_stele_at_Dongjiaominxiang_Former_Japanese_Legation_(20250102132831).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Legation Quarter 东交民巷</h4><div class="when"><b>Wed 23 Sep</b> · Late afternoon · People's history</div>
+<p>After 1860 the foreign powers took this street south-east of the square as their own walled city, with troops, banks and a racecourse. In summer 1900 the Boxers, a peasant movement out of Shandong&#x27;s famine, besieged it for 55 days; the relief by eight foreign armies ended with the looting of Beijing and an indemnity that bankrupted China for decades. In 1919 the May Fourth students marched here to petition the ministers. The French post office, the banks and St Michael&#x27;s church are all still standing.</p>
+<p class="tip">A 20-minute walk along Dongjiaominxiang; the buildings are intact but mostly closed.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-3">Back to Wed 23 Sep</a></div></article>
+<article class="story" id="story-fruity"><div><div class="ph" style="border-top-color:#8E24AA"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/National_Art_Museum_of_China_%2820211212161924%29.jpg/960px-National_Art_Museum_of_China_%2820211212161924%29.jpg" alt="fRUITYSPACE" loading="lazy"><span class="badge" style="background:#8E24AA">🎸</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:National_Art_Museum_of_China_(20211212161924).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>fRUITYSPACE 果空间</h4><div class="when"><b>Wed 23 Sep</b> · Night · Live music</div>
+<p>Founded in 2016 by the experimental musician Zhai Ruixin, fRUITYSPACE is a record shop with a basement stage that keeps the DIY underground alive after the closure of XP and D-22. Noise, improv, post-punk, zines. It&#x27;s the least commercial room in Beijing.</p>
+<p class="tip">Small, cheap, cash-free. Programme via WeChat &#x27;fRUITYSPACE&#x27;.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-3">Back to Wed 23 Sep</a></div></article>
+<article class="story" id="story-zhaodai"><div><div class="ph" style="border-top-color:#8E24AA"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/7/76/Banana_Club.jpg" alt="Zhao Dai" loading="lazy"><span class="badge" style="background:#8E24AA">🎸</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Banana_Club.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Zhao Dai 招待所</h4><div class="when"><b>Wed 23 Sep</b> · Late night (alt.) · Live music</div>
+<p>Zhao Dai (&#x27;guesthouse&#x27;) is a 200-capacity club in a former Communist-era hostel, run by DJs rather than promoters, and the heart of the city&#x27;s serious electronic scene. Local and touring DJs, no VIP tables.</p>
+<p class="tip">Opens late; check for a live set.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-3">Back to Wed 23 Sep</a></div></article>
+<article class="story" id="story-luxun"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Beijing_Lu_Xun_Museum_-_tree_2_planted_by_Lu_Xun.jpg/960px-Beijing_Lu_Xun_Museum_-_tree_2_planted_by_Lu_Xun.jpg" alt="Lu Xun Museum" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Beijing_Lu_Xun_Museum_-_tree_2_planted_by_Lu_Xun.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Lu Xun Museum 鲁迅博物馆</h4><div class="when"><b>Thu 24 Sep</b> · Morning (optional) · People's history</div>
+<p>Lu Xun (1881–1936) wrote &#x27;Diary of a Madman&#x27; and &#x27;The True Story of Ah Q&#x27;, the most savage portraits of Chinese society ever written, and mentored the leftist writers of the 1930s while refusing to join the Party. The state adopted him after his death; he never returned the favour. His courtyard house and manuscripts are here.</p>
+<p class="tip">Only if you skip Yaoji; near Fuchengmen, 20 min from the station.</p>
+<a class="back" style="color:#F9A825" href="#day-beijing-4">Back to Thu 24 Sep</a></div></article>
+</div>
+<div class="storycity" id="stories-xian"><h3 style="background:#00897B">Xi&#x27;an</h3>
+<article class="story" id="story-belltower"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Xi%27an_bell_tower.jpg/960px-Xi%27an_bell_tower.jpg" alt="Bell Tower &amp; Drum Tower" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Xi%27an_bell_tower.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Bell Tower and City Wall</h4><div class="when"><b>Thu 24 Sep</b> · Evening · Landmark, reframed</div>
+<p>The Ming wall is the most complete city wall in China, and its gates mark the events: the Xi&#x27;an Incident of 1936 played out inside it, and the Hui uprising of 1862–73 ended with the city&#x27;s Muslim quarter besieged behind it. The Bell Tower is your hotel&#x27;s landmark and your meeting point for the three days.</p>
+<p class="tip">Wall night tickets to about 22:00 from the South Gate.</p>
+<a class="back" style="color:#00897B" href="#day-xian-0">Back to Thu 24 Sep</a></div></article>
+<article class="story" id="story-sajinqiao"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Xi%27an_Muslim_Quarter.jpg/960px-Xi%27an_Muslim_Quarter.jpg" alt="Sajinqiao street" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Xi%27an_Muslim_Quarter.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Sajinqiao street 洒金桥</h4><div class="when"><b>Thu 24 Sep</b> · Dinner · Local food</div>
+<p>Beiyuanmen, the famous strip behind the Drum Tower, is a tourist food court. Sajinqiao, a ten-minute walk west, is where the Hui families of the quarter actually eat: the same cumin-lamb skewers, yangrou paomo (flatbread torn into mutton broth), roujiamo and rose-syrup persimmon cakes, at family stalls with residents on the stools.</p>
+<p class="tip">Mutton paomo, roast meat skewers, persimmon cakes, cold noodles. Go after 19:00.</p>
+<a class="back" style="color:#00897B" href="#day-xian-0">Back to Thu 24 Sep</a></div></article>
+<article class="story" id="story-terracotta"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Terracotta_Army_-_Pit_1%2C_Xi%27an%2C_China_%2814148051282%29.jpg/960px-Terracotta_Army_-_Pit_1%2C_Xi%27an%2C_China_%2814148051282%29.jpg" alt="Terracotta Army" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Terracotta_Army_-_Pit_1,_Xi%27an,_China_(14148051282).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Terracotta Army</h4><div class="when"><b>Fri 25 Sep</b> · Full day · Landmark, reframed</div>
+<p>Qin Shihuang unified China by conquest, standardised the written language and buried himself with an army of clay. The state&#x27;s version stops there. The people&#x27;s version: 700,000 conscripts and convicts built the mausoleum, many of them buried around it in mass graves the archaeologists have found. Three years after the emperor died, two conscript labourers, Chen Sheng and Wu Guang, late for a work detail and facing execution, launched China&#x27;s first recorded peasant uprising with the line &#x27;Are kings and nobles born to it?&#x27; The dynasty fell within four years. And in 1974 the farmer Yang Zhifa dug a well, found the first head, and was paid ten yuan; he spent his later years signing books at the gift shop.</p>
+<p class="tip">About 1h by car or the tourist bus from the station. Hire a guide who will talk about the workers.</p>
+<a class="back" style="color:#00897B" href="#day-xian-1">Back to Fri 25 Sep</a></div></article>
+<article class="story" id="story-dongxinjie"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/2015-01-04_street_food_vendor_at_%28a_night_market%29_in_Xi%27an.jpg/960px-2015-01-04_street_food_vendor_at_(a_night_market)_in_Xi%27an.jpg" alt="Dongxin Jie night market" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:2015-01-04_street_food_vendor_at_(a_night_market)_in_Xi%27an.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Dongxin Jie night market 东新街夜市</h4><div class="when"><b>Fri 25 Sep</b> · Dinner · Local food</div>
+<p>A working night market of grilled skewers, crayfish, spicy cold noodles and beer, patronised by office workers and students rather than tour groups. Loud, cheap, and the antidote to the Muslim Quarter main strip.</p>
+<p class="tip">10 min walk east of the hotel. Peaks 21:00–midnight.</p>
+<a class="back" style="color:#00897B" href="#day-xian-1">Back to Fri 25 Sep</a></div></article>
+<article class="story" id="story-aperture"><div><div class="ph" style="border-top-color:#8E24AA"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Naran_Singer.png" alt="Aperture Club" loading="lazy"><span class="badge" style="background:#8E24AA">🎸</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Naran_Singer.png" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Aperture Club 光圈CLUB</h4><div class="when"><b>Fri 25 Sep</b> · Night · Live music</div>
+<p>Aperture, in the Juhuayuan lanes off East Street, is where touring Chinese bands play Xi&#x27;an and where the city&#x27;s own bands rehearse and record. It doubles as a small theatre and an independent film space. Xi&#x27;an is the home city of the 1990s rock generation (Zhang Chu, Xu Wei, Zheng Jun), whose songs about aimless young men in a changing country still fill rooms.</p>
+<p class="tip">Check Showstart; Xi&#x27;an&#x27;s scene is small, so if nothing&#x27;s on, stay at the night market.</p>
+<a class="back" style="color:#00897B" href="#day-xian-1">Back to Fri 25 Sep</a></div></article>
+<article class="story" id="story-zhangxueliang"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Reuni%C3%B3nDeCaudillosMilitaresChinos_%28format_4to3_portrait%29.jpeg" alt="Zhang Xueliang Residence" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Reuni%C3%B3nDeCaudillosMilitaresChinos_(format_4to3_portrait).jpeg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Zhang Xueliang Residence 张学良公馆</h4><div class="when"><b>Sat 26 Sep</b> · Morning · People's history</div>
+<p>In December 1936 the &#x27;Young Marshal&#x27; Zhang Xueliang and General Yang Hucheng arrested Chiang Kai-shek in Xi&#x27;an and held him until he agreed to stop fighting the Communists and turn on the Japanese occupying the north-east. The pressure came from below: Zhang&#x27;s Manchurian soldiers had lost their homes to Japan and were refusing to fight other Chinese. The Incident forced the united front and changed the war. Zhang spent the next 50 years under house arrest; Yang Hucheng was murdered with his family in a Chongqing prison in 1949. This was his co-conspirator&#x27;s compound.</p>
+<p class="tip">Jianguo Road, 15 min from the hotel. Small museum; an hour.</p>
+<a class="back" style="color:#00897B" href="#day-xian-2">Back to Sat 26 Sep</a></div></article>
+<article class="story" id="story-zhiyuan"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Yang_Hucheng.jpg" alt="Zhiyuan (Yang Hucheng)" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Yang_Hucheng.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Zhiyuan (Yang Hucheng&#x27;s residence) 止园</h4><div class="when"><b>Sat 26 Sep</b> · Morning · People's history</div>
+<p>Yang Hucheng was a Shaanxi peasant&#x27;s son who joined the 1911 revolution as a bandit-turned-soldier and rose to govern the province. He was the driving force behind the arrest of Chiang, paid for it with his life, and is far less celebrated than Zhang because he had no powerful family. His residence is a quiet garden museum.</p>
+<p class="tip">Qingnian Road, north-west of the Bell Tower.</p>
+<a class="back" style="color:#00897B" href="#day-xian-2">Back to Sat 26 Sep</a></div></article>
+<article class="story" id="story-textilecity"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Baqiao%2C_Xi%27an%2C_Shaanxi%2C_China_-_panoramio.jpg/960px-Baqiao%2C_Xi%27an%2C_Shaanxi%2C_China_-_panoramio.jpg" alt="Textile City (Banpo Art Zone)" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Baqiao,_Xi%27an,_Shaanxi,_China_-_panoramio.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Textile City 纺织城</h4><div class="when"><b>Sat 26 Sep</b> · Afternoon · People's history</div>
+<p>In the 1950s the state built six giant Soviet-designed cotton mills east of the city and a whole company town around them: dormitories, schools, hospitals, cinemas. The workforce was overwhelmingly women. The 1990s restructuring laid off most of them with a lump sum and a lost pension. Part of the complex is now the Banpo International Art District, with studios in the mill halls; the rest is decaying workers&#x27; housing with the retirees still in it. It is the most honest labour-history site in Xi&#x27;an, and nobody visits.</p>
+<p class="tip">Baqiao District, 30 min by taxi east. Ask for 半坡国际艺术区.</p>
+<a class="back" style="color:#00897B" href="#day-xian-2">Back to Sat 26 Sep</a></div></article>
+<article class="story" id="story-greatmosque"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/8/80/Xi%27an_Great_Mosque_1910s.jpg" alt="Great Mosque of Xi&#x27;an" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Xi%27an_Great_Mosque_1910s.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Great Mosque and the Hui quarter</h4><div class="when"><b>Sat 26 Sep</b> · Late afternoon · People's history</div>
+<p>The Hui, Chinese-speaking Muslims, have lived in this quarter since the 8th century; the mosque was founded in 742 and rebuilt in the Ming as a Chinese courtyard complex. In 1862 the Hui of Shaanxi rose against the Qing and were crushed in a decade-long campaign that killed millions across the north-west; Xi&#x27;an&#x27;s quarter survived behind the city wall. Today the community faces the same &#x27;sinicization&#x27; campaign as Muslims elsewhere in China: domes removed, Arabic signs taken down. The quarter still stands, and the food is the community&#x27;s economic lifeline.</p>
+<p class="tip">Entry ¥25; the courtyards are Chinese, the prayer hall is Islamic. Closed to non-Muslims at prayer.</p>
+<a class="back" style="color:#00897B" href="#day-xian-2">Back to Sat 26 Sep</a></div></article>
+<article class="story" id="story-biangbiang"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Biang_Biang_Noodles_at_Qintangyizhan%2C_Tianzhu%2C_Beijing_%2820200412133323%29.jpg/960px-Biang_Biang_Noodles_at_Qintangyizhan%2C_Tianzhu%2C_Beijing_%2820200412133323%29.jpg" alt="Biangbiang Mian" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Biang_Biang_Noodles_at_Qintangyizhan,_Tianzhu,_Beijing_(20200412133323).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Biangbiang Mian 南院门 biangbiang面</h4><div class="when"><b>Sat 26 Sep</b> · Dinner · Local food</div>
+<p>Biangbiang noodles are Shaanxi&#x27;s peasant staple: one enormous hand-slapped noodle per bowl, chilli oil, garlic, vinegar. The character &#x27;biang&#x27; has 58 strokes and isn&#x27;t in any dictionary. The Nanyuanmen shop is a favourite of the city&#x27;s noodle-obsessives.</p>
+<p class="tip">Order the &#x27;three-in-one&#x27; topping: tomato-egg, minced pork, chilli.</p>
+<a class="back" style="color:#00897B" href="#day-xian-2">Back to Sat 26 Sep</a></div></article>
+<article class="story" id="story-ziwulu"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Xi%27an_roujiamo_05.jpg/960px-Xi%27an_roujiamo_05.jpg" alt="Ziwu Lu Zhang Ji roujiamo" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Xi%27an_roujiamo_05.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Ziwu Lu Zhang Ji 子午路张记肉夹馍</h4><div class="when"><b>Sun 27 Sep</b> · Breakfast · Local food</div>
+<p>Roujiamo, braised pork chopped into a crisp flatbread, is Xi&#x27;an&#x27;s sandwich and possibly the world&#x27;s oldest. Zhang Ji on Ziwu Road is the shop Xi&#x27;an people name when asked for the best, and it&#x27;s nowhere near a tourist.</p>
+<p class="tip">Slightly out of the way (south); skip if the train is tight.</p>
+<a class="back" style="color:#00897B" href="#day-xian-3">Back to Sun 27 Sep</a></div></article>
+<article class="story" id="story-shaanximuseum"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Glazed_ceramic_earthenware_tomb_model_of_a_building_%28mingqi%29_Han_Dynasty_%28206_BCE_-_220_CE%29_Shaanxi_Province_China.jpg/960px-Glazed_ceramic_earthenware_tomb_model_of_a_building_(mingqi)_Han_Dynasty_(206_BCE_-_220_CE)_Shaanxi_Province_China.jpg" alt="Shaanxi History Museum" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Glazed_ceramic_earthenware_tomb_model_of_a_building_(mingqi)_Han_Dynasty_(206_BCE_-_220_CE)_Shaanxi_Province_China.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Shaanxi History Museum</h4><div class="when"><b>Sun 27 Sep</b> · Morning (optional) · Landmark, reframed</div>
+<p>The province&#x27;s main museum: Zhou bronzes, Han tomb figures, Tang murals. The exhibit worth your time is the Han dynasty tomb figures of farmers, cooks and servants, the closest we have to portraits of the people who built all this.</p>
+<p class="tip">Free but timed tickets; book in advance. Near Ziwu Lu.</p>
+<a class="back" style="color:#00897B" href="#day-xian-3">Back to Sun 27 Sep</a></div></article>
+</div>
+<div class="storycity" id="stories-chengdu"><h3 style="background:#43A047">Chengdu</h3>
+<article class="story" id="story-dufu"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Chengdu_Sichuan_China_Du-Fu-Thatched-Cottage-Park-01.jpg/960px-Chengdu_Sichuan_China_Du-Fu-Thatched-Cottage-Park-01.jpg" alt="Du Fu Thatched Cottage" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Chengdu_Sichuan_China_Du-Fu-Thatched-Cottage-Park-01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Du Fu Thatched Cottage</h4><div class="when"><b>Sun 27 Sep</b> · Late afternoon · Landmark, reframed</div>
+<p>Du Fu (712–770) lived here as a refugee from the An Lushan rebellion that killed a third of China&#x27;s population. His poems are the first great literature of the common people&#x27;s suffering: soldiers dragged from their fields, mothers starving on the roads, officials feasting behind vermilion gates &#x27;while on the road lie the bones of the frozen dead&#x27;. The garden is a landmark on the group&#x27;s list; go with the poems in your pocket and it becomes something else.</p>
+<p class="tip">Read &#x27;Ballad of the Army Carts&#x27; first.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-0">Back to Sun 27 Sep</a></div></article>
+<article class="story" id="story-kuanzhai"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Chengdu_Kuanzhai_Alley_Touristic_Spot_Relics_%E6%88%90%E9%83%BD%E5%AE%BD%E7%AA%84%E5%B7%B7%E5%AD%90%E6%96%87%E7%89%A9%E5%8F%91%E6%8E%98%E9%81%97%E4%BA%A7.jpg/960px-Chengdu_Kuanzhai_Alley_Touristic_Spot_Relics_%E6%88%90%E9%83%BD%E5%AE%BD%E7%AA%84%E5%B7%B7%E5%AD%90%E6%96%87%E7%89%A9%E5%8F%91%E6%8E%98%E9%81%97%E4%BA%A7.jpg" alt="Kuanzhai Alley" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Chengdu_Kuanzhai_Alley_Touristic_Spot_Relics_%E6%88%90%E9%83%BD%E5%AE%BD%E7%AA%84%E5%B7%B7%E5%AD%90%E6%96%87%E7%89%A9%E5%8F%91%E6%8E%98%E9%81%97%E4%BA%A7.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Kuanzhai Alley</h4><div class="when"><b>Sun 27 Sep</b> · Evening · Landmark, reframed</div>
+<p>The &#x27;Wide and Narrow Alleys&#x27; were Manchu garrison housing, rebuilt as a heritage shopping street. It&#x27;s on the visa itinerary and it&#x27;s pretty; treat it as the route to NU Space, and eat somewhere else.</p>
+<p class="tip">NU Space is two streets away.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-0">Back to Sun 27 Sep</a></div></article>
+<article class="story" id="story-kangerjie"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/%E5%86%B7%E9%94%85_%E4%B8%B2_Cold-pot_Skewers_Y1_per_skewer_%281495465364%29.jpg/960px-%E5%86%B7%E9%94%85_%E4%B8%B2_Cold-pot_Skewers_Y1_per_skewer_(1495465364).jpg" alt="Kang Er Jie chuanchuan" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:%E5%86%B7%E9%94%85_%E4%B8%B2_Cold-pot_Skewers_Y1_per_skewer_(1495465364).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Kang Er Jie 康二姐串串</h4><div class="when"><b>Sun 27 Sep</b> · Dinner · Local food</div>
+<p>Chuanchuan is hotpot democratised: everything on bamboo skewers, you pull what you want from the fridge, and the bill is the number of sticks. Kang Er Jie has been doing this in a bare room on Zhongdao Street for decades and is the one Chengdu people send each other to.</p>
+<p class="tip">Pick skewers from the fridge, they count the sticks at the end.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-0">Back to Sun 27 Sep</a></div></article>
+<article class="story" id="story-nuspace"><div><div class="ph" style="border-top-color:#8E24AA"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Dub_Joint_band_performing_live%3B_Caribbean_Club%2C_Kyiv_2022.jpg/960px-Dub_Joint_band_performing_live%3B_Caribbean_Club%2C_Kyiv_2022.jpg" alt="NU Space" loading="lazy"><span class="badge" style="background:#8E24AA">🎸</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Dub_Joint_band_performing_live;_Caribbean_Club,_Kyiv_2022.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>NU Space</h4><div class="when"><b>Sun 27 Sep</b> · Night · Live music</div>
+<p>NU Space grew out of a café and record shop into the city&#x27;s main independent stage, hosting touring post-punk (P.K.14 have played here), Japanese jazz, folk and rap nights. The crowd is young Chengdu and it shows up.</p>
+<p class="tip">Kuixinglou Street, next to Kuanzhai. Programme on Showstart.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-0">Back to Sun 27 Sep</a></div></article>
+<article class="story" id="story-pandas"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Chengdu-pandas-d10.jpg/960px-Chengdu-pandas-d10.jpg" alt="Panda Base" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Chengdu-pandas-d10.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Panda Base</h4><div class="when"><b>Mon 28 Sep</b> · Early morning · Landmark, reframed</div>
+<p>The research base is the group&#x27;s landmark and the pandas are genuinely worth an hour at feeding time. After 10:00 it&#x27;s a crowd. Leave and come back to the city for the afternoon.</p>
+<p class="tip">Book online; the group will want this. Metro line 3 to Panda Avenue.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-1">Back to Mon 28 Sep</a></div></article>
+<article class="story" id="story-chenmapo"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Billyfoodmabodofu3.jpg/960px-Billyfoodmabodofu3.jpg" alt="Chen Mapo Tofu" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Billyfoodmabodofu3.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Chen Mapo Tofu 陈麻婆豆腐</h4><div class="when"><b>Mon 28 Sep</b> · Lunch · Local food</div>
+<p>Mapo tofu was invented in the 1860s by a pockmarked widow (&#x27;mapo&#x27;) who ran a stall for porters and oil-carriers on the road into Chengdu. The shop is now state-owned, but the dish is the definitive version: soft tofu, minced beef, fermented broad-bean paste, ground Sichuan pepper. A working-class dish that conquered the world.</p>
+<p class="tip">Xiyulong Street; order the tofu and the twice-cooked pork.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-1">Back to Mon 28 Sep</a></div></article>
+<article class="story" id="story-peoplespark"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Monument_to_the_Martyrs_of_the_Railway_Protection_Movement_%281911%29_%2813913374751%29.jpg/960px-Monument_to_the_Martyrs_of_the_Railway_Protection_Movement_(1911)_(13913374751).jpg" alt="People&#x27;s Park &amp; Railway Protection Monument" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Monument_to_the_Martyrs_of_the_Railway_Protection_Movement_(1911)_(13913374751).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>People&#x27;s Park: Railway Protection Monument 辛亥保路死事纪念碑</h4><div class="when"><b>Mon 28 Sep</b> · Afternoon · People's history</div>
+<p>In 1911 the Qing government nationalised the Sichuan–Hankou railway, which locals had funded with their own shares, and mortgaged it to a British, French, German and American banking consortium. Sichuan erupted: strikes, tax refusals, shops shut. On 7 September troops shot dozens of unarmed petitioners at the governor&#x27;s gate; the province rose, and the Qing had to pull troops out of Wuhan to suppress it, leaving Wuhan bare for the mutiny on 10 October that ended the dynasty. The 1913 obelisk was built by the people of Chengdu to their own dead, before any Party existed. A genuinely popular, anti-imperial revolt.</p>
+<p class="tip">The obelisk is near the north gate; read the four sides.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-1">Back to Mon 28 Sep</a></div></article>
+<article class="story" id="story-heming"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/20250519_Heming_Qiao.jpg/960px-20250519_Heming_Qiao.jpg" alt="Heming Teahouse" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:20250519_Heming_Qiao.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Heming Teahouse 鹤鸣茶社</h4><div class="when"><b>Mon 28 Sep</b> · Afternoon · People's history</div>
+<p>When there was nowhere else to speak, Sichuan spoke in teahouses. Through the warlord years, the 1940s democratic movement and the 1980s, the teahouse was the public sphere: news, gossip, deals and dissent over bamboo chairs. Heming, founded in 1923, is the oldest surviving one. It&#x27;s also where you can ask about neighbourhood Sichuan opera afternoons.</p>
+<p class="tip">Order jasmine or Mengding green; ear-cleaners and fortune-tellers will find you.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-1">Back to Mon 28 Sep</a></div></article>
+<article class="story" id="story-tianfu"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Mao_Zedong_Statue_%28Tianfu_Square%29.jpg/960px-Mao_Zedong_Statue_(Tianfu_Square).jpg" alt="Tianfu Square" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Mao_Zedong_Statue_(Tianfu_Square).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Tianfu Square</h4><div class="when"><b>Mon 28 Sep</b> · Late afternoon · People's history</div>
+<p>Chengdu had its own 1989. Tens of thousands occupied the square through May; on 4 June, as news from Beijing arrived, police attacked the crowd and fighting spread across the centre. Dozens were killed over two days, and hundreds detained; foreign guests at the Jinjiang Hotel watched people beaten in the courtyard. The Mao statue watched it too. It is never mentioned.</p>
+<p class="tip">10 min walk from the park. The Jinjiang Hotel is on the south side.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-1">Back to Mon 28 Sep</a></div></article>
+<article class="story" id="story-littlebar"><div><div class="ph" style="border-top-color:#8E24AA"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Intersection_of_Yulin_West_Road_and_Yulin_North_Road_20241007194803.jpg/960px-Intersection_of_Yulin_West_Road_and_Yulin_North_Road_20241007194803.jpg" alt="Little Bar (Yulin)" loading="lazy"><span class="badge" style="background:#8E24AA">🎸</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Intersection_of_Yulin_West_Road_and_Yulin_North_Road_20241007194803.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Little Bar 小酒馆 (Yulin West Road)</h4><div class="when"><b>Mon 28 Sep</b> · Night · Live music</div>
+<p>Yulin is a 1980s working-class housing district that became where Chengdu&#x27;s musicians and artists live. Little Bar opened here in 1997 and every Chengdu band of the last 25 years played its first show on this stage. Zhao Lei&#x27;s 2016 song &#x27;Chengdu&#x27; (&#x27;walk with me through the streets of Chengdu, till the lights go out on Yulin Road&#x27;) is about this exact street, and the whole country knows it. Chengdu is also the home of Chinese rap: Higher Brothers and the Chengdu Rap House crew came out of these blocks. Check Showstart for a rap night while you&#x27;re here.</p>
+<p class="tip">Yulin is 15 min by taxi south. Eat rabbit heads from a stall on the way.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-1">Back to Mon 28 Sep</a></div></article>
+<article class="story" id="story-dongjiao"><div><div class="ph" style="border-top-color:#8E24AA"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Name_Wall_of_Dongjiao_Memory_Station%2C_Chengdu_Metro_Line_8.jpg/960px-Name_Wall_of_Dongjiao_Memory_Station%2C_Chengdu_Metro_Line_8.jpg" alt="Dongjiao Memory" loading="lazy"><span class="badge" style="background:#8E24AA">🎸</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Name_Wall_of_Dongjiao_Memory_Station,_Chengdu_Metro_Line_8.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Dongjiao Memory 东郊记忆</h4><div class="when"><b>Mon 28 Sep</b> · If time · Live music</div>
+<p>The 1950s Hongguang electronics works was one of the socialist factory-cities of Chengdu&#x27;s east side. When it closed, the halls became studios, venues and a music festival ground, and the surrounding workers&#x27; housing is still lived in by the retired workforce. The place where Chengdu&#x27;s rock and hip-hop culture grew up.</p>
+<p class="tip">East side; combine with a NU Space or MAO night if a show is on there.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-1">Back to Mon 28 Sep</a></div></article>
+<article class="story" id="story-jianchuan"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg/960px-Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg" alt="Jianchuan Museum Cluster" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Jianchuan Museum Cluster 建川博物馆</h4><div class="when"><b>Tue 29 Sep</b> · Full day · People's history</div>
+<p>Fan Jianchuan, a former soldier and property developer, spent his fortune building the only large private history museum in China. The Red Era halls hold the largest Cultural Revolution collection anywhere: badges, posters, clocks, a whole hall of mirrors and one of porcelain Maos, and the letters and diaries of the people who lived it. The Resistance halls are dedicated to the ordinary Sichuan soldiers, over three million of them, who fought Japan mostly under the KMT and were ignored or persecuted for decades. The Wenchuan earthquake hall is about the 2008 disaster and the collapsed schools. It is the closest thing China has to a people&#x27;s museum, and it survives on a knife-edge of official tolerance.</p>
+<p class="tip">Anren town, about 1h15 by car; hire a driver for the day. Allow five hours inside.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-2">Back to Tue 29 Sep</a></div></article>
+<article class="story" id="story-mingting"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Lamb_and_Carrot_Dumplings_-_Original_Taste_-_Alpha.jpg/960px-Lamb_and_Carrot_Dumplings_-_Original_Taste_-_Alpha.jpg" alt="Ming Ting fly restaurant" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Lamb_and_Carrot_Dumplings_-_Original_Taste_-_Alpha.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Ming Ting 明婷饭店</h4><div class="when"><b>Tue 29 Sep</b> · Dinner · Local food</div>
+<p>Cangying guanzi, &#x27;fly restaurants&#x27;, is Sichuan slang for the bare, cheap, brilliant places where the food outranks the décor. Ming Ting in Caojia Alley is the king of them: the pig-brain mapo tofu is the dish, the kidney and the stir-fried offal follow. Bring the whole group&#x27;s appetite.</p>
+<p class="tip">Caojia Alley; go early, it&#x27;s a queue.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-2">Back to Tue 29 Sep</a></div></article>
+<article class="story" id="story-tag"><div><div class="ph" style="border-top-color:#8E24AA"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Club_Tigerheat_on_the_Dance_Floor_with_Laser_Lights.jpg/960px-Club_Tigerheat_on_the_Dance_Floor_with_Laser_Lights.jpg" alt="·TAG club" loading="lazy"><span class="badge" style="background:#8E24AA">🎸</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Club_Tigerheat_on_the_Dance_Floor_with_Laser_Lights.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>.TAG</h4><div class="when"><b>Tue 29 Sep</b> · Late night · Live music</div>
+<p>.TAG is a small, dark, musically serious club that put Chengdu on the electronic map, with local residents and international guests. If a band you want is at MAO Livehouse the same night, take that instead.</p>
+<p class="tip">Poly Centre; opens late. Alternative: MAO Livehouse for a touring band.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-2">Back to Tue 29 Sep</a></div></article>
+<article class="story" id="story-jinjiangtheatre"><div><div class="ph" style="border-top-color:#8E24AA"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Bian_lian_1.jpg/960px-Bian_lian_1.jpg" alt="Jinjiang Theatre (Sichuan opera)" loading="lazy"><span class="badge" style="background:#8E24AA">🎸</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Bian_lian_1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Jinjiang Theatre 锦江剧场 (Sichuan opera)</h4><div class="when"><b>Tue 29 Sep</b> · Alternative · Live music</div>
+<p>Sichuan opera is earthy, comic and acrobatic, and the tourist packages reduce it to twenty minutes of face-changing. The Jinjiang Theatre is the provincial company&#x27;s own house, where full plays are staged for an audience of retirees who know every line. If the timing works, it beats any club.</p>
+<p class="tip">Ask at Heming Teahouse what&#x27;s on; performances are mostly afternoons and weekends.</p>
+<a class="back" style="color:#43A047" href="#day-chengdu-2">Back to Tue 29 Sep</a></div></article>
+</div>
+<div class="storycity" id="stories-chongqing"><h3 style="background:#3949AB">Chongqing</h3>
+<article class="story" id="story-shibati"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Shibati_%E5%8D%81%E5%85%AB%E6%A2%AF_2022.1.1.jpg/960px-Shibati_%E5%8D%81%E5%85%AB%E6%A2%AF_2022.1.1.jpg" alt="Shibati &amp; Shancheng Alley" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Shibati_%E5%8D%81%E5%85%AB%E6%A2%AF_2022.1.1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Shancheng Alley and Shibati 山城巷 · 十八梯</h4><div class="when"><b>Wed 30 Sep</b> · Afternoon · People's history</div>
+<p>Shibati, the &#x27;Eighteen Steps&#x27;, was a stepped hillside of self-built housing for porters, dockworkers and migrants, the last of old Chongqing inside the peninsula. It was cleared in 2017 and rebuilt as a heritage shopping street; the residents were moved to the suburbs. Shancheng Alley, next door, kept its buildings and some of its people: stone steps, air-raid shelters, tea stalls on the cliff edge. Walk that first, then see what the state made of Shibati.</p>
+<p class="tip">Start at Shancheng Alley (10 min from the hotel), end at Shibati.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-0">Back to Wed 30 Sep</a></div></article>
+<article class="story" id="story-jiaochangkou"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Bombing_of_Chongqing.png/960px-Bombing_of_Chongqing.png" alt="Jiaochangkou tunnel tragedy memorial" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Bombing_of_Chongqing.png" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Jiaochangkou tunnel tragedy memorial 较场口</h4><div class="when"><b>Wed 30 Sep</b> · Afternoon · People's history</div>
+<p>Japan bombed Chongqing, the wartime capital, for five years from 1938, killing over ten thousand civilians; the city dug hundreds of shelters into its rock. On the night of 5 June 1941, during a long raid, the Jiaochangkou tunnel&#x27;s gates were closed on an overcrowded crowd and thousands died of suffocation and crushing; the true number was never released. The memorial is small and easily missed. Every shelter you eat or walk in for the next three days is part of this story.</p>
+<p class="tip">Small memorial at the top of Shibati. Two minutes, but stop.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-0">Back to Wed 30 Sep</a></div></article>
+<article class="story" id="story-jiefangbei"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Jiefangbei_CBD_20240721.jpg/960px-Jiefangbei_CBD_20240721.jpg" alt="Jiefangbei" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Jiefangbei_CBD_20240721.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Jiefangbei 解放碑</h4><div class="when"><b>Wed 30 Sep</b> · Late afternoon · Landmark, reframed</div>
+<p>The Liberation Monument at the heart of the shopping district was built in 1941 as a wooden pillar to the spirit of national resistance, rebuilt in 1947 as a victory memorial, and renamed for the Communist liberation in 1950. Three regimes, one pillar. Surrounded by malls now.</p>
+<p class="tip">On the way from Shibati to the hotel. Crowded, but 15 minutes is enough.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-0">Back to Wed 30 Sep</a></div></article>
+<article class="story" id="story-cavehotpot"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Chongqing_hotpot_2.jpg/960px-Chongqing_hotpot_2.jpg" alt="Cave hotpot (bomb shelter)" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Chongqing_hotpot_2.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Cave hotpot 洞子火锅</h4><div class="when"><b>Wed 30 Sep</b> · Dinner · Local food</div>
+<p>Chongqing hotpot began on the docks: porters and boatmen cooked cheap offal in a fiery broth of beef tallow, chilli and Sichuan pepper. After the war, dozens of the city&#x27;s air-raid shelters became restaurants, and &#x27;cave hotpot&#x27; is now the way locals eat it: a long stone tunnel, sweat, and the loudest room you&#x27;ll be in all trip. The first night&#x27;s dinner.</p>
+<p class="tip">Dongting Hotpot 洞亭火锅 near the hotel is one; any 洞子 restaurant works. Order 特辣.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-0">Back to Wed 30 Sep</a></div></article>
+<article class="story" id="story-ciqikou"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/028_Sichuan-160811_28_%2829868006911%29.jpg/960px-028_Sichuan-160811_28_(29868006911).jpg" alt="Ciqikou" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:028_Sichuan-160811_28_(29868006911).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Ciqikou Ancient Town</h4><div class="when"><b>Thu 1 Oct</b> · Early morning · Landmark, reframed</div>
+<p>A Ming-Qing porcelain port on the Jialing River, now a snack street. It&#x27;s on the visa list and it&#x27;s pleasant for an hour at opening time; by 10:00 on National Day it will be impassable. It&#x27;s also in Shapingba, which puts you next to the two real sites of the day.</p>
+<p class="tip">Metro line 1 to Ciqikou. Leave by 09:30.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-1">Back to Thu 1 Oct</a></div></article>
+<article class="story" id="story-redguard"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/8/84/Liu_Shaoqi%2C_Deng_Xiaoping_and_Tao_Zhu_must_get_out.jpg" alt="Red Guard Cemetery" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Liu_Shaoqi,_Deng_Xiaoping_and_Tao_Zhu_must_get_out.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Red Guard Cemetery 红卫兵墓园</h4><div class="when"><b>Thu 1 Oct</b> · Morning · People's history</div>
+<p>In 1967–68 Chongqing&#x27;s Cultural Revolution factions fought each other with tanks, artillery and machine guns from the city&#x27;s arms factories; over a thousand died in street battles. The &#x27;8·15&#x27; faction buried its dead, mostly teenagers and young workers, in Shapingba Park under tall concrete monuments with revolutionary inscriptions. Every other Red Guard cemetery in China was demolished; this one was walled off and, in 2009, quietly listed as a protected site. It is the most eloquent silenced place on this trip.</p>
+<p class="tip">Inside Shapingba Park, west corner. The gate is normally locked; the graves are visible over the wall.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-1">Back to Thu 1 Oct</a></div></article>
+<article class="story" id="story-zhazidong"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/ChongqingZhazidong.jpg/960px-ChongqingZhazidong.jpg" alt="Zhazidong &amp; Baigongguan prisons" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:ChongqingZhazidong.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Zhazidong and Baigongguan prisons 渣滓洞 · 白公馆</h4><div class="when"><b>Thu 1 Oct</b> · Afternoon · People's history</div>
+<p>In 1943 the KMT secret police and the US Navy signed the SACO agreement, setting up a joint intelligence organisation at Geleshan with American training and equipment. Its prisons at Zhazidong (a former coal pit) and Baigongguan held Communists, students and journalists. In November 1949, days before the city fell, the guards executed some 300 prisoners, including Yang Hucheng of the Xi&#x27;an Incident and his family, and set fire to the cells. The novel &#x27;Red Crag&#x27; made it the founding martyrdom story of the People&#x27;s Republic; the site is heavily framed. But the story it tells is prisoners, torture and American complicity, and the cells are real.</p>
+<p class="tip">Geleshan, 20 min by taxi from Shapingba Park. Free with ID. A Party pilgrimage site, so expect groups.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-1">Back to Thu 1 Oct</a></div></article>
+<article class="story" id="story-hongyadong"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Hongyadong_night_lights_Chongqing.jpg/960px-Hongyadong_night_lights_Chongqing.jpg" alt="Hongyadong" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Hongyadong_night_lights_Chongqing.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Hongyadong and the Yangtze cableway</h4><div class="when"><b>Thu 1 Oct</b> · Evening · Landmark, reframed</div>
+<p>Hongyadong is a 2006 recreation of the stilt-house architecture that once covered these cliffs, now a vertical mall famous on Chinese social media. On National Day it is the single most crowded spot in China. Look at it from the bridge, then take the 1987 cableway over the Yangtze for the view and skip the interior.</p>
+<p class="tip">Golden Week crowds are extreme. View from Qiansimen Bridge, ride the cableway from the north side at 21:00 or later.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-1">Back to Thu 1 Oct</a></div></article>
+<article class="story" id="story-nuts"><div><div class="ph" style="border-top-color:#8E24AA"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Night_in_Chongqing_%2820250501%29.jpg/960px-Night_in_Chongqing_(20250501).jpg" alt="Nuts Live House" loading="lazy"><span class="badge" style="background:#8E24AA">🎸</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Night_in_Chongqing_(20250501).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Nuts Live House 坚果</h4><div class="when"><b>Thu 1 Oct</b> · Night · Live music</div>
+<p>Nuts is the city&#x27;s longest-running independent venue, hosting Chinese indie bands every weekend for a young, energetic Chongqing crowd. This is also the home city of Chinese trap: GAI, Bridge and the GO$H crew made Chongqing dialect the sound of Chinese hip-hop. Rap nights move between venues; Showstart is the only reliable way to find one.</p>
+<p class="tip">Check Showstart; Golden Week is festival season, so bills are good. Shapingba side.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-1">Back to Thu 1 Oct</a></div></article>
+<article class="story" id="story-xiaomian"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Chongqing_Xiaomian_with_fried_eggs.jpg/960px-Chongqing_Xiaomian_with_fried_eggs.jpg" alt="Xiaomian breakfast" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Chongqing_Xiaomian_with_fried_eggs.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Xiaomian 小面: Hua Shi Wanza Mian 花市豌杂面</h4><div class="when"><b>Fri 2 Oct</b> · Breakfast · Local food</div>
+<p>Xiaomian is what every Chongqing person eats before work: thin noodles in a chilli, garlic and Sichuan-pepper broth, from a stall with plastic stools on the pavement. &#x27;Wanza&#x27; adds soft peas and minced pork. Hua Shi is the stall that Chongqing people rank first; the queue tells you.</p>
+<p class="tip">Any pavement stall with a queue; this one has the following. Order 二两 with peas and minced pork.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-2">Back to Fri 2 Oct</a></div></article>
+<article class="story" id="story-industrial"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Zhongxing_Branch_of_Chongqing_Iron_and_Steel_Group_2002_SIK_03-056638-Print.jpg/960px-Zhongxing_Branch_of_Chongqing_Iron_and_Steel_Group_2002_SIK_03-056638-Print.jpg" alt="Chongqing Industrial Museum" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Zhongxing_Branch_of_Chongqing_Iron_and_Steel_Group_2002_SIK_03-056638-Print.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Chongqing Industrial Museum 重庆工业博物馆</h4><div class="when"><b>Fri 2 Oct</b> · Morning · People's history</div>
+<p>In 1938, as Wuhan fell, the Hanyang steelworks were dismantled and shipped up the Yangtze to Chongqing under bombing, and rebuilt at Dadukou to make the steel for the war. Chongqing Iron and Steel employed generations of workers until the plant relocated in 2011; the halls now house the museum, with the 1905 rolling mill still in place. The exhibits lean on the workers&#x27; own accounts, which is rare.</p>
+<p class="tip">Dadukou, 40 min by taxi or metro line 2. Free.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-2">Back to Fri 2 Oct</a></div></article>
+<article class="story" id="story-threegorges"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/The_People%27s_Great_Hall_of_Chongqing.jpg/960px-The_People%27s_Great_Hall_of_Chongqing.jpg" alt="Three Gorges Museum &amp; People&#x27;s Great Hall" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:The_People%27s_Great_Hall_of_Chongqing.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Three Gorges Museum and People&#x27;s Great Hall</h4><div class="when"><b>Fri 2 Oct</b> · Afternoon · Landmark, reframed</div>
+<p>The Great Hall is Chongqing&#x27;s grand 1954 auditorium, built in the first years after liberation. The museum opposite has the city&#x27;s history; skip the Three Gorges dam propaganda and go to the &#x27;Wartime Capital&#x27; gallery about the bombing, and the gallery on the dam&#x27;s displaced 1.3 million people, which is franker than you&#x27;d expect.</p>
+<p class="tip">Free; the Hall is a 1950s Soviet-Chinese hybrid. Then walk to Liziba.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-2">Back to Fri 2 Oct</a></div></article>
+<article class="story" id="story-liziba"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Model_of_Liziba_Station_at_MetroTrans_2019_%2820190726142641%29.jpg/960px-Model_of_Liziba_Station_at_MetroTrans_2019_(20190726142641).jpg" alt="Liziba Monorail Station" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Model_of_Liziba_Station_at_MetroTrans_2019_(20190726142641).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Liziba Monorail Station</h4><div class="when"><b>Fri 2 Oct</b> · Afternoon · Landmark, reframed</div>
+<p>The monorail passes through the sixth to eighth floors of a residential block. It&#x27;s a landmark on the visa list and a five-minute stop; the residents&#x27; story is that the building and the line were designed together in 2004 to avoid demolishing anyone&#x27;s home.</p>
+<p class="tip">Line 2; watch from the viewing platform below.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-2">Back to Fri 2 Oct</a></div></article>
+<article class="story" id="story-bangbang"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Chaotianmen_Yangtze_River_Bridge.JPG/960px-Chaotianmen_Yangtze_River_Bridge.JPG" alt="Chaotianmen &amp; bangbang porters" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Chaotianmen_Yangtze_River_Bridge.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Chaotianmen and the bangbang porters 棒棒军</h4><div class="when"><b>Fri 2 Oct</b> · Late afternoon · People's history</div>
+<p>Chaotianmen is where the Yangtze and Jialing meet and where the city&#x27;s porters have carried cargo up the hill for centuries. In the 1990s hundreds of thousands of migrant men from the countryside worked as &#x27;bangbang&#x27;, carrying anything for anyone on a bamboo pole; they were the labour that built the modern city and had no place in it. A few hundred are left, mostly old. The documentary &#x27;Last of the Bangbang&#x27; (2014) is about them. The site is now under a luxury complex; the river steps below are still theirs.</p>
+<p class="tip">The Raffles City complex sits on top now; go down to the river steps.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-2">Back to Fri 2 Oct</a></div></article>
+<article class="story" id="story-nanbin"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Nanbin_Road_night_scene_-_panoramio.jpg" alt="Nanbin Road consulates" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Nanbin_Road_night_scene_-_panoramio.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>Nanbin Road: the treaty-port consulates</h4><div class="when"><b>Fri 2 Oct</b> · Evening · People's history</div>
+<p>Britain forced Chongqing open as a treaty port in 1891, and the French, Americans and Japanese followed; the south bank filled with consulates, missions, and the Imperial Maritime Customs, run by foreigners collecting China&#x27;s own tariffs. The buildings are preserved along Nanbin Road and in the Ciyun Temple area. A quiet walk with a river view before dinner, and the last stop before your late flight.</p>
+<p class="tip">Across the river from the hotel. Cross by the Dongshuimen bridge on foot.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-2">Back to Fri 2 Oct</a></div></article>
+<article class="story" id="story-maocq"><div><div class="ph" style="border-top-color:#8E24AA"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Live_rock_concert_featuring_musicians_playing_electric_guitars_on_stage_at_night_with_vibrant_lights_and_an_enthusiastic_crowd_present.jpg/960px-Live_rock_concert_featuring_musicians_playing_electric_guitars_on_stage_at_night_with_vibrant_lights_and_an_enthusiastic_crowd_present.jpg" alt="MAO Livehouse Chongqing" loading="lazy"><span class="badge" style="background:#8E24AA">🎸</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Live_rock_concert_featuring_musicians_playing_electric_guitars_on_stage_at_night_with_vibrant_lights_and_an_enthusiastic_crowd_present.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
+<div><h4>MAO Livehouse Chongqing or a rap night</h4><div class="when"><b>Fri 2 Oct</b> · Night (before the airport) · Live music</div>
+<p>Chongqing&#x27;s larger touring-band venue. If there&#x27;s a rap night anywhere in the city on Friday 2 October, take it instead; you&#x27;ll be in the city that invented Chinese trap on the last night of the trip.</p>
+<p class="tip">Flight QR 881 departs 01:50; leave the hotel by 22:30. Check out and store bags earlier.</p>
+<a class="back" style="color:#3949AB" href="#day-chongqing-2">Back to Fri 2 Oct</a></div></article>
+</div>
+</div></section>
+<footer><div class="wrap">Last updated 5 September 2026 · Built from the visa itinerary (flights, hotels and trains as booked). Photos are from Wikimedia Commons and show the place or the dish, not always the exact venue. Gig listings change weekly: check Showstart about ten days before each city.</div></footer>
+<script>const DATA={"beijing": {"pts": [{"n": 1, "lat": 39.93932, "lng": 116.38975, "title": "Houhai and the Drum Tower", "day": "Sun 20 Sep", "slot": "Evening", "col": "#1E88E5", "far": false, "id": "houhai"}, {"n": 2, "lat": 39.942, "lng": 116.396, "title": "Yaoji Chaogan 姚记炒肝", "day": "Sun 20 Sep", "slot": "Dinner / breakfasts", "col": "#FB8C00", "far": false, "id": "yaoji"}, {"n": 3, "lat": 39.94078, "lng": 116.37965, "title": "East Shore Jazz Café 东岸", "day": "Sun 20 Sep", "slot": "Night", "col": "#8E24AA", "far": false, "id": "eastshore"}, {"n": 4, "lat": 39.90272, "lng": 116.39144, "title": "Tiananmen Square", "day": "Mon 21 Sep", "slot": "Morning", "col": "#E53935", "far": false, "id": "tiananmen"}, {"n": 5, "lat": 39.90612, "lng": 116.33151, "title": "Chang'an Avenue west to Muxidi", "day": "Mon 21 Sep", "slot": "Late morning", "col": "#E53935", "far": false, "id": "muxidi"}, {"n": 6, "lat": 39.90574, "lng": 116.3682, "title": "Xidan Democracy Wall (site)", "day": "Mon 21 Sep", "slot": "Late morning", "col": "#E53935", "far": false, "id": "xidan"}, {"n": 7, "lat": 39.91728, "lng": 116.39077, "title": "Forbidden City", "day": "Mon 21 Sep", "slot": "Afternoon", "col": "#1E88E5", "far": false, "id": "forbidden"}, {"n": 8, "lat": 39.92446, "lng": 116.3904, "title": "Jingshan Park", "day": "Mon 21 Sep", "slot": "Sunset", "col": "#1E88E5", "far": false, "id": "jingshan"}, {"n": 9, "lat": 39.944, "lng": 116.399, "title": "Fangzhuanchang 69 方砖厂69号炸酱面", "day": "Mon 21 Sep", "slot": "Dinner", "col": "#FB8C00", "far": false, "id": "fangzhuan"}, {"n": 10, "lat": 39.9482, "lng": 116.4103, "title": "School Bar 学校酒吧", "day": "Mon 21 Sep", "slot": "Night", "col": "#8E24AA", "far": false, "id": "schoolbar"}, {"n": 11, "lat": 40.43452, "lng": 116.56058, "title": "Great Wall at Mutianyu", "day": "Tue 22 Sep", "slot": "Full day", "col": "#1E88E5", "far": true, "id": "mutianyu"}, {"n": 12, "lat": 39.9308, "lng": 116.4085, "title": "DDC – Dusk Dawn Club 黄昏黎明俱乐部", "day": "Tue 22 Sep", "slot": "Night", "col": "#8E24AA", "far": false, "id": "ddc"}, {"n": 13, "lat": 39.87991, "lng": 116.40287, "title": "Temple of Heaven", "day": "Wed 23 Sep", "slot": "Early morning", "col": "#1E88E5", "far": false, "id": "tiantan"}, {"n": 14, "lat": 39.88434, "lng": 116.35841, "title": "Niujie 牛街", "day": "Wed 23 Sep", "slot": "Late morning", "col": "#E53935", "far": false, "id": "niujie"}, {"n": 15, "lat": 39.88597, "lng": 116.35773, "title": "Jubaoyuan 聚宝源", "day": "Wed 23 Sep", "slot": "Lunch", "col": "#FB8C00", "far": false, "id": "jubaoyuan"}, {"n": 16, "lat": 39.8965, "lng": 116.3915, "title": "Dashilar and Yangmeizhu Xiejie", "day": "Wed 23 Sep", "slot": "Afternoon", "col": "#E53935", "far": false, "id": "dashilar"}, {"n": 17, "lat": 39.896, "lng": 116.39, "title": "Baodu Feng 爆肚冯", "day": "Wed 23 Sep", "slot": "Snack", "col": "#FB8C00", "far": false, "id": "baodu"}, {"n": 18, "lat": 39.9241, "lng": 116.4033, "title": "Peking University Red Building 北大红楼", "day": "Wed 23 Sep", "slot": "Late afternoon", "col": "#E53935", "far": false, "id": "redbuilding"}, {"n": 19, "lat": 39.902, "lng": 116.4, "title": "Legation Quarter 东交民巷", "day": "Wed 23 Sep", "slot": "Late afternoon", "col": "#E53935", "far": false, "id": "legation"}, {"n": 20, "lat": 39.9256, "lng": 116.4082, "title": "fRUITYSPACE 果空间", "day": "Wed 23 Sep", "slot": "Night", "col": "#8E24AA", "far": false, "id": "fruity"}, {"n": 21, "lat": 39.953, "lng": 116.427, "title": "Zhao Dai 招待所", "day": "Wed 23 Sep", "slot": "Late night (alt.)", "col": "#8E24AA", "far": false, "id": "zhaodai"}, {"n": 22, "lat": 39.92417, "lng": 116.35232, "title": "Lu Xun Museum 鲁迅博物馆", "day": "Thu 24 Sep", "slot": "Morning (optional)", "col": "#E53935", "far": false, "id": "luxun"}], "hotel": [39.9405, 116.3935], "hname": "Manxin Mansion, 2 West Tao Hutong, Jiugulou St (Houhai / Drum Tower)"}, "xian": {"pts": [{"n": 1, "lat": 34.26101, "lng": 108.94234, "title": "Bell Tower and City Wall", "day": "Thu 24 Sep", "slot": "Evening", "col": "#1E88E5", "far": false, "id": "belltower"}, {"n": 2, "lat": 34.26797, "lng": 108.92802, "title": "Sajinqiao street 洒金桥", "day": "Thu 24 Sep", "slot": "Dinner", "col": "#FB8C00", "far": false, "id": "sajinqiao"}, {"n": 3, "lat": 34.3847, "lng": 109.2785, "title": "Terracotta Army", "day": "Fri 25 Sep", "slot": "Full day", "col": "#1E88E5", "far": true, "id": "terracotta"}, {"n": 4, "lat": 34.26581, "lng": 108.95937, "title": "Dongxin Jie night market 东新街夜市", "day": "Fri 25 Sep", "slot": "Dinner", "col": "#FB8C00", "far": false, "id": "dongxinjie"}, {"n": 5, "lat": 34.25942, "lng": 108.95242, "title": "Aperture Club 光圈CLUB", "day": "Fri 25 Sep", "slot": "Night", "col": "#8E24AA", "far": false, "id": "aperture"}, {"n": 6, "lat": 34.25884, "lng": 108.96294, "title": "Zhang Xueliang Residence 张学良公馆", "day": "Sat 26 Sep", "slot": "Morning", "col": "#E53935", "far": false, "id": "zhangxueliang"}, {"n": 7, "lat": 34.2732, "lng": 108.93512, "title": "Zhiyuan (Yang Hucheng's residence) 止园", "day": "Sat 26 Sep", "slot": "Morning", "col": "#E53935", "far": false, "id": "zhiyuan"}, {"n": 8, "lat": 34.27202, "lng": 109.05297, "title": "Textile City 纺织城", "day": "Sat 26 Sep", "slot": "Afternoon", "col": "#E53935", "far": false, "id": "textilecity"}, {"n": 9, "lat": 34.26339, "lng": 108.93653, "title": "Great Mosque and the Hui quarter", "day": "Sat 26 Sep", "slot": "Late afternoon", "col": "#E53935", "far": false, "id": "greatmosque"}, {"n": 10, "lat": 34.25711, "lng": 108.93599, "title": "Biangbiang Mian 南院门 biangbiang面", "day": "Sat 26 Sep", "slot": "Dinner", "col": "#FB8C00", "far": false, "id": "biangbiang"}, {"n": 11, "lat": 34.22625, "lng": 108.93496, "title": "Ziwu Lu Zhang Ji 子午路张记肉夹馍", "day": "Sun 27 Sep", "slot": "Breakfast", "col": "#FB8C00", "far": false, "id": "ziwulu"}, {"n": 12, "lat": 34.22591, "lng": 108.95034, "title": "Shaanxi History Museum", "day": "Sun 27 Sep", "slot": "Morning (optional)", "col": "#1E88E5", "far": false, "id": "shaanximuseum"}], "hotel": [34.261, 108.9455], "hname": "Jinjiang Bell Tower Original Copy Hotel, 290 West 1st Rd, Xincheng"}, "chengdu": {"pts": [{"n": 1, "lat": 30.66285, "lng": 104.02623, "title": "Du Fu Thatched Cottage", "day": "Sun 27 Sep", "slot": "Late afternoon", "col": "#1E88E5", "far": false, "id": "dufu"}, {"n": 2, "lat": 30.66769, "lng": 104.0443, "title": "Kuanzhai Alley", "day": "Sun 27 Sep", "slot": "Evening", "col": "#1E88E5", "far": false, "id": "kuanzhai"}, {"n": 3, "lat": 30.66162, "lng": 104.08748, "title": "Kang Er Jie 康二姐串串", "day": "Sun 27 Sep", "slot": "Dinner", "col": "#FB8C00", "far": false, "id": "kangerjie"}, {"n": 4, "lat": 30.67064, "lng": 104.05164, "title": "NU Space", "day": "Sun 27 Sep", "slot": "Night", "col": "#8E24AA", "far": false, "id": "nuspace"}, {"n": 5, "lat": 30.74323, "lng": 104.13293, "title": "Panda Base", "day": "Mon 28 Sep", "slot": "Early morning", "col": "#1E88E5", "far": false, "id": "pandas"}, {"n": 6, "lat": 30.668, "lng": 104.063, "title": "Chen Mapo Tofu 陈麻婆豆腐", "day": "Mon 28 Sep", "slot": "Lunch", "col": "#FB8C00", "far": false, "id": "chenmapo"}, {"n": 7, "lat": 30.658, "lng": 104.057, "title": "People's Park: Railway Protection Monument 辛亥保路死事纪念碑", "day": "Mon 28 Sep", "slot": "Afternoon", "col": "#E53935", "far": false, "id": "peoplespark"}, {"n": 8, "lat": 30.65936, "lng": 104.05585, "title": "Heming Teahouse 鹤鸣茶社", "day": "Mon 28 Sep", "slot": "Afternoon", "col": "#E53935", "far": false, "id": "heming"}, {"n": 9, "lat": 30.65992, "lng": 104.06385, "title": "Tianfu Square", "day": "Mon 28 Sep", "slot": "Late afternoon", "col": "#E53935", "far": false, "id": "tianfu"}, {"n": 10, "lat": 30.63201, "lng": 104.05379, "title": "Little Bar 小酒馆 (Yulin West Road)", "day": "Mon 28 Sep", "slot": "Night", "col": "#8E24AA", "far": false, "id": "littlebar"}, {"n": 11, "lat": 30.67083, "lng": 104.12634, "title": "Dongjiao Memory 东郊记忆", "day": "Mon 28 Sep", "slot": "If time", "col": "#8E24AA", "far": false, "id": "dongjiao"}, {"n": 12, "lat": 30.50245, "lng": 103.61767, "title": "Jianchuan Museum Cluster 建川博物馆", "day": "Tue 29 Sep", "slot": "Full day", "col": "#E53935", "far": true, "id": "jianchuan"}, {"n": 13, "lat": 30.67553, "lng": 104.08568, "title": "Ming Ting 明婷饭店", "day": "Tue 29 Sep", "slot": "Dinner", "col": "#FB8C00", "far": false, "id": "mingting"}, {"n": 14, "lat": 30.654, "lng": 104.077, "title": ".TAG", "day": "Tue 29 Sep", "slot": "Late night", "col": "#8E24AA", "far": false, "id": "tag"}, {"n": 15, "lat": 30.66204, "lng": 104.0779, "title": "Jinjiang Theatre 锦江剧场 (Sichuan opera)", "day": "Tue 29 Sep", "slot": "Alternative", "col": "#8E24AA", "far": false, "id": "jinjiangtheatre"}], "hotel": [30.664, 104.0435], "hname": "Wenjun Courtyard Hotel, 180 Qintai Rd, Qingyang"}, "chongqing": {"pts": [{"n": 1, "lat": 29.55341, "lng": 106.56292, "title": "Shancheng Alley and Shibati 山城巷 · 十八梯", "day": "Wed 30 Sep", "slot": "Afternoon", "col": "#E53935", "far": false, "id": "shibati"}, {"n": 2, "lat": 29.55638, "lng": 106.56783, "title": "Jiaochangkou tunnel tragedy memorial 较场口", "day": "Wed 30 Sep", "slot": "Afternoon", "col": "#E53935", "far": false, "id": "jiaochangkou"}, {"n": 3, "lat": 29.56011, "lng": 106.57337, "title": "Jiefangbei 解放碑", "day": "Wed 30 Sep", "slot": "Late afternoon", "col": "#1E88E5", "far": false, "id": "jiefangbei"}, {"n": 4, "lat": 29.558, "lng": 106.576, "title": "Cave hotpot 洞子火锅", "day": "Wed 30 Sep", "slot": "Dinner", "col": "#FB8C00", "far": false, "id": "cavehotpot"}, {"n": 5, "lat": 29.5793, "lng": 106.44244, "title": "Ciqikou Ancient Town", "day": "Thu 1 Oct", "slot": "Early morning", "col": "#1E88E5", "far": false, "id": "ciqikou"}, {"n": 6, "lat": 29.561, "lng": 106.459, "title": "Red Guard Cemetery 红卫兵墓园", "day": "Thu 1 Oct", "slot": "Morning", "col": "#E53935", "far": false, "id": "redguard"}, {"n": 7, "lat": 29.58857, "lng": 106.42841, "title": "Zhazidong and Baigongguan prisons 渣滓洞 · 白公馆", "day": "Thu 1 Oct", "slot": "Afternoon", "col": "#E53935", "far": true, "id": "zhazidong"}, {"n": 8, "lat": 29.56528, "lng": 106.57713, "title": "Hongyadong and the Yangtze cableway", "day": "Thu 1 Oct", "slot": "Evening", "col": "#1E88E5", "far": false, "id": "hongyadong"}, {"n": 9, "lat": 29.552, "lng": 106.459, "title": "Nuts Live House 坚果", "day": "Thu 1 Oct", "slot": "Night", "col": "#8E24AA", "far": false, "id": "nuts"}, {"n": 10, "lat": 29.559, "lng": 106.572, "title": "Xiaomian 小面: Hua Shi Wanza Mian 花市豌杂面", "day": "Fri 2 Oct", "slot": "Breakfast", "col": "#FB8C00", "far": false, "id": "xiaomian"}, {"n": 11, "lat": 29.479, "lng": 106.489, "title": "Chongqing Industrial Museum 重庆工业博物馆", "day": "Fri 2 Oct", "slot": "Morning", "col": "#E53935", "far": true, "id": "industrial"}, {"n": 12, "lat": 29.562, "lng": 106.554, "title": "Three Gorges Museum and People's Great Hall", "day": "Fri 2 Oct", "slot": "Afternoon", "col": "#1E88E5", "far": false, "id": "threegorges"}, {"n": 13, "lat": 29.55566, "lng": 106.53392, "title": "Liziba Monorail Station", "day": "Fri 2 Oct", "slot": "Afternoon", "col": "#1E88E5", "far": false, "id": "liziba"}, {"n": 14, "lat": 29.56729, "lng": 106.58251, "title": "Chaotianmen and the bangbang porters 棒棒军", "day": "Fri 2 Oct", "slot": "Late afternoon", "col": "#E53935", "far": false, "id": "bangbang"}, {"n": 15, "lat": 29.54303, "lng": 106.55599, "title": "Nanbin Road: the treaty-port consulates", "day": "Fri 2 Oct", "slot": "Evening", "col": "#E53935", "far": false, "id": "nanbin"}, {"n": 16, "lat": 29.57, "lng": 106.55, "title": "MAO Livehouse Chongqing or a rap night", "day": "Fri 2 Oct", "slot": "Night (before the airport)", "col": "#8E24AA", "far": false, "id": "maocq"}], "hotel": [29.561, 106.569], "hname": "Miss Xie's House With Riverview, 16F Kairui Bldg, 153 Changbin Rd, Yuzhong"}};
+
+for(const [cid,d] of Object.entries(DATA)){
+  const m=L.map('lmap-'+cid,{scrollWheelZoom:false});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(m);
+  const b=[];
+  L.marker(d.hotel,{icon:L.divIcon({className:'',html:'<div class="mk star">🏨</div>',iconSize:[38,38],iconAnchor:[19,19]}),zIndexOffset:1000}).addTo(m).bindPopup('<b>Hotel</b><br>'+d.hname);
+  b.push(d.hotel);
+  for(const p of d.pts){
+    L.marker([p.lat,p.lng],{icon:L.divIcon({className:'',html:'<div class="mk" style="background:'+p.col+'">'+p.n+'</div>',iconSize:[30,30],iconAnchor:[15,15]})}).addTo(m)
+     .bindPopup('<b>'+p.n+'. '+p.title+'</b><br>'+p.day+' · '+p.slot+'<br><a href="#story-'+p.id+'">Read the story</a>');
+    if(!p.far) b.push([p.lat,p.lng]);
+  }
+  m.fitBounds(b,{padding:[30,30]});
+}
+</script></body></html>
