@@ -677,5 +677,33 @@
 "lng": 104.07,
 "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Qing_Chinese_paediatric_foot-leg_massage_chart_Wellcome_L0039668.jpg/960px-Qing_Chinese_paediatric_foot-leg_massage_chart_Wellcome_L0039668.jpg",
 "imgpage": "https://commons.wikimedia.org/wiki/File:Qing_Chinese_paediatric_foot-leg_massage_chart_Wellcome_L0039668.jpg"
+},
+"huaqing": {
+"name": "Huaqing Palace, Five-Room Hall",
+"lat": 34.366,
+"lng": 109.214,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Lintong_Xian_China_Huaqing-Pool-02.jpg/960px-Lintong_Xian_China_Huaqing-Pool-02.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Lintong_Xian_China_Huaqing-Pool-02.jpg"
+},
+"balujun": {
+"name": "Eighth Route Army Xi'an Office",
+"lat": 34.2745,
+"lng": 108.952,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/%E5%85%AB%E8%B7%AF%E5%86%9B%E8%A5%BF%E5%AE%89%E5%8A%9E%E4%BA%8B%E5%A4%84%E6%97%A7%E5%9D%802020_%282%29.jpg/960px-%E5%85%AB%E8%B7%AF%E5%86%9B%E8%A5%BF%E5%AE%89%E5%8A%9E%E4%BA%8B%E5%A4%84%E6%97%A7%E5%9D%802020_%282%29.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:八路军西安办事处旧址2020_(2).jpg"
+},
+"dahua": {
+"name": "Dahua 1935, the old cotton mill",
+"lat": 34.286,
+"lng": 108.956,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Baqiao%2C_Xi%27an%2C_Shaanxi%2C_China_-_panoramio.jpg/960px-Baqiao%2C_Xi%27an%2C_Shaanxi%2C_China_-_panoramio.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Baqiao,_Xi%27an,_Shaanxi,_China_-_panoramio.jpg"
+},
+"cq1949": {
+"name": "Chongqing 1949 Grand Theatre",
+"lat": 29.583,
+"lng": 106.443,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/The_People%27s_Great_Hall_of_Chongqing.jpg/960px-The_People%27s_Great_Hall_of_Chongqing.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:The_People%27s_Great_Hall_of_Chongqing.jpg"
 }
 }
