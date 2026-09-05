@@ -649,5 +649,33 @@
 "lng": 106.5565,
 "img": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Nanbin_Road_night_scene_-_panoramio.jpg",
 "imgpage": "https://commons.wikimedia.org/wiki/File:Nanbin_Road_night_scene_-_panoramio.jpg"
+},
+"xianfoodtour": {
+"name": "Muslim quarter backstreets",
+"lat": 34.266,
+"lng": 108.938,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/1_xian_muslim_quarter_china_2011.JPG/960px-1_xian_muslim_quarter_china_2011.JPG",
+"imgpage": "https://commons.wikimedia.org/wiki/File:1_xian_muslim_quarter_china_2011.JPG"
+},
+"xianmassage": {
+"name": "Foot massage",
+"lat": 34.2601,
+"lng": 108.9419,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Foot_Massage_at_Tara_Spa_%285918684646%29.jpg/960px-Foot_Massage_at_Tara_Spa_%285918684646%29.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Foot_Massage_at_Tara_Spa_(5918684646).jpg"
+},
+"cuisinemuseum": {
+"name": "Sichuan Cuisine Museum, Pidu",
+"lat": 30.8095,
+"lng": 103.888,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Doubanjiang.jpg/960px-Doubanjiang.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Doubanjiang.jpg"
+},
+"chengduspa": {
+"name": "Chinese massage chart (Qing woodcut)",
+"lat": 30.66,
+"lng": 104.07,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Qing_Chinese_paediatric_foot-leg_massage_chart_Wellcome_L0039668.jpg/960px-Qing_Chinese_paediatric_foot-leg_massage_chart_Wellcome_L0039668.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Qing_Chinese_paediatric_foot-leg_massage_chart_Wellcome_L0039668.jpg"
 }
 }
