@@ -516,5 +516,138 @@
 "lng": 116.41054,
 "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Wangfujing_Street_from_Oriental_Plaza_20251002155933.jpg/960px-Wangfujing_Street_from_Oriental_Plaza_20251002155933.jpg",
 "imgpage": "https://commons.wikimedia.org/wiki/File:Wangfujing_Street_from_Oriental_Plaza_20251002155933.jpg"
+},
+"huguosi": {
+"name": "Huguosi Snacks",
+"lat": 39.93861,
+"lng": 116.37752,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/%E8%89%BE%E7%AA%A9%E7%AA%A901.jpg/960px-%E8%89%BE%E7%AA%A9%E7%AA%A901.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:艾窩窩01.jpg"
+},
+"xidanmall": {
+"name": "Xidan Joy City",
+"lat": 39.9106,
+"lng": 116.3734,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Chua_Lam%27s_Dim_Sum_at_Xidan_Joy_City_6F_%2820210104164138%29.jpg/960px-Chua_Lam%27s_Dim_Sum_at_Xidan_Joy_City_6F_%2820210104164138%29.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Chua_Lam's_Dim_Sum_at_Xidan_Joy_City_6F_(20210104164138).jpg"
+},
+"mutianyufarm": {
+"name": "Farmhouse lunch, Mutianyu village",
+"lat": 40.4269,
+"lng": 116.5622,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Great_Wall_of_China_July_2006.JPG/960px-Great_Wall_of_China_July_2006.JPG",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Great_Wall_of_China_July_2006.JPG"
+},
+"luosifen": {
+"name": "Luosifen",
+"lat": 39.9931,
+"lng": 116.3396,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Components_of_instant_Luosifen_%2820200710184923%29.jpg/960px-Components_of_instant_Luosifen_%2820200710184923%29.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Components_of_instant_Luosifen_(20200710184923).jpg"
+},
+"nanchengxiang": {
+"name": "Nanchengxiang breakfast",
+"lat": 39.883,
+"lng": 116.409,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Breakfast_selections_at_a_restaurant_near_Wanshousi%2C_Beijing_%2820230313082120%29.jpg/960px-Breakfast_selections_at_a_restaurant_near_Wanshousi%2C_Beijing_%2820230313082120%29.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Breakfast_selections_at_a_restaurant_near_Wanshousi,_Beijing_(20230313082120).jpg"
+},
+"wudaoying": {
+"name": "Wudaoying and Fangjia Hutong",
+"lat": 39.9473,
+"lng": 116.4085,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Beijing_hutong_Wudaoying_1.jpg/960px-Beijing_hutong_Wudaoying_1.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Beijing_hutong_Wudaoying_1.jpg"
+},
+"hulatang": {
+"name": "Hulatang on Sajinqiao",
+"lat": 34.2683,
+"lng": 108.9285,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/20210708_Henan-style_Hulatang.jpg/960px-20210708_Henan-style_Hulatang.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:20210708_Henan-style_Hulatang.jpg"
+},
+"lintong": {
+"name": "Lintong pomegranate stalls",
+"lat": 34.383,
+"lng": 109.274,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Pomegranate02_edit.jpg/960px-Pomegranate02_edit.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Pomegranate02_edit.jpg"
+},
+"shuipan": {
+"name": "Shuipan yangrou",
+"lat": 34.2585,
+"lng": 108.9395,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Yangrou_Paomo.JPG/960px-Yangrou_Paomo.JPG",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Yangrou_Paomo.JPG"
+},
+"danhonggao": {
+"name": "Chengdu morning snacks",
+"lat": 30.6595,
+"lng": 104.064,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/San_da_pao.jpg/960px-San_da_pao.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:San_da_pao.jpg"
+},
+"taikooli": {
+"name": "Taikoo Li and Chunxi Road",
+"lat": 30.6542,
+"lng": 104.0808,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Chunxi_Road_seen_from_viaduct%2C_Chengdu.jpg/960px-Chunxi_Road_seen_from_viaduct%2C_Chengdu.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Chunxi_Road_seen_from_viaduct,_Chengdu.jpg"
+},
+"yulinfood": {
+"name": "Yulin street food",
+"lat": 30.6325,
+"lng": 104.0545,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Intersection_of_Yulin_West_Road_and_Yulin_North_Road_20241007194803.jpg/960px-Intersection_of_Yulin_West_Road_and_Yulin_North_Road_20241007194803.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Intersection_of_Yulin_West_Road_and_Yulin_North_Road_20241007194803.jpg"
+},
+"anren": {
+"name": "Anren town",
+"lat": 30.5035,
+"lng": 103.619,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg/960px-Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg"
+},
+"suanlafen": {
+"name": "Suan la fen",
+"lat": 29.5595,
+"lng": 106.5745,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Chongqing_Xiaomian_with_fried_eggs.jpg/960px-Chongqing_Xiaomian_with_fried_eggs.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Chongqing_Xiaomian_with_fried_eggs.jpg"
+},
+"youcha": {
+"name": "Youcha breakfast",
+"lat": 29.5585,
+"lng": 106.572,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/ZS_%E4%B8%AD%E5%B1%B1%E5%B8%82_Zhongshan_%E5%8F%A4%E9%8E%AE_Guzhen_%E9%8E%AE%E8%88%88%E8%B7%AF_Zhenxing_Road_stall_food_breakfast_morning_May_2023_Px3_01.jpg/960px-ZS_%E4%B8%AD%E5%B1%B1%E5%B8%82_Zhongshan_%E5%8F%A4%E9%8E%AE_Guzhen_%E9%8E%AE%E8%88%88%E8%B7%AF_Zhenxing_Road_stall_food_breakfast_morning_May_2023_Px3_01.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:ZS_中山市_Zhongshan_古鎮_Guzhen_鎮興路_Zhenxing_Road_stall_food_breakfast_morning_May_2023_Px3_01.jpg"
+},
+"laziji": {
+"name": "Geleshan laziji",
+"lat": 29.589,
+"lng": 106.42,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/La_Zi_Ji_%28Chicken_with_Chiles%29_%282269517013%29.jpg/960px-La_Zi_Ji_%28Chicken_with_Chiles%29_%282269517013%29.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:La_Zi_Ji_(Chicken_with_Chiles)_(2269517013).jpg"
+},
+"kaoyu": {
+"name": "Chongqing grilled fish",
+"lat": 29.562,
+"lng": 106.578,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Grilled_Fish_with_Douhua.jpg/960px-Grilled_Fish_with_Douhua.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Grilled_Fish_with_Douhua.jpg"
+},
+"dadukou": {
+"name": "Lunch in Dadukou",
+"lat": 29.479,
+"lng": 106.488,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Zhongxing_Branch_of_Chongqing_Iron_and_Steel_Group_2002_SIK_03-056638-Print.jpg/960px-Zhongxing_Branch_of_Chongqing_Iron_and_Steel_Group_2002_SIK_03-056638-Print.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Zhongxing_Branch_of_Chongqing_Iron_and_Steel_Group_2002_SIK_03-056638-Print.jpg"
+},
+"nanbindinner": {
+"name": "Dinner on Nanbin Road",
+"lat": 29.5432,
+"lng": 106.5565,
+"img": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Nanbin_Road_night_scene_-_panoramio.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Nanbin_Road_night_scene_-_panoramio.jpg"
 }
 }
