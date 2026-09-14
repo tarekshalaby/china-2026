@@ -705,5 +705,12 @@
 "lng": 106.443,
 "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/The_People%27s_Great_Hall_of_Chongqing.jpg/960px-The_People%27s_Great_Hall_of_Chongqing.jpg",
 "imgpage": "https://commons.wikimedia.org/wiki/File:The_People%27s_Great_Hall_of_Chongqing.jpg"
+},
+"sanlitun": {
+"name": "Taikoo Li Sanlitun",
+"lat": 39.9365,
+"lng": 116.454,
+"img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Taikoo_Li_Sanlitun_South_%2820200808170437%29.jpg/960px-Taikoo_Li_Sanlitun_South_%2820200808170437%29.jpg",
+"imgpage": "https://commons.wikimedia.org/wiki/File:Taikoo_Li_Sanlitun_South_(20200808170437).jpg"
 }
 }
