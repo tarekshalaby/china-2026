@@ -12,15 +12,15 @@ cities=[
   sub="Conscripts, mutineers and mill workers behind the walls"),
  dict(id="chengdu",name="Chengdu",dates="Sun 27 – Wed 30 Sep",nights=3,color="#43A047",hotel=CD_HOTEL,center=(30.66,104.06),zoom=12,
   sub="Teahouse politics, the best unofficial museum in China, and the rap capital"),
- dict(id="chongqing",name="Chongqing",dates="Wed 30 Sep – Fri 2 Oct",nights=3,color="#3949AB",hotel=CQ_HOTEL,center=(29.56,106.55),zoom=12,
+ dict(id="chongqing",name="Chongqing",dates="Wed 30 Sep – Sat 3 Oct",nights=3,color="#3949AB",hotel=CQ_HOTEL,center=(29.56,106.55),zoom=12,
   sub="Bombed capital, steel city, trap city"),
 ]
 
 days={
  "beijing":[("Sun 20 Sep","Arrival day"),("Mon 21 Sep","South of the square"),("Tue 22 Sep","The Wall, built by conscripts"),("Wed 23 Sep","The square and the silences"),("Thu 24 Sep","Last morning, then the 12:55 train")],
- "xian":[("Thu 24 Sep","Arrive ~17:30, evening inside the walls"),("Fri 25 Sep","The 700,000, and the arrest of Chiang"),("Sat 26 Sep","The road to Yan'an, and the mill"),("Sun 27 Sep","Train to Chengdu 11:25")],
- "chengdu":[("Sun 27 Sep","Arrive ~15:30"),("Mon 28 Sep","Pandas, then the park where 1911 started"),("Tue 29 Sep","Jianchuan day trip"),("Wed 30 Sep","Train G8619 12:50 → 14:01")],
- "chongqing":[("Wed 30 Sep","Steps, shelters, and the city from the hill"),("Thu 1 Oct","National Day: go west early"),("Fri 2 Oct","Steel, porters, and a 01:50 flight")],
+ "xian":[("Thu 24 Sep","Arrive ~17:30, evening inside the walls"),("Fri 25 Sep","The 700,000, and the arrest of Chiang"),("Sat 26 Sep","The road to Yan'an, and the mill"),("Sun 27 Sep","Train to Chengdu 11:35")],
+ "chengdu":[("Sun 27 Sep","Arrive 15:03"),("Mon 28 Sep","Pandas, then the park where 1911 started"),("Tue 29 Sep","Jianchuan day trip"),("Wed 30 Sep","Train to Chongqing 12:50")],
+ "chongqing":[("Wed 30 Sep","Steps, shelters, and the city from the hill"),("Thu 1 Oct","National Day: go west early"),("Fri 2 Oct","Steel, porters, and the 01:50 flight out")],
 }
 
 items=[
@@ -53,11 +53,11 @@ items=[
 ("fruity","beijing",1,"Night","music","fRUITYSPACE 果空间","DIY experimental basement by the National Art Museum. 40 people, no compromise.","Small, cheap, cash-free, and nothing is published in advance anywhere — the bill goes up on its WeChat account and on the door. If you want a certainty instead, Dorena play 疆进酒 OMNI SPACE the same night, 20:00, ¥188.",
  "Founded in 2016 by the experimental musician Zhai Ruixin, fRUITYSPACE is a record shop with a basement stage that keeps the DIY underground alive after the closure of XP and D-22. Noise, improv, post-punk, zines. It\'s the least commercial room in Beijing.",False),
 
-("mutianyu","beijing",2,"Full day","landmark","Great Wall at Mutianyu","The Wall as a labour project: conscripts, convicts and the widow Meng Jiangnü.","Cable car to Tower 14, walk the wall west to Tower 6 — about two hours, and the steep, unrestored-looking stretch is in the middle of it — then the toboggan down. 1h30 each way from the city.",
+("mutianyu","beijing",2,"09:00 pickup","landmark","Great Wall at Mutianyu","The Wall as a labour project: conscripts, convicts and the widow Meng Jiangnü.","The charter collects you at the hotel at 09:00 and the drive is 1h30, so you are on the wall about 10:45. Cable car to Tower 14, walk west to Tower 6 — two hours, the steep stretch in the middle — then the toboggan down about 13:15. All four of you go through each gate together; the tickets do not split.",
  "The Wall is the one landmark where the popular story is older than the official one. It was built and rebuilt by conscript labour, convicts and soldiers; the folk legend of Meng Jiangnü, the widow who walked to the Wall to find her husband, learned he\'d been buried inside it, and wept until a section collapsed, has been sung for two thousand years as the peasant\'s verdict on imperial glory. Mutianyu is less crowded than Badaling and the woods around it are the Wall\'s best setting. The route matters here. Two lifts go up and they land in different places: the enclosed cable car at Tower 14, the open chairlift at Tower 6, and the toboggan only descends from Tower 6. So ride the cable car to 14, walk the wall east to 6 — roughly two hours, undulating, some steep staircases but nothing technical — and take the chute down. Nobody has to climb the long stone stairway from the bottom, which is the genuinely punishing part, and the brutal section is west of Tower 20, the other way. Between 14 and 6 there is no exit: once you start walking, you finish at 6.",True),
-("mutianyufarm","beijing",2,"Lunch","food","Farmhouse lunch below the Wall 农家院","Eat where the drivers eat, in the villages under the Wall.","Ask your driver to pick one in Mutianyu or Beigou village. Trout, stewed chicken, mountain vegetables, about ¥60 a head. The word is 农家院.",
+("mutianyufarm","beijing",2,"Late lunch","food","Farmhouse lunch below the Wall 农家院","Eat where the drivers eat, in the villages under the Wall.","About 13:45, after the toboggan rather than before the climb — the 09:00 pickup moves the whole day back. Ask the driver for one in Mutianyu or Beigou village. Trout, stewed chicken, mountain vegetables, about ¥60 a head. The word is 农家院.",
  "The villages under the Wall run farmhouse kitchens for weekend visitors out of Beijing: rainbow trout from the streams, chicken stewed with chestnuts, wild greens, all cooked in a family courtyard with the tables in the yard. This is the countryside economy the Wall now supports, and it is the one part of the Mutianyu day where the money reaches the people who live under it rather than the ticketing company. Drivers have their own arrangements with particular houses, which is normal and does not make the food worse.",True),
-("wudaokou","beijing",2,"Late afternoon","struggle","Wudaokou 五道口 and the university district","May\'s old neighbourhood, and the campuses where 1989 began before it reached the square.","Ask the Wall driver to drop you here on the way back into town, or Line 13 to Wudaokou. Beijing Language and Culture University is 10 min north on Xueyuan Road.",
+("wudaokou","beijing",2,"Late afternoon","struggle","Wudaokou 五道口 and the university district","May\'s old neighbourhood, and the campuses where 1989 began before it reached the square.","You are back in the city about 16:45, so this survives — ask the Wall driver to drop you here rather than at the hotel, or Line 13 to Wudaokou. Beijing Language and Culture University is 10 min north on Xueyuan Road.",
  "Haidian is the student quarter: Peking University, Tsinghua and Beijing Language and Culture University within a few kilometres of each other. The 1989 movement started here, not on the square. Hu Yaobang died on 15 April 1989, and within a day the first big-character posters went up on the noticeboard at Peking University known as the Triangle; students argued there for weeks, then walked the twelve kilometres down to Tiananmen. The Triangle was demolished in 2007. Beijing Language and Culture University, founded in the 1960s to teach Chinese to foreign students, is where May studied. Wudaokou itself was the city\'s student nightlife district — D-22, the bar that launched much of Beijing\'s indie rock scene, ran here from 2006 until it closed in 2012 — and it is still cheap Korean food and student bars between the new malls.",False),
 ("luosifen","beijing",2,"Dinner","food","Luosifen 螺蛳粉","Nora's pick: Liuzhou snail-broth noodles, the smell the whole country argues about.","Student district, so the shops are cheap and everywhere around the station. Not Beijing food — this is Guangxi, and it went national.",
  "Luosifen comes from Liuzhou in Guangxi: rice noodles in a broth boiled long and hard from river snails, with sour pickled bamboo shoot that produces a smell people compare to blocked drains and then queue for three times a week. It was a night-market dish until around 2014, when vacuum-packed instant versions turned it into an industry. The Liuzhou government pushed it hard as a poverty-reduction programme, and it now employs tens of thousands there and sells billions of yuan a year, mostly in packets. That is the state's own telling of it — a rust-belt car-factory city lifted out of poverty by a snack — and it is partly true. Eating the fresh version in a student neighbourhood is as close as Beijing gets to where it started.",False),
@@ -85,7 +85,7 @@ items=[
 
 ("wudaoying","beijing",4,"Morning","landmark","Wudaoying and Fangjia Hutong 五道营 · 方家胡同","Coffee, small shops and two alleys that survived. The last walk before the train.","Both are 15 min from the hotel and 10 min from each other. Cafés open around 09:00; leave for Beijing West by 11:15.",
  "Two of the alleys that came through the last thirty years with their buildings and most of their residents intact, and then filled up with the independent end of Beijing retail: coffee roasters, bookshops, small clothing labels, courtyard bars. Fangjia has the Number 46 compound, a 1950s machine-tool factory yard turned over to studios, a theatre and a bar. Both streets were hit by the 2017 campaign to brick up shopfronts that had been cut into the old walls — kaiqiang dadong, 'opening walls and punching holes' — which closed hundreds of small businesses across Beijing in a matter of weeks and thinned these two streets considerably; what came back reopened through the front doors instead. This is the neighbourhood-shop end of the shopping, it is ten minutes from your hotel, and it is a better last morning than a museum.",False),
-("bjtrain","beijing",4,"12:55","transit","Beijing West → Xi\'an North","High-speed rail, 2nd class, ref 1658114142363333. Arrives about 17:30.","Be at Beijing West by 12:00; security and ID checks take time.","",False),
+("bjtrain","beijing",4,"12:55","transit","Beijing West → Xi\'an North","Train G353, 2nd class, car 5. Arrives Xi\'an North 17:08.","Be at Beijing West by 12:00 — they ask for an hour, and security plus the passport check eats it. Waiting hall, gates 6 and 7.","",False),
 
 # ---------- XI'AN ----------
 ("belltower","xian",0,"Evening","landmark","Bell Tower and City Wall","Your hotel is at the Bell Tower. Walk the wall at dusk.","Wall night tickets to about 22:00 from the South Gate.",
@@ -125,7 +125,7 @@ items=[
  "Roujiamo, braised pork chopped into a crisp flatbread, is Xi'an's sandwich and possibly the world's oldest. Zhang Ji on Ziwu Road is the shop Xi'an people name when asked for the best, and it's nowhere near a tourist.",False),
 ("shaanximuseum","xian",3,"Morning (optional)","landmark","Shaanxi History Museum","For the group, if there's time before the train.","Free but timed, capped at 6,000 a day and nothing sold at the counter. Near Ziwu Lu, so pair it with the breakfast.",
  "The province's main museum: Zhou bronzes, Han tomb figures, Tang murals. The exhibit worth your time is the Han dynasty tomb figures of farmers, cooks and servants, the closest we have to portraits of the people who built all this.",False),
-("xatrain","xian",3,"11:25","transit","Xi'an North → Chengdu East","High-speed rail, 2nd class, ref 1658114208828314. Arrives about 15:30.","Xi'an North is 30–40 min from the Bell Tower by metro. Leave by 10:00.","",False),
+("xatrain","xian",3,"11:35","transit","Xi\'an North → Chengdu East","Train D1927, 2nd class, car 03. Arrives Chengdu East 15:03.","Xi\'an North is 30–40 min from the Bell Tower by metro. Leave by 10:00 — the gate is 22B and they want you there an hour ahead.","",False),
 
 # ---------- CHENGDU ----------
 ("dufu","chengdu",0,"Late afternoon","landmark","Du Fu Thatched Cottage","The poet of the conscript and the starving. Near your hotel.","Read 'Ballad of the Army Carts' first.",
@@ -173,7 +173,7 @@ items=[
 ("jinjiangtheatre","chengdu",2,"Alternative","music","Jinjiang Theatre 锦江剧场 (Sichuan opera)","Proper repertory Sichuan opera for locals. Not the face-changing tourist show.","Ask at Heming Teahouse what's on; performances are mostly afternoons and weekends.",
  "Sichuan opera is earthy, comic and acrobatic, and the tourist packages reduce it to twenty minutes of face-changing. The Jinjiang Theatre is the provincial company's own house, where full plays are staged for an audience of retirees who know every line. If the timing works, it beats any club.",False),
 
-("cdtrain","chengdu",3,"12:50","transit","Chengdu East → Chongqing Shapingba","Train G8619, arrives 14:01. Ref 1658114333265511.","Shapingba station is on the west side; Yuzhong hotel is 30–40 min by metro/taxi.","",False),
+("cdtrain","chengdu",3,"12:50","transit","Chengdu East → Chongqing Shapingba","Paid but not yet ticketed — the seats are bought the morning tickets open. About 70 minutes.","Shapingba station is on the west side; the Yuzhong hotel is 30–40 min by metro or taxi. Check the booking is ticketed before you leave Chengdu.","",False),
 
 # ---------- CHONGQING ----------
 ("suanlafen","chongqing",0,"Late lunch","food","Suan la fen 酸辣粉","Hot-and-sour sweet potato noodles, eaten standing up. The landing meal.","You arrive at 14:01; there are counters all around Jiefangbei and on the way down to Shibati. About ¥10.",
@@ -235,17 +235,19 @@ bookings={
 
  "tiantan": dict(state="booked", pill="Booked",
   when="Mon 21 Sep \u00b7 enter 08:00\u201312:00",
-  what="Park-only entry for four. The halls \u2014 Hall of Prayer for Good Harvests, Imperial Vault, Echo Wall \u2014 are shut on Mondays: the combo ticket refuses to sell for the 21st and the 28th, the two Mondays, while park-only sells normally. This card said the opposite last week, on a guide site\u2019s word; the booking system settled it.",
+  what="General admission for four in the 08:00\u201312:00 slot. The halls \u2014 Hall of Prayer for Good Harvests, Imperial Vault, Echo Wall \u2014 are shut on Mondays, which is why only the park ticket would sell for the 21st. This card said the opposite last week, on a guide site\u2019s word; the booking system settled it. The confirmation also lists an English guide it never explains, so do not count on one.",
   price="\u00a515 each \u00b7 \u00a560 for four",
   change="Free cancellation any time before the window opens.",
-  onday="Nothing to collect \u2014 passports at the turnstile. Tiantandongmen metro to the east gate. Arriving about 09:00 as planned is well inside the window; give it ninety minutes."),
+  onday="Tiantandongmen metro to the east gate, No. 1A Tiantandongli. Arriving about 09:00 is well inside the window; give it ninety minutes.",
+  ref="Trip.com <b>1658115150429606</b> \u00b7 PIN 3500. The redemption line says passport, but the booking note says the gate scans a QR code that Trip.com email 1\u20135 days before the date \u2014 so watch for it, and if it has not arrived by the 19th call the operator on +86 186 1124 1332 (WhatsApp +86 151 7038 7922)."),
 
  "mutianyu": dict(state="booked", pill="Booked",
-  when="Tue 22 Sep \u00b7 all day from pickup",
-  what="Three separate bookings, all paid: the private car for four (ten hours from pickup, scenic-area entrance and the internal shuttle bus included), the enclosed cable car up for four, and the toboggan down for four.",
+  when="Tue 22 Sep \u00b7 09:00 pickup from the hotel",
+  what="Three separate bookings, all paid. The VIP private charter for four \u2014 door to door, no shopping stops, ten hours from pickup, with the scenic-area entrance and the internal shuttle included. The enclosed cable car up, morning class. And the downhill cableway, toboggan or chairlift, your choice on the day.",
   price="Cable car US$14.91 a head. The car is the four-seat charter, a little over the three-seat quote. Nothing further to pay at the Wall except lunch.",
+  ref="Charter <b>1658115121467030</b> \u00b7 PIN 4656, package \u201cfrom 4 people, includes admission ticket and transfer, English\u201d, collected at the hotel. Cable car up <b>1658115121468616</b> \u00b7 PIN 9039. Downhill <b>1658115121445489</b> \u00b7 PIN 6974, voucher <b>8386946760</b>, redeemed at the Shibide cableway office up at Tower 6. Entry to all three is on the passport \u2014 the four \u201cvoucher codes\u201d on the cable-car email are just your four passport numbers, which is why they are not printed here.",
   change="Cancellation windows differ between the car and the two lift tickets \u2014 the terms are in the Trip.com confirmation emails, not the same for both.",
-  onday="Ask the driver for a 06:45\u201307:00 pickup. The scenic area opens 07:30 but the cable car does not run until 08:30, so earlier just means standing at a closed lift. Entrance and shuttle are inside the car booking; there is no queue to join at the gate."),
+  onday="Booked departure is 09:00 from the hotel, so plan on the wall at 10:45 and the toboggan about 13:15. A member of staff calls you by 22:00 on the 21st \u2014 that is the moment to ask for 07:00 instead. Entrance and shuttle are inside the charter, so nothing to buy at the gate. Both lift tickets refuse partial redemption: all four of you go through together, each time."),
 
  "tiananmen": dict(state="todo", pill="Book 16 Sep",
   when="for Wed 23 Sep \u00b7 book seven days ahead",
@@ -272,8 +274,9 @@ bookings={
   when="Fri 25 Sep \u00b7 valid any time 08:30\u201317:00",
   what="Admission for four to \u79e6\u59cb\u7687\u5e1d\u9675\u535a\u7269\u9662, the Emperor Qinshihuang Mausoleum Site Museum. That is the Terracotta Army \u2014 the army is the tomb guard, so the ticket is named after the tomb, not the figures. It covers pits 1, 2 and 3, the bronze chariot hall, and Lishan Garden two kilometres away, with a free shuttle between the two areas.",
   price="\u00a5120 each \u00b7 \u00a5480 for four. Didi is \u00a5120\u2013150 per car each way, per car and not per head, so budget about \u00a5600 of taxis on top. No guide and no tour lunch, by choice.",
-  change="An all-day slot, so there is no entry time to miss.",
-  onday="Collect at the ticket window with the passport the booking is in, then the gate. Ignore the uniformed men at Xi\u2019an railway station selling an official express minibus; it is a long-running scam and you are not going near the station anyway. Walk the pits backwards \u2014 3, then 2, then 1 \u2014 so you finish in the big hall instead of peaking at the door."),
+  change="An all-day slot, so there is no entry time to miss. Entry closes at 17:00.",
+  ref="Trip.com <b>1658115150464924</b> \u00b7 PIN 6009, for \u201cAdult, non-mainland Chinese residents, admission between 08:30 and 17:00\u201d. No ticket number was issued at all: the hall matches your booking name against the ID the booking was made on, so whoever booked needs to be at the window. The museum system allows one booking per passport every five days \u2014 do not buy a second anywhere, it will collide.",
+  onday="Collect at the ticket hall with the passport the booking is in, then the gate. Ignore the uniformed men at Xi\u2019an railway station selling an official express minibus; it is a long-running scam and you are not going near the station anyway. Walk the pits backwards \u2014 3, then 2, then 1 \u2014 so you finish in the big hall instead of peaking at the door."),
 
  "huaqing": dict(state="gate", pill="Pay at the gate",
   when="Fri 25 Sep, if you still want it",
@@ -290,7 +293,7 @@ bookings={
 
  "shaanximuseum": dict(state="todo", pill="Free, but timed",
   when="Sun 27 Sep morning \u00b7 optional, window opens about 20 Sep",
-  what="Free timed entry, capped at 6,000 people a day, with no tickets sold at the counter at all. Marked optional because the train is at 11:25.",
+  what="Free timed entry, capped at 6,000 people a day, with no tickets sold at the counter at all. Marked optional because the train is at 11:35.",
   price="Free",
   how="The museum WeChat account, five to seven days ahead. If it is gone by the time you look, drop it \u2014 do not rearrange the morning for it.",
   onday="Passports. Near Ziwu Lu, so pair it with the breakfast."),
@@ -300,7 +303,8 @@ bookings={
   what="Chengdu Research Base of Giant Panda Breeding, four adults. This is the in-city one on metro line 3 \u2014 237-plus pandas and the cub nursery. Not Dujiangyan Panda Valley (12 pandas, 60\u201380 minutes each way) and not Dujiangyan Panda Base (volunteer programme, needs two to four weeks\u2019 notice, out of reach now).",
   price="\u00a555 each \u00b7 about US$32 for four",
   how="The window is open and it does sell out in the run-up to Golden Week. This is the next thing to buy.",
-  onday="Pandas eat and move until about 10:30 and then sleep all afternoon, so the first hour is the whole visit. Nursery first, adult enclosures on the way back down, out by 10:30."),
+  onday="Pandas eat and move until about 10:30 and then sleep all afternoon, so the first hour is the whole visit. Nursery first, adult enclosures on the way back down. One entry only, and nothing before 07:30 or after 12:00.",
+  ref="Trip.com <b>1658115150537498</b> \u00b7 PIN 1823, morning session. No collection \u2014 scan the passport at the original-ID channel at the entrance gate. Four e-tickets, one a head: <a href=\"https://t.trip.com/?hUaYkIr/RCQw\">1</a>, <a href=\"https://t.trip.com/?8xK6DqU/NCWg\">2</a>, <a href=\"https://t.trip.com/?BdZv5V4/FwbA\">3</a>, <a href=\"https://t.trip.com/?kUS7BhQ/dhdA\">4</a>. If a passport is not on you, the non-original-ID channel takes a photo of it."),
 
  "cuisinemuseum": dict(state="todo", pill="Book ahead",
   when="Mon 28 Sep \u00b7 13:50\u201317:40 session",
@@ -321,6 +325,117 @@ bookings={
   what="Premium Zone A, four seats, for \u300a\u91cd\u5e86\u00b71949\u300b in the purpose-built rotating theatre at Ciqikou. English translation devices are not part of the ticket \u2014 you pick them up at the door.",
   price="About US$190 for the four seats. The devices are free to use but take a \u00a5150 refundable deposit each, so \u00a5600 in cash or on a phone at the door, refunded when you hand them back.",
   change="National Day pricing and a sold-out house: treat the 19:30 as fixed.",
-  onday="Paper tickets have to be collected at the theatre box office, so be there by 18:45, not 19:25. If something goes wrong, 1 October runs five sessions \u2014 13:00, 15:00, 17:00, 19:30 and 21:15."),
+  onday="Paper tickets have to be collected at the box office \u2014 Trip.com list the pickup time as 19:30, which is curtain, so be there by 18:45 and collect first. Entry stops five minutes after the show starts and zones A and B are on the rotating stage. If something goes wrong, 1 October runs five sessions: 13:00, 15:00, 17:00, 19:30 and 21:15.",
+  ref="Trip.com <b>1658115150446117</b> \u00b7 PIN 1034. Four vouchers: <b>260916186677897914701</b> through <b>\u2026704</b>. Box office 023 65003888. It is the <b>Chongqing 1949 Grand Theater</b> beside Ciqikou in Shapingba \u2014 not the Chongqing Grand Theater, which is on the other side of the city. Search the 1949 name in Amap, not a Western map."),
 
 }
+
+
+# --------------------------------------------------------------------------
+# Reference layer: everything that lives in a confirmation email, so nobody
+# has to open one. Passport numbers are deliberately not here: the gates read
+# the physical passport, and this page is public.
+# --------------------------------------------------------------------------
+
+openitems=[
+ ("Tonight","Chengdu → Chongqing train goes on sale 08:45 China time, 16 Sep — 03:45 Cairo","Booking 1658114333265511 is paid (US$113.08) but the seats are not issued. Trip.com buys automatically the second sales open. Both earlier legs sold out at that moment and one had to be re-booked entirely, so read the email that follows: “on sale” then “issued” is fine, “waitlist” or “additional payment required” needs you."),
+ ("Tue 16 Sep","Forbidden City and Tiananmen Square open for Wed 23 Sep","The seven-day window opens today. Forbidden City: ¥60 each at bookingticket.dpm.org.cn, one ticket per passport, five per transaction — it needs a signed-in account, so you start it and I will fill the form. Tiananmen: free, yuyue.tap.com.cn or the WeChat mini-program, released at noon Beijing time; my browser is blocked from that domain."),
+ ("Thu 17 Sep, 23:00","Last moment to change either Beijing room","Both Manxin rooms are free to cancel until 23:00 Beijing time on the 17th and non-refundable after, US$1,222.04 between them."),
+ ("Before Sat 19 Sep","Your visa — the step after “online review completed”","Application CAI3260819AL7600188 cleared online review on 2 September and nothing has arrived since. The centre in Cairo said to continue with the subsequent process; there is no appointment confirmation, fee receipt or collection notice in the inbox. You fly on the 19th."),
+ ("16–20 Sep","The Temple of Heaven QR code should arrive","Trip.com send the actual QR 1–5 days before the 21st, and the booking note makes the QR the entry method even though the redemption line says passport. If it has not come by the 19th, chase it on +86 186 1124 1332."),
+ ("Mon 21 Sep, by 22:00","The Mutianyu driver calls","A member of staff contacts you by 22:00 the night before. That is the moment to ask whether the 09:00 pickup can move to 07:00 — it is a private charter, so it is worth asking."),
+ ("Open","Confirm Nora is ticketed on the flights","Three Qatar Airways bookings exist — 7BRAMK, 7CC7J4, 7BYZWD — for you, Mohamed and May. Nothing in this inbox covers Nora on any segment."),
+ ("Open","Chase US$201.56 back from Trip.com","Booking 1658114208828314, the cancelled G321 on the 27th, was refunded “within 10 business days” on 14 September."),
+ ("Open","Five things still to book","The Sichuan Cuisine Museum class (Mon 28), the Lost Plate food tour in Xi’an (Thu 24), 奈热 Naire at Aperture (Sat 26, Showstart), a driver for the Jianchuan day (Tue 29), and the Shaanxi History Museum when its window opens."),
+]
+
+flights=dict(
+ note="Three separate Qatar Airways bookings, one passenger each, on identical flights. Economy throughout. "
+      "Checked baggage is <b>not included on any of the four segments</b> — buy it online before check-in, it costs less than at the desk. "
+      "No seats are assigned on any segment. Qatar ask for three hours at the airport, and a no-show without at least three hours’ notice cancels the rest of the ticket automatically.",
+ refs=[("7BRAMK","Tarek Shalaby","157-2137078591"),
+       ("7CC7J4","Mohamed Hamama","157-2137078597"),
+       ("7BYZWD","May ElMahdy","157-2137078593")],
+ fare="EGP 38,490.80 a passenger, all in.",
+ segs=[
+  dict(no="QR 1302",date="Sat 19 Sep",frm="Cairo CAI · Terminal 2",to="Doha DOH",dep="19:55",arr="23:10",dur="3h 15m",eq="Boeing 777-300ER",
+       note="Three hours at Doha, cut from 3h55 by the August reschedule."),
+  dict(no="QR 892",date="Sun 20 Sep",frm="Doha DOH",to="Beijing Daxing PKX",dep="02:10",arr="15:00",dur="7h 50m",eq="Airbus A350-900",
+       note="Reverted to 02:10 in the 7 August reschedule after briefly moving to 01:15. The June confirmation emails are stale."),
+  dict(no="QR 881",date="Sat 3 Oct",frm="Chongqing Jiangbei CKG · Terminal 3",to="Doha DOH",dep="01:50",arr="05:00",dur="8h 10m",eq="Airbus A330-300",
+       note="Leave the Yuzhong hotel by 22:30 on the 2nd. This time has never changed."),
+  dict(no="QR 1307",date="Sat 3 Oct",frm="Doha DOH",to="Cairo CAI · Terminal 2",dep="07:35",arr="11:00",dur="3h 25m",eq="Boeing 777-300ER",
+       note="Moved from 07:30 to 07:35 in August. 2h35 to connect."),
+ ])
+
+trains=[
+ dict(state="booked",pill="Ticketed",no="G353",date="Thu 24 Sep",
+   frm="Beijing West 北京西",to="Xi’an North 西安北",dep="12:55",arr="17:08",dur="4h 13m",cls="2nd class",
+   seats="Car 5 — Tarek 15B, May 17C, Mohamed 17B, Nora 17A",
+   ref="Trip.com 1658114142363333 · collection code ECW0913663",
+   price="US$383.28 for four, including the US$28 booking fee and the extra the railway added when the fare changed on 10 September.",
+   gate="Waiting hall, ticket gates 6 and 7 (检票口6、7) — gates move, so read the board. Exit at Xi’an by gates 2–9.",
+   onday="E-ticket, no paper. Walk in on the passport the booking was made with and go straight to the gate. Be there an hour before."),
+ dict(state="booked",pill="Ticketed",no="D1927",date="Sun 27 Sep",
+   frm="Xi’an North 西安北",to="Chengdu East 成都东",dep="11:35",arr="15:03",dur="3h 28m",cls="2nd class",
+   seats="Car 03 — Nora 004A, Tarek 004B, May 004C, Mohamed 005A",
+   ref="Trip.com 1658115605344855 · collection code EJ50112599",
+   price="US$202.84 for four, including the US$24 booking fee.",
+   gate="Ticket gate 22B. Exit at Chengdu East by A3, B3, A4 or B4.",
+   onday="E-ticket, passport at the gate. This replaced the G321 at 11:25, which sold out on the waitlist and was cancelled on 14 September — the old departure is dead, and US$201.56 is still owed back."),
+ dict(state="todo",pill="Not ticketed",no="not yet assigned",date="Wed 30 Sep",
+   frm="Chengdu East 成都东",to="Chongqing Shapingba 沙坪坝",dep="12:50",arr="about 14:00",dur="about 1h 10m",cls="2nd class",
+   seats="Not assigned yet — all four are on the reservation",
+   ref="Trip.com 1658114333265511",
+   price="US$113.08 already paid, including the US$16 booking fee.",
+   gate="Not known until the tickets issue.",
+   onday="Tickets go on sale 08:45 China time on 16 September and Trip.com buys them then. The train number and the seats only exist after that. Confirm it is ticketed before you leave Chengdu."),
+]
+
+hotels=[
+ dict(city="beijing",name="Manxin Mansion Beijing Houhai and Drum Tower Courtyard",cn="北京后海鼓楼四合院漫心府",
+  addr="No. 2 West Tao Hutong, Jiugulou Street, Xicheng District, Beijing",
+  addrcn="北京西城区旧鼓楼大街西绞胡同2号",
+  phone="+86 10 8403 8088",
+  inout="In Sun 20 Sep after 14:00 · out Thu 24 Sep before 12:00",
+  rooms="Two rooms, four nights, both prepaid. <b>1658113503673131</b>, PIN 7737, hotel ref R9002323217478330001 — Siheyuan Superior Double, one queen, Tarek and May, US$610.56. <b>1658113503679128</b>, PIN 6668, hotel ref R9002323217478629001 — Superior Room, two singles, Mohamed and Nora, US$611.48.",
+  cancel="Free until 23:00 on Thu 17 Sep, then nothing back on either room.",
+  extras="Breakfast for two per room, 07:00–10:00 on the 21st to the 24th. Afternoon tea 14:30–16:00 for one adult a day, a daily souvenir, and a courtyard photography session if you book it a day ahead.",
+  note="Beijing hotels supply no toothbrushes, combs or razors by law — bring your own. Check-in age 18–80, and the card name should match someone staying."),
+ dict(city="xian",name="Jinjiang · Xi’an Bell Tower Original Copy Hotel",cn="锦江·西安钟楼原拓酒店",
+  addr="1st Floor, Unit 1, Tower A, Jinzhong Building, No. 290 West 1st Road, Xincheng District, Xi’an",
+  addrcn="陕西西安新城区西一路290号金钟大厦A座1单元1层",
+  phone="+86 29 8735 2266",
+  inout="In Thu 24 Sep after 14:00 · out Sun 27 Sep before 12:00",
+  rooms="<b>1658113674470765</b>, PIN 2732, hotel ref 109483528904 — Superior View Queen with the Bell Tower view, one room, three nights, Tarek and May, US$177.25 prepaid. Nora and Mohamed are booked separately.",
+  cancel="Free until 12:00 on Wed 23 Sep, then non-refundable.",
+  extras="Breakfast for two, 07:00–10:00 on the 25th to the 27th. Free Hanfu for 24 hours if you reserve a day ahead. The front desk also sells discounted Terracotta tickets — ignore that, yours are bought.",
+  note="Ten minutes’ walk from the Bell Tower, which is why it is here: everything in Xi’an on this list is inside the walls except the tomb."),
+ dict(city="chengdu",name="Wenjun Courtyard Hotel",cn="文君楼庭院·美食酒店（宽窄巷子通惠门地铁站店）",
+  addr="No. 180 Qintaigu Path, Qingyang District, Chengdu 610072",
+  addrcn="四川成都青羊区琴台故径180号",
+  phone="+86 28 8613 8785 · +86 28 8613 6664",
+  inout="In Sun 27 Sep after 14:00 · out Wed 30 Sep before 14:00",
+  rooms="<b>1658113739609663</b>, PIN 6296, hotel ref 1658113739610589 — Deluxe Double with fridge, terrace and laundry, one room, three nights, Tarek and May, US$261.87 prepaid. Nora and Mohamed are booked separately.",
+  cancel="Free until 23:59 on Sat 26 Sep, then US$91.93.",
+  extras="Breakfast is not included — ¥68 a head at the property, 07:30–09:30. The desk hands out a ¥15-off-¥100 Sichuan food voucher, afternoon tea or coffee for two, welcome fruit, and free laundry 09:00–21:00.",
+  note="The property messaged on 2 August saying they would write again a few days before arrival with check-in instructions. That has not come yet. English-speaking desk, and Tonghuimen metro is the stop."),
+ dict(city="chongqing",name="Miss Xie’s House With Riverview",cn="谢小姐的家江景民宿（解放碑步行街洪崖洞店）",
+  addr="16th Floor, Kairui Building, No. 153 Changbin Road, Yuzhong District, Chongqing",
+  addrcn="重庆渝中区长滨路153号凯瑞大厦16楼",
+  phone="+86 178 2396 6667",
+  inout="In Wed 30 Sep after 15:00 · out Sat 3 Oct before 12:00",
+  rooms="<b>1658113769089307</b>, PIN 5534, hotel ref 1658113769089814 — Boutique River-View, one queen and two doubles, all four of you, three nights, US$324.25 prepaid. Booked in May’s name.",
+  cancel="Free until 12:00 on Tue 29 Sep, then non-refundable.",
+  extras="No meals. The room holds until midday on the 3rd, which is after the 01:50 flight — so you can shower and leave the bags there right up to the airport run.",
+  note="<b>The front desk is only open 09:00–18:00.</b> The train gets in about 14:00 on the 30th so arrival is fine, but tell them in advance if that slips and get the self check-in code. Chongqing rooms do not put out disposables either; ask guest services."),
+]
+
+prep=[
+ dict(t="Your visa",v="Application <b>CAI3260819AL7600188</b>, China Visa Application Service Center, Cairo. Online review completed 2 September; the in-person step and collection are still outstanding. Three earlier rejections were the photo, then twice the claim that a US passport gets visa-free entry — it does not here, because 13 nights exceeds the 240-hour transit allowance and a Cairo round trip via Doha has no third country. Nora, Mohamed and May applied separately."),
+ dict(t="China eSIM",v="Booking <b>1658115121389135</b>, PIN 6032. Mainland China 5G, 13 days, 3GB a day then throttled to 384kbps, APN <b>cmhk</b>. Activate before 13 November. Install with one tap in the Trip.com app, or scan the QR in the voucher PDF, or key in the SM-DP+ address by hand; reinstallable ten times on the same phone. Usage at flow-consumer-center.billionconnect.com/usageq/trip/en. <b>One unit only, for four people, and 13 days against a 14-day trip</b> — if it activates on the 20th it runs out on the last day. Worth a second."),
+ dict(t="Apps to install before you fly",v="<b>Trip.com</b> holds every voucher and works offline once opened — open all of them on wifi before you go. <b>Amap 高德</b> for navigation; Google Maps is wrong and blocked. <b>Showstart 秀动</b> for gig tickets, which needs a Chinese number or WeChat login. <b>Alipay</b> and <b>WeChat Pay</b> both take foreign cards now and are how you pay for almost everything."),
+ dict(t="Cash to carry",v="¥600 in notes for the Chongqing 1949 translation-device deposits — ¥150 each, refunded when you hand them back. Otherwise almost nothing needs cash, but the Nanshan barbecue and the farmhouse lunch are the kind of places where it helps."),
+ dict(t="Baggage",v="Checked baggage is not included on any of the four Qatar segments. Buy it online before check-in for all three tickets."),
+ dict(t="Emergency numbers",v="Police 110 · ambulance 120 · fire 119. Chongqing 1949 box office 023 65003888. Mutianyu tour operator +86 186 1124 1332, WhatsApp +86 151 7038 7922. There is no travel insurance policy for any of the four of you — the Revolut cover lapsed in November 2025."),
+]

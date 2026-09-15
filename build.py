@@ -1,5 +1,5 @@
 import json, html, datetime
-from data import cities, days, items, bookings
+from data import cities, days, items, bookings, flights, trains, hotels, prep, openitems
 P=json.load(open("places.json"))
 P["aperture"]["img"]=P["maochengdu"]["img"]; P["aperture"]["imgpage"]=P["maochengdu"]["imgpage"]
 CAT={"struggle":("#E53935","✊","People's history"),"music":("#8E24AA","🎸","Live music"),"food":("#FB8C00","🍜","Local food"),"landmark":("#1E88E5","🏛️","Landmark, reframed"),"transit":("#607D8B","🚄","Travel")}
@@ -15,6 +15,7 @@ def img(pid,cls=""):
 out=[]
 w=out.append
 w("""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
 <title>China, the people's version — 20 Sep to 3 Oct 2026</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -38,6 +39,17 @@ header.top .dates{font-size:20px;color:var(--muted);margin:0 0 28px}
 .legend .how a{color:var(--ink)}
 .notice{background:#FFF8E1;border-left:6px solid #F9A825;padding:16px 20px;margin:28px 0 0;border-radius:0 10px 10px 0;font-size:16px}
 .notice b{display:block;margin-bottom:4px}
+.notice a{font-weight:700}
+.todo{background:#FFEBEE;border-left:6px solid #C62828;padding:16px 20px 6px;margin:20px 0 0;border-radius:0 10px 10px 0}
+.todo>b{display:block;font-size:17px;margin-bottom:10px}
+.todo ol{margin:0;padding:0;list-style:none}
+.todo li{display:grid;grid-template-columns:152px 1fr;gap:4px 18px;padding:11px 0;border-top:1px solid #FFCDD2}
+.todo li .w{font-size:13.5px;font-weight:700;color:#B71C1C;text-transform:uppercase;letter-spacing:.04em;padding-top:2px}
+.todo li .h{font-size:16.5px;font-weight:700}
+.todo li .d{font-size:15.5px;line-height:1.45;grid-column:2}
+.refnav{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
+.refnav a{font-size:15px;font-weight:700;text-decoration:none;border:1.5px solid var(--line);padding:9px 16px;border-radius:999px;color:var(--ink)}
+.refnav a:hover{background:#f5f5f5}
 
 section.city{margin-top:64px}
 .cityhead{color:#fff;padding:40px 0 34px;position:relative}
@@ -88,6 +100,21 @@ section.city{margin-top:64px}
 .far{margin:12px 0 0;font-size:15px;color:var(--muted)}
 .far span{display:inline-block;margin-right:14px}
 
+section.tickets,section.travel,section.prep{margin-top:96px}
+section.travel>.wrap>h2,section.prep>.wrap>h2{font-size:clamp(40px,6vw,72px);letter-spacing:-.025em;line-height:1;margin:0 0 8px;font-weight:800}
+section.travel>.wrap>p.lead,section.prep>.wrap>p.lead{font-size:20px;color:var(--muted);margin:0 0 20px;max-width:760px}
+.tkcity h4.grp{font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:44px 0 0}
+.segs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:14px 0 22px}
+.seg{border:1px solid var(--line);border-radius:12px;padding:14px 16px;border-top:6px solid #607D8B}
+.seg .fno{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.seg .fdate{font-size:14px;color:var(--muted);margin-bottom:8px}
+.seg .t{font-size:16.5px;line-height:1.4}
+.seg .t b{font-size:20px;letter-spacing:-.01em}
+.seg .n{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.4}
+.plainbox{border:1px solid var(--line);border-radius:12px;padding:6px 18px 16px;margin:0 0 8px}
+.prepdl{margin:0;display:grid;grid-template-columns:230px 1fr;gap:10px 28px}
+.prepdl dt{font-size:17px;font-weight:700;padding-top:2px}
+.prepdl dd{margin:0;font-size:16.5px;line-height:1.5;max-width:80ch}
 section.tickets{margin-top:96px}
 section.tickets>.wrap>h2{font-size:clamp(40px,6vw,72px);letter-spacing:-.025em;line-height:1;margin:0 0 8px;font-weight:800}
 section.tickets>.wrap>p.lead{font-size:20px;color:var(--muted);margin:0 0 20px;max-width:760px}
@@ -123,7 +150,7 @@ section.stories>.wrap>p.lead{font-size:20px;color:var(--muted);margin:0 0 40px;m
 .story .credit{font-size:12px;color:var(--muted);margin-top:6px}
 .story .credit a{color:var(--muted)}
 footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color:var(--muted)}
-@media (max-width:760px){.tk{grid-template-columns:1fr;gap:6px}.tk dl{grid-template-columns:1fr;gap:0}.tk dt{margin-top:12px}.citynav{grid-template-columns:1fr 1fr}.day{grid-template-columns:1fr}.datecol{position:static;display:flex;gap:12px;align-items:baseline;margin-bottom:14px}.datecol .dn{font-size:36px}.datecol .theme{border-left:0;padding-left:0;margin-top:0}.story{grid-template-columns:1fr}.cityhead .quick{position:static;margin-top:16px}.legend .how{margin-left:0}.map{height:400px}}
+@media (max-width:760px){.todo li{grid-template-columns:1fr;gap:2px}.todo li .d{grid-column:1}.prepdl{grid-template-columns:1fr;gap:2px 0}.prepdl dd{margin-bottom:14px}.tk{grid-template-columns:1fr;gap:6px}.tk dl{grid-template-columns:1fr;gap:0}.tk dt{margin-top:12px}.citynav{grid-template-columns:1fr 1fr}.day{grid-template-columns:1fr}.datecol{position:static;display:flex;gap:12px;align-items:baseline;margin-bottom:14px}.datecol .dn{font-size:36px}.datecol .theme{border-left:0;padding-left:0;margin-top:0}.story{grid-template-columns:1fr}.cityhead .quick{position:static;margin-top:16px}.legend .how{margin-left:0}.map{height:400px}}
 @media print{.map,.citynav,.quick{display:none}.card{break-inside:avoid}.story{break-inside:avoid}}
 </style></head><body>
 """)
@@ -142,6 +169,11 @@ for k,(col,ic,lab) in CAT.items():
 w('<span class="how">Numbers on the cards match the pins on each city map. <a href="#tickets">Tickets and bookings</a> and the <a href="#stories">full backstories</a> are at the bottom.</span>')
 w('</div>')
 w('<div class="notice"><b>Two public holidays fall inside this trip.</b>Mid-Autumn is Fri 25 – Sun 27 September, covering all of Xi\'an and the arrival in Chengdu. National Day Golden Week is Thu 1 – Wed 7 October: 30 September is Martyrs\' Day and the heaviest travel day of the Chinese year, and Chongqing sits in days one and two. Hongyadong, Ciqikou and Liziba will be jammed and security around monuments is heavy — do the crowd-magnets before 09:00 or after 21:00. Mon 28 and Tue 29 September in Chengdu are the only clear days in the second half. Every ticket, price and collection detail is in <a href="#tickets" style="font-weight:700">Tickets and bookings</a> at the bottom of the page, and the cards carry a pill where there is something to buy. Two things can only be done by you: the Forbidden City needs a signed-in account, and Tiananmen Square sits on a domain my browser is blocked from. Install Showstart 秀动 for gig tickets and Amap 高德 for navigation before you fly.</div>')
+w('<nav class="refnav"><a href="#travel">Flights, trains, hotels</a><a href="#tickets">Tickets and bookings</a><a href="#prep">Before you fly</a><a href="#stories">The stories</a></nav>')
+w('<div class="todo"><b>Open items, in the order they bite</b><ol>')
+for when,head,body in openitems:
+    w(f'<li><span class="w">{E(when)}</span><span class="h">{E(head)}</span><span class="d">{body}</span></li>')
+w('</ol></div>')
 w('</div></header>')
 
 # cities
@@ -183,6 +215,55 @@ for c in cities:
         w('<p class="far">Out of town, off the edge of the map: '+" ".join(f'<span><b>{nums[it[0]]}</b> {E(it[5])}</span>' for it in fars)+'</p>')
     w('</div></div></section>')
 
+# travel and stay
+w('<section class="travel" id="travel"><div class="wrap"><h2>Flights, trains, hotels</h2>')
+w('<p class="lead">Every reference, seat, address and phone number from the confirmation emails, so you never open one. Passport numbers are not here on purpose \u2014 every gate reads the passport itself, and this page is public.</p>')
+
+w('<div class="tkcity"><h3 style="background:#607D8B">Flights</h3>')
+w(f'<h4 class="grp">The four segments</h4><div class="segs">')
+for g in flights["segs"]:
+    w(f'<div class="seg"><div class="fno">{E(g["no"])}</div><div class="fdate">{E(g["date"])} \u00b7 {E(g["eq"])}</div>')
+    w(f'<div class="t"><b>{E(g["dep"])}</b> {E(g["frm"])}<br><b>{E(g["arr"])}</b> {E(g["to"])}</div>')
+    w(f'<div class="n">{E(g["dur"])}. {E(g["note"])}</div></div>')
+w('</div>')
+w('<div class="plainbox"><dl class="prepdl">')
+w('<dt>Booking references</dt><dd>'+' \u00b7 '.join(f'<b>{E(p)}</b> {E(n)}, e-ticket {E(t)}' for p,n,t in flights["refs"])+'</dd>')
+w(f'<dt>Fare paid</dt><dd>{E(flights["fare"])}</dd>')
+w(f'<dt>What to know</dt><dd>{flights["note"]}</dd>')
+w('</dl></div></div>')
+
+w('<div class="tkcity"><h3 style="background:#607D8B">Trains</h3>')
+for t in trains:
+    bcol,blab=BST[t["state"]]
+    w(f'<div class="tk" id="train-{E(t["no"]).replace(" ","")}">')
+    w(f'<div><span class="pill2" style="background:{bcol}">{E(t["pill"])}</span><div class="when">{E(t["date"])}<br>{E(t["dep"])} \u2192 {E(t["arr"])}</div></div>')
+    w(f'<div><h4>{E(t["frm"])} \u2192 {E(t["to"])}</h4><dl>')
+    w(f'<dt>Train</dt><dd>{E(t["no"])} \u00b7 {E(t["cls"])} \u00b7 {E(t["dur"])}</dd>')
+    w(f'<dt>Seats</dt><dd>{E(t["seats"])}</dd>')
+    w(f'<dt>Reference</dt><dd>{E(t["ref"])}</dd>')
+    w(f'<dt>Price</dt><dd>{E(t["price"])}</dd>')
+    w(f'<dt>Gates</dt><dd>{E(t["gate"])}</dd>')
+    w(f'<dt>On the day</dt><dd>{E(t["onday"])}</dd>')
+    w('</dl></div></div>')
+w('</div>')
+
+CBY={c["id"]:c for c in cities}
+w('<div class="tkcity"><h3 style="background:#607D8B">Hotels</h3>')
+for h in hotels:
+    c=CBY[h["city"]]
+    w(f'<div class="tk" id="hotel-{h["city"]}">')
+    w(f'<div><span class="pill2" style="background:{c["color"]}">{E(c["name"])}</span><div class="when">{E(h["inout"])}</div></div>')
+    w(f'<div><h4>{E(h["name"])}<a href="#{h["city"]}">\u2191 {E(c["name"])}</a></h4><div class="when" style="margin:-6px 0 12px;font-weight:400">{E(h["cn"])}</div><dl>')
+    w(f'<dt>Address</dt><dd>{E(h["addr"])}<br>{E(h["addrcn"])} \u2014 show the driver this line</dd>')
+    w(f'<dt>Phone</dt><dd>{E(h["phone"])}</dd>')
+    w(f'<dt>Rooms</dt><dd>{h["rooms"]}</dd>')
+    w(f'<dt>Cancellation</dt><dd>{E(h["cancel"])}</dd>')
+    w(f'<dt>Included</dt><dd>{E(h["extras"])}</dd>')
+    w(f'<dt>Worth knowing</dt><dd>{h["note"]}</dd>')
+    w('</dl></div></div>')
+w('</div>')
+w('</div></section>')
+
 # tickets
 counts={k:sum(1 for b in bookings.values() if b["state"]==k) for k in BST}
 w('<section class="tickets" id="tickets"><div class="wrap"><h2>Tickets and bookings</h2>')
@@ -207,9 +288,18 @@ for c in cities:
         if b.get('how'): w('<dt>Book via</dt><dd>'+E(b['how'])+'</dd>')
         if b.get('change'): w('<dt>Changes</dt><dd>'+E(b['change'])+'</dd>')
         if b.get('onday'): w('<dt>On the day</dt><dd>'+E(b['onday'])+'</dd>')
+        if b.get('ref'): w('<dt>Reference</dt><dd>'+b['ref']+'</dd>')
         w('</dl></div></div>')
     w('</div>')
 w('</div></section>')
+
+# before you fly
+w('<section class="prep" id="prep"><div class="wrap"><h2>Before you fly</h2>')
+w('<p class="lead">Visa, data, apps, cash and the numbers to call. Read this one on the plane and then you should not need anything else.</p>')
+w('<div class="plainbox"><dl class="prepdl">')
+for p in prep:
+    w(f'<dt>{E(p["t"])}</dt><dd>{p["v"]}</dd>')
+w('</dl></div></div></section>')
 
 # stories
 w('<section class="stories" id="stories"><div class="wrap"><h2>The stories behind each stop</h2><p class="lead">The long version, in the same order as the days. Read on the train, not on the street; most of what follows is not for conversation with strangers.</p>')
