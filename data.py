@@ -298,11 +298,11 @@ bookings={
   how="The museum WeChat account, five to seven days ahead. If it is gone by the time you look, drop it \u2014 do not rearrange the morning for it.",
   onday="Passports. Near Ziwu Lu, so pair it with the breakfast."),
 
- "pandas": dict(state="todo", pill="Book now",
+ "pandas": dict(state="booked", pill="Booked",
   when="Mon 28 Sep \u00b7 be at the gate for the 07:30 opening",
   what="Chengdu Research Base of Giant Panda Breeding, four adults. This is the in-city one on metro line 3 \u2014 237-plus pandas and the cub nursery. Not Dujiangyan Panda Valley (12 pandas, 60\u201380 minutes each way) and not Dujiangyan Panda Base (volunteer programme, needs two to four weeks\u2019 notice, out of reach now).",
-  price="\u00a555 each \u00b7 about US$32 for four",
-  how="The window is open and it does sell out in the run-up to Golden Week. This is the next thing to buy.",
+  price="US$8.19 each, US$32.76 for four \u2014 that is the \u00a555 gate price with no markup.",
+  change="Free cancellation until 17:00 on 28 October, a month after the visit, so this one carries no risk. But it cannot be bought after 12:00 on the day of use, which is why it had to be paid now.",
   onday="Pandas eat and move until about 10:30 and then sleep all afternoon, so the first hour is the whole visit. Nursery first, adult enclosures on the way back down. One entry only, and nothing before 07:30 or after 12:00.",
   ref="Trip.com <b>1658115150537498</b> \u00b7 PIN 1823, morning session. No collection \u2014 scan the passport at the original-ID channel at the entrance gate. Four e-tickets, one a head: <a href=\"https://t.trip.com/?hUaYkIr/RCQw\">1</a>, <a href=\"https://t.trip.com/?8xK6DqU/NCWg\">2</a>, <a href=\"https://t.trip.com/?BdZv5V4/FwbA\">3</a>, <a href=\"https://t.trip.com/?kUS7BhQ/dhdA\">4</a>. If a passport is not on you, the non-original-ID channel takes a photo of it."),
 

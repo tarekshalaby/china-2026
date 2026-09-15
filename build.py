@@ -267,7 +267,7 @@ w('</div></section>')
 # tickets
 counts={k:sum(1 for b in bookings.values() if b["state"]==k) for k in BST}
 w('<section class="tickets" id="tickets"><div class="wrap"><h2>Tickets and bookings</h2>')
-w('<p class="lead">Everything that has to be bought, collected or shown at a gate, in day order. Check this page on the plane; after that it is passports and the confirmation emails.</p>')
+w('<p class="lead">Everything that has to be bought, collected or shown at a gate, in day order. Booking numbers and PINs are on every row, so there is no email to go back to.</p>')
 w('<div class="tksum">')
 for k,(kcol,klab) in BST.items():
     if counts[k]: w(f'<span style="background:{kcol}">{counts[k]} {E(klab.lower() if k!="booked" else "booked")}</span>')
