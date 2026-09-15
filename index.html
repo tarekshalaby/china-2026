@@ -53,6 +53,8 @@ section.city{margin-top:64px}
 .card .tip:before{content:"↳";position:absolute;left:0;top:0}
 .card .more{margin-top:auto;padding-top:8px;font-size:14px;font-weight:700;text-decoration:none}
 .card .more:hover{text-decoration:underline}
+.card .pill{position:absolute;left:10px;bottom:10px;font-size:12.5px;font-weight:700;color:#fff;padding:4px 11px;border-radius:999px;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.card .pill:hover{text-decoration:underline}
 .transit{grid-column:1/-1;display:flex;align-items:center;gap:16px;background:#ECEFF1;border-radius:12px;padding:14px 18px;border-left:7px solid #607D8B}
 .transit .ic{font-size:28px}
 .transit b{font-size:18px}
@@ -70,6 +72,22 @@ section.city{margin-top:64px}
 .far{margin:12px 0 0;font-size:15px;color:var(--muted)}
 .far span{display:inline-block;margin-right:14px}
 
+section.tickets{margin-top:96px}
+section.tickets>.wrap>h2{font-size:clamp(40px,6vw,72px);letter-spacing:-.025em;line-height:1;margin:0 0 8px;font-weight:800}
+section.tickets>.wrap>p.lead{font-size:20px;color:var(--muted);margin:0 0 20px;max-width:760px}
+.tksum{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 8px}
+.tksum span{font-size:14px;font-weight:700;color:#fff;padding:6px 14px;border-radius:999px}
+.tkcity{margin-top:52px}
+.tkcity h3{font-size:30px;margin:0 0 6px;padding:10px 16px;color:#fff;border-radius:8px;display:inline-block}
+.tk{display:grid;grid-template-columns:210px 1fr;gap:10px 28px;padding:24px 0;border-top:1px solid var(--line);scroll-margin-top:16px}
+.tk .pill2{display:inline-block;font-size:13px;font-weight:700;color:#fff;padding:5px 13px;border-radius:999px}
+.tk .when{font-size:15.5px;margin-top:9px;font-weight:700;line-height:1.35}
+.tk h4{margin:0 0 12px;font-size:23px;letter-spacing:-.015em;line-height:1.2}
+.tk h4 a{font-size:14px;font-weight:400;color:var(--muted);text-decoration:none;margin-left:10px;white-space:nowrap}
+.tk h4 a:hover{text-decoration:underline}
+.tk dl{margin:0;display:grid;grid-template-columns:112px 1fr;gap:8px 20px;max-width:82ch}
+.tk dt{font-size:12.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding-top:4px}
+.tk dd{margin:0;font-size:16.5px;line-height:1.45}
 section.stories{margin-top:96px;padding-bottom:80px}
 section.stories>.wrap>h2{font-size:clamp(40px,6vw,72px);letter-spacing:-.025em;line-height:1;margin:0 0 8px;font-weight:800}
 section.stories>.wrap>p.lead{font-size:20px;color:var(--muted);margin:0 0 40px;max-width:720px}
@@ -89,7 +107,7 @@ section.stories>.wrap>p.lead{font-size:20px;color:var(--muted);margin:0 0 40px;m
 .story .credit{font-size:12px;color:var(--muted);margin-top:6px}
 .story .credit a{color:var(--muted)}
 footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color:var(--muted)}
-@media (max-width:760px){.citynav{grid-template-columns:1fr 1fr}.day{grid-template-columns:1fr}.datecol{position:static;display:flex;gap:12px;align-items:baseline;margin-bottom:14px}.datecol .dn{font-size:36px}.datecol .theme{border-left:0;padding-left:0;margin-top:0}.story{grid-template-columns:1fr}.cityhead .quick{position:static;margin-top:16px}.legend .how{margin-left:0}.map{height:400px}}
+@media (max-width:760px){.tk{grid-template-columns:1fr;gap:6px}.tk dl{grid-template-columns:1fr;gap:0}.tk dt{margin-top:12px}.citynav{grid-template-columns:1fr 1fr}.day{grid-template-columns:1fr}.datecol{position:static;display:flex;gap:12px;align-items:baseline;margin-bottom:14px}.datecol .dn{font-size:36px}.datecol .theme{border-left:0;padding-left:0;margin-top:0}.story{grid-template-columns:1fr}.cityhead .quick{position:static;margin-top:16px}.legend .how{margin-left:0}.map{height:400px}}
 @media print{.map,.citynav,.quick{display:none}.card{break-inside:avoid}.story{break-inside:avoid}}
 </style></head><body>
 
@@ -108,14 +126,14 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <span class="chip"><span class="dot" style="background:#FB8C00">🍜</span>Local food</span>
 <span class="chip"><span class="dot" style="background:#1E88E5">🏛️</span>Landmark, reframed</span>
 <span class="chip"><span class="dot" style="background:#607D8B">🚄</span>Travel</span>
-<span class="how">Numbers on the cards match the pins on each city map. <a href="#stories">Full backstories</a> are at the bottom.</span>
+<span class="how">Numbers on the cards match the pins on each city map. <a href="#tickets">Tickets and bookings</a> and the <a href="#stories">full backstories</a> are at the bottom.</span>
 </div>
-<div class="notice"><b>Two public holidays fall inside this trip.</b>Mid-Autumn is Fri 25 – Sun 27 September, covering all of Xi'an and the arrival in Chengdu. National Day Golden Week is Thu 1 – Wed 7 October: 30 September is Martyrs' Day and the heaviest travel day of the Chinese year, and Chongqing sits in days one and two. Hongyadong, Ciqikou and Liziba will be jammed and security around monuments is heavy — do the crowd-magnets before 09:00 or after 21:00. Mon 28 and Tue 29 September in Chengdu are the only clear days in the second half. <b>Booked and paid:</b> the Mutianyu private car with entrance and shuttle, the cable car up, the toboggan down. <b>Still to book:</b> Chongqing 1949 (National Day will sell it out), the Panda Base, and from 16 September the Forbidden City at bookingticket.dpm.org.cn and Tiananmen Square via the WeChat mini-program at noon Beijing time. The Temple of Heaven is the exception: buy the ¥15 park ticket at the gate on the morning, because every booking site sells timed entry from 08:00 and the reason to go is 07:00. Install Showstart 秀动 and Damai 大麦 for gig tickets, and Amap 高德 for navigation.</div>
+<div class="notice"><b>Two public holidays fall inside this trip.</b>Mid-Autumn is Fri 25 – Sun 27 September, covering all of Xi'an and the arrival in Chengdu. National Day Golden Week is Thu 1 – Wed 7 October: 30 September is Martyrs' Day and the heaviest travel day of the Chinese year, and Chongqing sits in days one and two. Hongyadong, Ciqikou and Liziba will be jammed and security around monuments is heavy — do the crowd-magnets before 09:00 or after 21:00. Mon 28 and Tue 29 September in Chengdu are the only clear days in the second half. Every ticket, price and collection detail is in <a href="#tickets"><b>Tickets and bookings</b></a> at the bottom of the page, and the cards carry a pill where there is something to buy. Two things can only be done by you: the Forbidden City needs a signed-in account, and Tiananmen Square sits on a domain my browser is blocked from. Install Showstart 秀动 for gig tickets and Amap 高德 for navigation before you fly.</div>
 </div></header>
 <section class="city" id="beijing"><div class="cityhead" style="background:#F9A825"><div class="wrap">
 <h2>Beijing</h2><div class="sub">The capital, read from the street, not the balcony</div>
 <div class="meta"><span><b>Sun 20 – Thu 24 Sep</b> · 4 nights</span><span>Hotel: Manxin Mansion, 2 West Tao Hutong, Jiugulou St (Houhai / Drum Tower)</span></div>
-<div class="quick"><a href="#map-beijing">Map</a><a href="#stories-beijing">Stories</a></div>
+<div class="quick"><a href="#map-beijing">Map</a><a href="#tickets-beijing">Tickets</a><a href="#stories-beijing">Stories</a></div>
 </div></div><div class="wrap">
 <div class="day" id="day-beijing-0"><div class="datecol"><div class="wd">Sun</div><div class="dn">20</div><div class="mo">Sep</div><div class="theme" style="border-color:#F9A825">Arrival day</div></div><div class="cards">
 <article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Taikoo_Li_Sanlitun_South_%2820200808170437%29.jpg/960px-Taikoo_Li_Sanlitun_South_%2820200808170437%29.jpg" alt="Taikoo Li Sanlitun" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">1</span></div>
@@ -140,9 +158,9 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 </div></article>
 </div></div>
 <div class="day" id="day-beijing-1"><div class="datecol"><div class="wd">Mon</div><div class="dn">21</div><div class="mo">Sep</div><div class="theme" style="border-color:#F9A825">South of the square</div></div><div class="cards">
-<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg/960px-Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg" alt="Temple of Heaven" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">5</span></div>
-<div class="bd"><div class="slot" style="color:#1E88E5">Early morning</div><h4>Temple of Heaven</h4><p class="one">Go at 07:00 for the retirees: opera, tai chi, cards, choirs. The building is secondary.</p>
-<p class="tip">Open every day including Monday — it is run by the parks bureau, not the Palace Museum, which is why it works on the day the Forbidden City shuts. Park opens 06:00; the halls only at 08:00, so at 07:00 there is nothing to upgrade for. Buy the ¥15 park ticket on the day, not through a booking site — the resellers only sell timed slots from 08:00, which would cost you the whole point of coming early.</p>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg/960px-Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg" alt="Temple of Heaven" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">5</span><a class="pill" style="background:#2E7D32" href="#ticket-tiantan">Booked</a></div>
+<div class="bd"><div class="slot" style="color:#1E88E5">Early morning</div><h4>Temple of Heaven</h4><p class="one">Go before 09:30 for the retirees: opera, tai chi, cards, choirs. The building is secondary.</p>
+<p class="tip">The halls are shut on Mondays, so this is a park day — which is where the point is anyway. Tiantandongmen metro to the east gate, ninety minutes, and the singing thins out after 10:30.</p>
 <a class="more" style="color:#1E88E5" href="#story-tiantan">Read the story</a>
 </div></article>
 <article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Breakfast_selections_at_a_restaurant_near_Wanshousi%2C_Beijing_%2820230313082120%29.jpg/960px-Breakfast_selections_at_a_restaurant_near_Wanshousi%2C_Beijing_%2820230313082120%29.jpg" alt="Nanchengxiang breakfast" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">6</span></div>
@@ -187,9 +205,9 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 </div></article>
 </div></div>
 <div class="day" id="day-beijing-2"><div class="datecol"><div class="wd">Tue</div><div class="dn">22</div><div class="mo">Sep</div><div class="theme" style="border-color:#F9A825">The Wall, built by conscripts</div></div><div class="cards">
-<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Great_Wall_of_China_July_2006.JPG/960px-Great_Wall_of_China_July_2006.JPG" alt="Great Wall, Mutianyu" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">14</span></div>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Great_Wall_of_China_July_2006.JPG/960px-Great_Wall_of_China_July_2006.JPG" alt="Great Wall, Mutianyu" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">14</span><a class="pill" style="background:#2E7D32" href="#ticket-mutianyu">Booked</a></div>
 <div class="bd"><div class="slot" style="color:#1E88E5">Full day <span style="font-weight:400;color:#5f6368">(out of town)</span></div><h4>Great Wall at Mutianyu</h4><p class="one">The Wall as a labour project: conscripts, convicts and the widow Meng Jiangnü.</p>
-<p class="tip">Car, cable car up and toboggan down are all booked and paid; entrance and the shuttle bus are included in the car. Ask the driver for a 06:45–07:00 pickup: the scenic area opens 07:30 but the cable car only runs from 08:30, so leaving earlier just means waiting at a closed lift. Cable car to Tower 14, walk the wall to Tower 6 (about 2 hours), toboggan down. 1h30 each way; the charter is 10 hours from pickup.</p>
+<p class="tip">Cable car to Tower 14, walk the wall west to Tower 6 — about two hours, and the steep, unrestored-looking stretch is in the middle of it — then the toboggan down. 1h30 each way from the city.</p>
 <a class="more" style="color:#1E88E5" href="#story-mutianyu">Read the story</a>
 </div></article>
 <article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Great_Wall_of_China_July_2006.JPG/960px-Great_Wall_of_China_July_2006.JPG" alt="Farmhouse lunch, Mutianyu village" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">15</span></div>
@@ -219,9 +237,9 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <p class="tip">Huguosi Street branch, 20 min from the hotel. Queue, point, sit. Skip the douzhi unless you are feeling brave.</p>
 <a class="more" style="color:#FB8C00" href="#story-huguosi">Read the story</a>
 </div></article>
-<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Beijing_China_Tiananmen-Square-Young_Pioneers_of_China-01.jpg/960px-Beijing_China_Tiananmen-Square-Young_Pioneers_of_China-01.jpg" alt="Tiananmen Square" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">20</span></div>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Beijing_China_Tiananmen-Square-Young_Pioneers_of_China-01.jpg/960px-Beijing_China_Tiananmen-Square-Young_Pioneers_of_China-01.jpg" alt="Tiananmen Square" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">20</span><a class="pill" style="background:#C62828" href="#ticket-tiananmen">Book 16 Sep</a></div>
 <div class="bd"><div class="slot" style="color:#E53935">Morning</div><h4>Tiananmen Square</h4><p class="one">May Fourth 1919, April 1976, June 1989. Read the reliefs on the monument.</p>
-<p class="tip">Advance reservation with passport via WeChat mini-program is required. Book before you fly.</p>
+<p class="tip">Enter from the east side and expect a long security line even when the square looks empty. Nothing in your pockets that reads as a banner or a slogan.</p>
 <a class="more" style="color:#E53935" href="#story-tiananmen">Read the story</a>
 </div></article>
 <article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Platform_of_L1_Muxidi_Station_%2820230520154327%29.jpg/960px-Platform_of_L1_Muxidi_Station_%2820230520154327%29.jpg" alt="Muxidi" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">21</span></div>
@@ -239,9 +257,9 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <p class="tip">Restaurants are on the upper floors, the cheap fast counters in the basement. Ten minutes from the wall site.</p>
 <a class="more" style="color:#FB8C00" href="#story-xidanmall">Read the story</a>
 </div></article>
-<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Sunset_of_the_Forbidden_City_2006.JPG/960px-Sunset_of_the_Forbidden_City_2006.JPG" alt="Forbidden City" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">24</span></div>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Sunset_of_the_Forbidden_City_2006.JPG/960px-Sunset_of_the_Forbidden_City_2006.JPG" alt="Forbidden City" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">24</span><a class="pill" style="background:#C62828" href="#ticket-forbidden">Book 16 Sep</a></div>
 <div class="bd"><div class="slot" style="color:#1E88E5">Afternoon</div><h4>Forbidden City</h4><p class="one">For the group. Enter from the square, exit north to Jingshan.</p>
-<p class="tip">Closed every Monday, which is why this sits on Wednesday. Book at bookingticket.dpm.org.cn up to 7 days ahead; bring the passport you booked with to the Meridian Gate.</p>
+<p class="tip">Closed every Monday, which is why this sits on Wednesday. In at the Meridian Gate with the passports the tickets are in, out at the north gate for Jingshan.</p>
 <a class="more" style="color:#1E88E5" href="#story-forbidden">Read the story</a>
 </div></article>
 <article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/The_Forbidden_City_-_View_from_Coal_Hill.jpg/960px-The_Forbidden_City_-_View_from_Coal_Hill.jpg" alt="Jingshan Park" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">25</span></div>
@@ -274,7 +292,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <section class="city" id="xian"><div class="cityhead" style="background:#00897B"><div class="wrap">
 <h2>Xi&#x27;an</h2><div class="sub">Conscripts, mutineers and mill workers behind the walls</div>
 <div class="meta"><span><b>Thu 24 – Sun 27 Sep</b> · 3 nights</span><span>Hotel: Jinjiang Bell Tower Original Copy Hotel, 290 West 1st Rd, Xincheng</span></div>
-<div class="quick"><a href="#map-xian">Map</a><a href="#stories-xian">Stories</a></div>
+<div class="quick"><a href="#map-xian">Map</a><a href="#tickets-xian">Tickets</a><a href="#stories-xian">Stories</a></div>
 </div></div><div class="wrap">
 <div class="day" id="day-xian-0"><div class="datecol"><div class="wd">Thu</div><div class="dn">24</div><div class="mo">Sep</div><div class="theme" style="border-color:#00897B">Arrive ~17:30, evening inside the walls</div></div><div class="cards">
 <article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Xi%27an_bell_tower.jpg/960px-Xi%27an_bell_tower.jpg" alt="Bell Tower &amp; Drum Tower" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">1</span></div>
@@ -287,9 +305,9 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <p class="tip">Mutton paomo, roast meat skewers, persimmon cakes, cold noodles. Go after 19:00.</p>
 <a class="more" style="color:#FB8C00" href="#story-sajinqiao">Read the story</a>
 </div></article>
-<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/1_xian_muslim_quarter_china_2011.JPG/960px-1_xian_muslim_quarter_china_2011.JPG" alt="Muslim quarter backstreets" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">3</span></div>
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/1_xian_muslim_quarter_china_2011.JPG/960px-1_xian_muslim_quarter_china_2011.JPG" alt="Muslim quarter backstreets" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">3</span><a class="pill" style="background:#C62828" href="#ticket-xianfoodtour">Book ahead</a></div>
 <div class="bd"><div class="slot" style="color:#FB8C00">Night</div><h4>Food tour of the backstreets</h4><p class="one">Someone local doing the ordering on night one, in the lanes off the Muslim Quarter.</p>
-<p class="tip">Lost Plate run an evening tuk-tuk tour through the backstreets; book ahead and ask for a 19:00 start given the 17:30 arrival. Skip any tour that stays on Beiyuanmen.</p>
+<p class="tip">Lost Plate run an evening tuk-tuk tour through the backstreets, into courtyards you would not push a door on alone. Skip any tour that stays on Beiyuanmen.</p>
 <a class="more" style="color:#FB8C00" href="#story-xianfoodtour">Read the story</a>
 </div></article>
 </div></div>
@@ -299,9 +317,9 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <p class="tip">Stalls run from about 06:30. This is the move both mornings — the same street you eat dinner on, completely different at dawn.</p>
 <a class="more" style="color:#FB8C00" href="#story-hulatang">Read the story</a>
 </div></article>
-<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Terracotta_Army_-_Pit_1%2C_Xi%27an%2C_China_%2814148051282%29.jpg/960px-Terracotta_Army_-_Pit_1%2C_Xi%27an%2C_China_%2814148051282%29.jpg" alt="Terracotta Army" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">5</span></div>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Terracotta_Army_-_Pit_1%2C_Xi%27an%2C_China_%2814148051282%29.jpg/960px-Terracotta_Army_-_Pit_1%2C_Xi%27an%2C_China_%2814148051282%29.jpg" alt="Terracotta Army" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">5</span><a class="pill" style="background:#2E7D32" href="#ticket-terracotta">Booked</a></div>
 <div class="bd"><div class="slot" style="color:#1E88E5">Full day <span style="font-weight:400;color:#5f6368">(out of town)</span></div><h4>Terracotta Army</h4><p class="one">Not the emperor: the 700,000 conscripts, the first peasant uprising, and the farmer who found it.</p>
-<p class="tip">About 1h by car or the tourist bus from the station. Hire a guide who will talk about the workers.</p>
+<p class="tip">Didi both ways, about an hour each. Walk the pits backwards — 3, then 2, then 1 — and read the story below before you go, because no licensed guide will tell you who dug it.</p>
 <a class="more" style="color:#1E88E5" href="#story-terracotta">Read the story</a>
 </div></article>
 <article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Pomegranate02_edit.jpg/960px-Pomegranate02_edit.jpg" alt="Lintong pomegranate stalls" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">6</span></div>
@@ -309,9 +327,9 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <p class="tip">Late September is the harvest. Buy from farmers&#x27; stalls on the road back, not at the site gate. Persimmons too.</p>
 <a class="more" style="color:#FB8C00" href="#story-lintong">Read the story</a>
 </div></article>
-<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Lintong_Xian_China_Huaqing-Pool-02.jpg/960px-Lintong_Xian_China_Huaqing-Pool-02.jpg" alt="Huaqing Palace, Five-Room Hall" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">7</span></div>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Lintong_Xian_China_Huaqing-Pool-02.jpg/960px-Lintong_Xian_China_Huaqing-Pool-02.jpg" alt="Huaqing Palace, Five-Room Hall" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">7</span><a class="pill" style="background:#546E7A" href="#ticket-huaqing">Pay at the gate</a></div>
 <div class="bd"><div class="slot" style="color:#E53935">Late afternoon <span style="font-weight:400;color:#5f6368">(out of town)</span></div><h4>Huaqing Palace: the Five-Room Hall 华清宫 · 五间厅</h4><p class="one">Where Chiang Kai-shek was actually taken in 1936. The bullet holes are still in the wall.</p>
-<p class="tip">14 km from the tomb, 20 minutes&#x27; drive — do it on the way back. ¥120, open to 18:30. Ask for 五间厅 and the pavilion on the hillside.</p>
+<p class="tip">14 km from the tomb, 20 minutes&#x27; drive — do it on the way back. Ask for 五间厅 and the pavilion up the hillside — the bullet holes in the window frames are the point, not the hot springs.</p>
 <a class="more" style="color:#E53935" href="#story-huaqing">Read the story</a>
 </div></article>
 <article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/2015-01-04_street_food_vendor_at_%28a_night_market%29_in_Xi%27an.jpg/960px-2015-01-04_street_food_vendor_at_%28a_night_market%29_in_Xi%27an.jpg" alt="Dongxin Jie night market" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">8</span></div>
@@ -324,7 +342,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <p class="tip">Shops all over the streets inside the wall; look for 足疗 or 按摩 and a lit shopfront. The blind-masseur places, 盲人按摩, are the ones locals rate.</p>
 <a class="more" style="color:#1E88E5" href="#story-xianmassage">Read the story</a>
 </div></article>
-<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Naran_Singer.png" alt="Aperture Club" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">10</span></div>
+<article class="card" style="border-top-color:#8E24AA"><div class="ph"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Naran_Singer.png" alt="Aperture Club" loading="lazy"><span class="badge" style="background:#8E24AA" title="Live music">🎸</span><span class="num">10</span><a class="pill" style="background:#C62828" href="#ticket-aperture">Book on Showstart</a></div>
 <div class="bd"><div class="slot" style="color:#8E24AA">Night</div><h4>Aperture Club 光圈CLUB</h4><p class="one">Xi&#x27;an&#x27;s main independent venue: rock, folk, hip-hop, indie film.</p>
 <p class="tip">Two bills in your window: BikaBreezy on Fri 25th, 20:00, ¥228, and 奈热 Naire — Inner Mongolian folk-rock — on Sat 26th, 20:00, ¥158. The Saturday is the better room by a distance.</p>
 <a class="more" style="color:#8E24AA" href="#story-aperture">Read the story</a>
@@ -363,9 +381,9 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <p class="tip">Slightly out of the way (south); skip if the train is tight.</p>
 <a class="more" style="color:#FB8C00" href="#story-ziwulu">Read the story</a>
 </div></article>
-<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Glazed_ceramic_earthenware_tomb_model_of_a_building_%28mingqi%29_Han_Dynasty_%28206_BCE_-_220_CE%29_Shaanxi_Province_China.jpg/960px-Glazed_ceramic_earthenware_tomb_model_of_a_building_%28mingqi%29_Han_Dynasty_%28206_BCE_-_220_CE%29_Shaanxi_Province_China.jpg" alt="Shaanxi History Museum" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">17</span></div>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Glazed_ceramic_earthenware_tomb_model_of_a_building_%28mingqi%29_Han_Dynasty_%28206_BCE_-_220_CE%29_Shaanxi_Province_China.jpg/960px-Glazed_ceramic_earthenware_tomb_model_of_a_building_%28mingqi%29_Han_Dynasty_%28206_BCE_-_220_CE%29_Shaanxi_Province_China.jpg" alt="Shaanxi History Museum" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">17</span><a class="pill" style="background:#C62828" href="#ticket-shaanximuseum">Free, but timed</a></div>
 <div class="bd"><div class="slot" style="color:#1E88E5">Morning (optional)</div><h4>Shaanxi History Museum</h4><p class="one">For the group, if there&#x27;s time before the train.</p>
-<p class="tip">Free but timed tickets; book in advance. Near Ziwu Lu.</p>
+<p class="tip">Free but timed, capped at 6,000 a day and nothing sold at the counter. Near Ziwu Lu, so pair it with the breakfast.</p>
 <a class="more" style="color:#1E88E5" href="#story-shaanximuseum">Read the story</a>
 </div></article>
 <div class="transit"><span class="ic">🚄</span><div><b>Xi&#x27;an North → Chengdu East</b> <span class="slot" style="color:#607D8B;font-weight:700"> 11:25</span><div class="one">High-speed rail, 2nd class, ref 1658114208828314. Arrives about 15:30.</div><div class="tip">Xi&#x27;an North is 30–40 min from the Bell Tower by metro. Leave by 10:00.</div></div></div>
@@ -376,7 +394,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <section class="city" id="chengdu"><div class="cityhead" style="background:#43A047"><div class="wrap">
 <h2>Chengdu</h2><div class="sub">Teahouse politics, the best unofficial museum in China, and the rap capital</div>
 <div class="meta"><span><b>Sun 27 – Wed 30 Sep</b> · 3 nights</span><span>Hotel: Wenjun Courtyard Hotel, 180 Qintai Rd, Qingyang</span></div>
-<div class="quick"><a href="#map-chengdu">Map</a><a href="#stories-chengdu">Stories</a></div>
+<div class="quick"><a href="#map-chengdu">Map</a><a href="#tickets-chengdu">Tickets</a><a href="#stories-chengdu">Stories</a></div>
 </div></div><div class="wrap">
 <div class="day" id="day-chengdu-0"><div class="datecol"><div class="wd">Sun</div><div class="dn">27</div><div class="mo">Sep</div><div class="theme" style="border-color:#43A047">Arrive ~15:30</div></div><div class="cards">
 <article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Chengdu_Sichuan_China_Du-Fu-Thatched-Cottage-Park-01.jpg/960px-Chengdu_Sichuan_China_Du-Fu-Thatched-Cottage-Park-01.jpg" alt="Du Fu Thatched Cottage" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">1</span></div>
@@ -406,9 +424,9 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <p class="tip">Any Chengdu morning, including the last one before the train. Carts set up near school gates and park entrances from about 07:00.</p>
 <a class="more" style="color:#FB8C00" href="#story-danhonggao">Read the story</a>
 </div></article>
-<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Chengdu-pandas-d10.jpg/960px-Chengdu-pandas-d10.jpg" alt="Panda Base" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">6</span></div>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Chengdu-pandas-d10.jpg/960px-Chengdu-pandas-d10.jpg" alt="Panda Base" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">6</span><a class="pill" style="background:#C62828" href="#ticket-pandas">Book now</a></div>
 <div class="bd"><div class="slot" style="color:#1E88E5">Early morning</div><h4>Panda Base</h4><p class="one">Go at opening (07:30) for the feeding; leave by 10:30.</p>
-<p class="tip">Still to book — the window opens 14 days ahead and this one does sell out. Metro line 3 to Panda Avenue.</p>
+<p class="tip">Metro line 3 to Panda Avenue, about 40 minutes from the hotel. Nursery first, adult enclosures on the way back down, out by 10:30 when they go to sleep.</p>
 <a class="more" style="color:#1E88E5" href="#story-pandas">Read the story</a>
 </div></article>
 <article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Billyfoodmabodofu3.jpg/960px-Billyfoodmabodofu3.jpg" alt="Chen Mapo Tofu" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">7</span></div>
@@ -416,9 +434,9 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <p class="tip">Xiyulong Street; order the tofu and the twice-cooked pork.</p>
 <a class="more" style="color:#FB8C00" href="#story-chenmapo">Read the story</a>
 </div></article>
-<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Doubanjiang.jpg/960px-Doubanjiang.jpg" alt="Sichuan Cuisine Museum, Pidu" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">8</span></div>
+<article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Doubanjiang.jpg/960px-Doubanjiang.jpg" alt="Sichuan Cuisine Museum, Pidu" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">8</span><a class="pill" style="background:#C62828" href="#ticket-cuisinemuseum">Book ahead</a></div>
 <div class="bd"><div class="slot" style="color:#FB8C00">Afternoon <span style="font-weight:400;color:#5f6368">(out of town)</span></div><h4>Sichuan Cuisine Museum 中国川菜博物馆</h4><p class="one">A working museum of the cuisine, and your cooking class: three dishes, your own wok.</p>
-<p class="tip">Pidu District, an hour each way. Sessions 09:50–13:40 or 13:50–17:40; ¥60 entry, ¥360 with the class. Book ahead. The class is your lunch.</p>
+<p class="tip">Pidu District, an hour each way. The class is your lunch: you grind the chilli, fold the dumplings and eat what you made.</p>
 <a class="more" style="color:#FB8C00" href="#story-cuisinemuseum">Read the story</a>
 </div></article>
 <article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Monument_to_the_Martyrs_of_the_Railway_Protection_Movement_%281911%29_%2813913374751%29.jpg/960px-Monument_to_the_Martyrs_of_the_Railway_Protection_Movement_%281911%29_%2813913374751%29.jpg" alt="People&#x27;s Park &amp; Railway Protection Monument" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">9</span></div>
@@ -458,9 +476,9 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 </div></article>
 </div></div>
 <div class="day" id="day-chengdu-2"><div class="datecol"><div class="wd">Tue</div><div class="dn">29</div><div class="mo">Sep</div><div class="theme" style="border-color:#43A047">Jianchuan day trip</div></div><div class="cards">
-<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg/960px-Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg" alt="Jianchuan Museum Cluster" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">16</span></div>
+<article class="card" style="border-top-color:#E53935"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg/960px-Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg" alt="Jianchuan Museum Cluster" loading="lazy"><span class="badge" style="background:#E53935" title="People's history">✊</span><span class="num">16</span><a class="pill" style="background:#C62828" href="#ticket-jianchuan">Driver to book</a></div>
 <div class="bd"><div class="slot" style="color:#E53935">Full day <span style="font-weight:400;color:#5f6368">(out of town)</span></div><h4>Jianchuan Museum Cluster 建川博物馆</h4><p class="one">Private. 30+ halls: the Cultural Revolution, Sichuan&#x27;s forgotten soldiers, the 2008 earthquake.</p>
-<p class="tip">Anren town, about 1h15 by car; hire a driver for the day. Allow five hours inside.</p>
+<p class="tip">Anren town, about 1h15 by car. Allow five hours inside, and start with the Cultural Revolution clock hall before your patience goes.</p>
 <a class="more" style="color:#E53935" href="#story-jianchuan">Read the story</a>
 </div></article>
 <article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg/960px-Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg" alt="Anren town" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">17</span></div>
@@ -498,7 +516,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <section class="city" id="chongqing"><div class="cityhead" style="background:#3949AB"><div class="wrap">
 <h2>Chongqing</h2><div class="sub">Bombed capital, steel city, trap city</div>
 <div class="meta"><span><b>Wed 30 Sep – Fri 2 Oct</b> · 3 nights</span><span>Hotel: Miss Xie&#x27;s House With Riverview, 16F Kairui Bldg, 153 Changbin Rd, Yuzhong</span></div>
-<div class="quick"><a href="#map-chongqing">Map</a><a href="#stories-chongqing">Stories</a></div>
+<div class="quick"><a href="#map-chongqing">Map</a><a href="#tickets-chongqing">Tickets</a><a href="#stories-chongqing">Stories</a></div>
 </div></div><div class="wrap">
 <div class="day" id="day-chongqing-0"><div class="datecol"><div class="wd">Wed</div><div class="dn">30</div><div class="mo">Sep</div><div class="theme" style="border-color:#3949AB">Steps, shelters, and the city from the hill</div></div><div class="cards">
 <article class="card" style="border-top-color:#FB8C00"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Chongqing_Xiaomian_with_fried_eggs.jpg/960px-Chongqing_Xiaomian_with_fried_eggs.jpg" alt="Suan la fen" loading="lazy"><span class="badge" style="background:#FB8C00" title="Local food">🍜</span><span class="num">1</span></div>
@@ -558,9 +576,9 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <p class="tip">Order it 麻辣 or 泡椒 and add vegetables to the sauce at the end. Any busy place inland from Jiefangbei.</p>
 <a class="more" style="color:#FB8C00" href="#story-kaoyu">Read the story</a>
 </div></article>
-<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/The_People%27s_Great_Hall_of_Chongqing.jpg/960px-The_People%27s_Great_Hall_of_Chongqing.jpg" alt="Chongqing 1949 Grand Theatre" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">12</span></div>
+<article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/The_People%27s_Great_Hall_of_Chongqing.jpg/960px-The_People%27s_Great_Hall_of_Chongqing.jpg" alt="Chongqing 1949 Grand Theatre" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">12</span><a class="pill" style="background:#2E7D32" href="#ticket-cq1949">Booked</a></div>
 <div class="bd"><div class="slot" style="color:#1E88E5">Evening</div><h4>Chongqing 1949 《重庆·1949》</h4><p class="one">A 1,500-seat theatre where the audience itself rotates. The state&#x27;s version of the prison you walked through this afternoon.</p>
-<p class="tip">The theatre is in the Ciqikou scenic area, so the whole day stays in Shapingba. Shows at 14:00, 16:00 and 19:30, around ¥300. Book well ahead — National Day will sell it out. Take the 19:30 and skip Hongyadong.</p>
+<p class="tip">The theatre is in the Ciqikou scenic area, so the whole day stays in Shapingba. You are on the 19:30, which means Hongyadong is out — no loss on National Day.</p>
 <a class="more" style="color:#1E88E5" href="#story-cq1949">Read the story</a>
 </div></article>
 <article class="card" style="border-top-color:#1E88E5"><div class="ph"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Hongyadong_night_lights_Chongqing.jpg/960px-Hongyadong_night_lights_Chongqing.jpg" alt="Hongyadong" loading="lazy"><span class="badge" style="background:#1E88E5" title="Landmark, reframed">🏛️</span><span class="num">13</span></div>
@@ -624,6 +642,125 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <div class="mapblock" id="map-chongqing"><h3>Chongqing on the map</h3><p>Pins are numbered like the cards and coloured by category. Tap a pin for the name and the day. The black pin is your hotel.</p><div class="map" id="lmap-chongqing"></div>
 <p class="far">Out of town, off the edge of the map: <span><b>9</b> Geleshan laziji 歌乐山辣子鸡</span> <span><b>10</b> Zhazidong and Baigongguan prisons 渣滓洞 · 白公馆</span> <span><b>16</b> Chongqing Industrial Museum 重庆工业博物馆</span> <span><b>17</b> Lunch in Dadukou 大渡口</span></p>
 </div></div></section>
+<section class="tickets" id="tickets"><div class="wrap"><h2>Tickets and bookings</h2>
+<p class="lead">Everything that has to be bought, collected or shown at a gate, in day order. Check this page on the plane; after that it is passports and the confirmation emails.</p>
+<div class="tksum">
+<span style="background:#2E7D32">4 booked</span>
+<span style="background:#C62828">8 still to book</span>
+<span style="background:#546E7A">1 pay at the gate</span>
+</div>
+<div class="tkcity" id="tickets-beijing"><h3 style="background:#F9A825">Beijing</h3>
+<div class="tk" id="ticket-tiantan">
+<div><span class="pill2" style="background:#2E7D32">Booked</span><div class="when">Mon 21 Sep · enter 08:00–12:00</div></div>
+<div><h4>Temple of Heaven<a href="#day-beijing-1">↑ Mon 21 Sep</a></h4><dl>
+<dt>What</dt><dd>Park-only entry for four. The halls — Hall of Prayer for Good Harvests, Imperial Vault, Echo Wall — are shut on Mondays: the combo ticket refuses to sell for the 21st and the 28th, the two Mondays, while park-only sells normally. This card said the opposite last week, on a guide site’s word; the booking system settled it.</dd>
+<dt>Price</dt><dd>¥15 each · ¥60 for four</dd>
+<dt>Changes</dt><dd>Free cancellation any time before the window opens.</dd>
+<dt>On the day</dt><dd>Nothing to collect — passports at the turnstile. Tiantandongmen metro to the east gate. Arriving about 09:00 as planned is well inside the window; give it ninety minutes.</dd>
+</dl></div></div>
+<div class="tk" id="ticket-mutianyu">
+<div><span class="pill2" style="background:#2E7D32">Booked</span><div class="when">Tue 22 Sep · all day from pickup</div></div>
+<div><h4>Great Wall at Mutianyu<a href="#day-beijing-2">↑ Tue 22 Sep</a></h4><dl>
+<dt>What</dt><dd>Three separate bookings, all paid: the private car for four (ten hours from pickup, scenic-area entrance and the internal shuttle bus included), the enclosed cable car up for four, and the toboggan down for four.</dd>
+<dt>Price</dt><dd>Cable car US$14.91 a head. The car is the four-seat charter, a little over the three-seat quote. Nothing further to pay at the Wall except lunch.</dd>
+<dt>Changes</dt><dd>Cancellation windows differ between the car and the two lift tickets — the terms are in the Trip.com confirmation emails, not the same for both.</dd>
+<dt>On the day</dt><dd>Ask the driver for a 06:45–07:00 pickup. The scenic area opens 07:30 but the cable car does not run until 08:30, so earlier just means standing at a closed lift. Entrance and shuttle are inside the car booking; there is no queue to join at the gate.</dd>
+</dl></div></div>
+<div class="tk" id="ticket-tiananmen">
+<div><span class="pill2" style="background:#C62828">Book 16 Sep</span><div class="when">for Wed 23 Sep · book seven days ahead</div></div>
+<div><h4>Tiananmen Square<a href="#day-beijing-3">↑ Wed 23 Sep</a></h4><dl>
+<dt>What</dt><dd>Free timed entry to the square for four, one slot per passport. Compulsory — there is no walk-up.</dd>
+<dt>Price</dt><dd>Free</dd>
+<dt>Where to book</dt><dd>The web portal is yuyue.tap.com.cn, or the WeChat mini-program, which releases the next day at noon Beijing time. My Chrome extension is blocked from that domain, so this one is yours: allow the domain for me, or do it on your phone in the two minutes after noon.</dd>
+<dt>On the day</dt><dd>Passports, and expect a long security line on the east side even when the square looks empty.</dd>
+</dl></div></div>
+<div class="tk" id="ticket-forbidden">
+<div><span class="pill2" style="background:#C62828">Book 16 Sep</span><div class="when">for Wed 23 Sep · book seven days ahead</div></div>
+<div><h4>Forbidden City<a href="#day-beijing-3">↑ Wed 23 Sep</a></h4><dl>
+<dt>What</dt><dd>Four adult tickets, afternoon entry. One ticket per passport per day, up to five per transaction.</dd>
+<dt>Price</dt><dd>¥60 each · ¥240 for four</dd>
+<dt>Where to book</dt><dd>bookingticket.dpm.org.cn, which loads in English. It needs a signed-in account and I am not able to create accounts or type passwords — sign in and I will drive the rest of the form.</dd>
+<dt>On the day</dt><dd>Meridian Gate only, with the passports the tickets are booked in. Exit north to Jingshan for the sunset.</dd>
+</dl></div></div>
+</div>
+<div class="tkcity" id="tickets-xian"><h3 style="background:#00897B">Xi&#x27;an</h3>
+<div class="tk" id="ticket-xianfoodtour">
+<div><span class="pill2" style="background:#C62828">Book ahead</span><div class="when">Thu 24 Sep · ask for a 19:00 start</div></div>
+<div><h4>Food tour of the backstreets<a href="#day-xian-0">↑ Thu 24 Sep</a></h4><dl>
+<dt>What</dt><dd>Lost Plate run the evening tuk-tuk tour of the backstreets for four. The 19:00 start is the one that works with a 17:30 arrival at the hotel.</dd>
+<dt>Price</dt><dd>Booked direct with Lost Plate — price confirmed at booking, and it includes the food and the drinks.</dd>
+<dt>Where to book</dt><dd>Lost Plate take the booking on their own site; email them for the 19:00 rather than taking the default slot.</dd>
+<dt>On the day</dt><dd>They collect from the hotel. Eat nothing after the train.</dd>
+</dl></div></div>
+<div class="tk" id="ticket-terracotta">
+<div><span class="pill2" style="background:#2E7D32">Booked</span><div class="when">Fri 25 Sep · valid any time 08:30–17:00</div></div>
+<div><h4>Terracotta Army<a href="#day-xian-1">↑ Fri 25 Sep</a></h4><dl>
+<dt>What</dt><dd>Admission for four to 秦始皇帝陵博物院, the Emperor Qinshihuang Mausoleum Site Museum. That is the Terracotta Army — the army is the tomb guard, so the ticket is named after the tomb, not the figures. It covers pits 1, 2 and 3, the bronze chariot hall, and Lishan Garden two kilometres away, with a free shuttle between the two areas.</dd>
+<dt>Price</dt><dd>¥120 each · ¥480 for four. Didi is ¥120–150 per car each way, per car and not per head, so budget about ¥600 of taxis on top. No guide and no tour lunch, by choice.</dd>
+<dt>Changes</dt><dd>An all-day slot, so there is no entry time to miss.</dd>
+<dt>On the day</dt><dd>Collect at the ticket window with the passport the booking is in, then the gate. Ignore the uniformed men at Xi’an railway station selling an official express minibus; it is a long-running scam and you are not going near the station anyway. Walk the pits backwards — 3, then 2, then 1 — so you finish in the big hall instead of peaking at the door.</dd>
+</dl></div></div>
+<div class="tk" id="ticket-huaqing">
+<div><span class="pill2" style="background:#546E7A">Pay at the gate</span><div class="when">Fri 25 Sep, if you still want it</div></div>
+<div><h4>Huaqing Palace: the Five-Room Hall 华清宫 · 五间厅<a href="#day-xian-1">↑ Fri 25 Sep</a></h4><dl>
+<dt>What</dt><dd>Huaqing Palace, for the Five-Room Hall where Chiang Kai-shek was taken in 1936. Left unbooked on purpose: after four or five hours at the tomb this is either the best twenty minutes of the day or one stop too many.</dd>
+<dt>Price</dt><dd>¥120 each at the gate, open to 18:30</dd>
+<dt>On the day</dt><dd>It is 14 km from the tomb and on the Didi route back, so decide in the car. Ask for 五间厅 and the pavilion up the hillside.</dd>
+</dl></div></div>
+<div class="tk" id="ticket-aperture">
+<div><span class="pill2" style="background:#C62828">Book on Showstart</span><div class="when">Sat 26 Sep · doors 20:00</div></div>
+<div><h4>Aperture Club 光圈CLUB<a href="#day-xian-1">↑ Fri 25 Sep</a></h4><dl>
+<dt>What</dt><dd>奈热 Naire, Inner Mongolian folk-rock, at 西演SPACE · 光圈CLUB. Four tickets. This is the best room and the best bill in Xi’an inside your window — the Friday BikaBreezy show is the same venue at ¥228 and not as good.</dd>
+<dt>Price</dt><dd>¥158 each · ¥632 for four</dd>
+<dt>Where to book</dt><dd>Showstart 秀动, in the app. It needs a Chinese phone number or a WeChat login, so this is one to do together — install it before you fly and small shows are the one thing you cannot buy at the door once they sell.</dd>
+<dt>On the day</dt><dd>Doors 20:00, support first, headliner rarely before 21:15.</dd>
+</dl></div></div>
+<div class="tk" id="ticket-shaanximuseum">
+<div><span class="pill2" style="background:#C62828">Free, but timed</span><div class="when">Sun 27 Sep morning · optional, window opens about 20 Sep</div></div>
+<div><h4>Shaanxi History Museum<a href="#day-xian-3">↑ Sun 27 Sep</a></h4><dl>
+<dt>What</dt><dd>Free timed entry, capped at 6,000 people a day, with no tickets sold at the counter at all. Marked optional because the train is at 11:25.</dd>
+<dt>Price</dt><dd>Free</dd>
+<dt>Where to book</dt><dd>The museum WeChat account, five to seven days ahead. If it is gone by the time you look, drop it — do not rearrange the morning for it.</dd>
+<dt>On the day</dt><dd>Passports. Near Ziwu Lu, so pair it with the breakfast.</dd>
+</dl></div></div>
+</div>
+<div class="tkcity" id="tickets-chengdu"><h3 style="background:#43A047">Chengdu</h3>
+<div class="tk" id="ticket-pandas">
+<div><span class="pill2" style="background:#C62828">Book now</span><div class="when">Mon 28 Sep · be at the gate for the 07:30 opening</div></div>
+<div><h4>Panda Base<a href="#day-chengdu-1">↑ Mon 28 Sep</a></h4><dl>
+<dt>What</dt><dd>Chengdu Research Base of Giant Panda Breeding, four adults. This is the in-city one on metro line 3 — 237-plus pandas and the cub nursery. Not Dujiangyan Panda Valley (12 pandas, 60–80 minutes each way) and not Dujiangyan Panda Base (volunteer programme, needs two to four weeks’ notice, out of reach now).</dd>
+<dt>Price</dt><dd>¥55 each · about US$32 for four</dd>
+<dt>Where to book</dt><dd>The window is open and it does sell out in the run-up to Golden Week. This is the next thing to buy.</dd>
+<dt>On the day</dt><dd>Pandas eat and move until about 10:30 and then sleep all afternoon, so the first hour is the whole visit. Nursery first, adult enclosures on the way back down, out by 10:30.</dd>
+</dl></div></div>
+<div class="tk" id="ticket-cuisinemuseum">
+<div><span class="pill2" style="background:#C62828">Book ahead</span><div class="when">Mon 28 Sep · 13:50–17:40 session</div></div>
+<div><h4>Sichuan Cuisine Museum 中国川菜博物馆<a href="#day-chengdu-1">↑ Mon 28 Sep</a></h4><dl>
+<dt>What</dt><dd>Sichuan Cuisine Museum with the hands-on cooking class for four. The afternoon session is the one that fits after the pandas.</dd>
+<dt>Price</dt><dd>¥360 each with the class, ¥60 without. The class is your lunch, which is the point — you cook it and eat it.</dd>
+<dt>Where to book</dt><dd>Book direct or through Trip.com; the class caps numbers, so not on the day.</dd>
+<dt>On the day</dt><dd>Pidu District, an hour each way. Sessions are 09:50–13:40 or 13:50–17:40.</dd>
+</dl></div></div>
+<div class="tk" id="ticket-jianchuan">
+<div><span class="pill2" style="background:#C62828">Driver to book</span><div class="when">Tue 29 Sep · full day</div></div>
+<div><h4>Jianchuan Museum Cluster 建川博物馆<a href="#day-chengdu-2">↑ Tue 29 Sep</a></h4><dl>
+<dt>What</dt><dd>The car is the booking, not the museum: a driver for the day to Anren, waiting, and back. Entry to the cluster is bought at the gate.</dd>
+<dt>Price</dt><dd>Entry at the gate. The driver is the cost — get the hotel to quote a full day with waiting time rather than booking a tour.</dd>
+<dt>Where to book</dt><dd>Hotel desk, the day before. Ask for a driver who will wait five hours, not a guide.</dd>
+<dt>On the day</dt><dd>1h15 each way. Allow five hours inside; leave the afternoon loose.</dd>
+</dl></div></div>
+</div>
+<div class="tkcity" id="tickets-chongqing"><h3 style="background:#3949AB">Chongqing</h3>
+<div class="tk" id="ticket-cq1949">
+<div><span class="pill2" style="background:#2E7D32">Booked</span><div class="when">Thu 1 Oct · 19:30 show</div></div>
+<div><h4>Chongqing 1949 《重庆·1949》<a href="#day-chongqing-1">↑ Thu 1 Oct</a></h4><dl>
+<dt>What</dt><dd>Premium Zone A, four seats, for 《重庆·1949》 in the purpose-built rotating theatre at Ciqikou. English translation devices are not part of the ticket — you pick them up at the door.</dd>
+<dt>Price</dt><dd>About US$190 for the four seats. The devices are free to use but take a ¥150 refundable deposit each, so ¥600 in cash or on a phone at the door, refunded when you hand them back.</dd>
+<dt>Changes</dt><dd>National Day pricing and a sold-out house: treat the 19:30 as fixed.</dd>
+<dt>On the day</dt><dd>Paper tickets have to be collected at the theatre box office, so be there by 18:45, not 19:25. If something goes wrong, 1 October runs five sessions — 13:00, 15:00, 17:00, 19:30 and 21:15.</dd>
+</dl></div></div>
+</div>
+</div></section>
 <section class="stories" id="stories"><div class="wrap"><h2>The stories behind each stop</h2><p class="lead">The long version, in the same order as the days. Read on the train, not on the street; most of what follows is not for conversation with strangers.</p>
 <div class="storycity" id="stories-beijing"><h3 style="background:#F9A825">Beijing</h3>
 <article class="story" id="story-sanlitun"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Taikoo_Li_Sanlitun_South_%2820200808170437%29.jpg/960px-Taikoo_Li_Sanlitun_South_%2820200808170437%29.jpg" alt="Taikoo Li Sanlitun" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Taikoo_Li_Sanlitun_South_(20200808170437).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
@@ -649,7 +786,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <article class="story" id="story-tiantan"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg/960px-Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg" alt="Temple of Heaven" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Temple of Heaven</h4><div class="when"><b>Mon 21 Sep</b> · Early morning · Landmark, reframed</div>
 <p>The imperial altar where emperors prayed for harvests is now the biggest public living room in Beijing. Every morning thousands of pensioners, many of them laid-off state workers of the 1990s, take over the cypress groves to sing, dance, play instruments and argue. It&#x27;s the best hour of people-watching in the city, and it&#x27;s free before the tour buses.</p>
-<p class="tip">Open every day including Monday — it is run by the parks bureau, not the Palace Museum, which is why it works on the day the Forbidden City shuts. Park opens 06:00; the halls only at 08:00, so at 07:00 there is nothing to upgrade for. Buy the ¥15 park ticket on the day, not through a booking site — the resellers only sell timed slots from 08:00, which would cost you the whole point of coming early.</p>
+<p class="tip">The halls are shut on Mondays, so this is a park day — which is where the point is anyway. Tiantandongmen metro to the east gate, ninety minutes, and the singing thins out after 10:30.</p>
 <a class="back" style="color:#F9A825" href="#day-beijing-1">Back to Mon 21 Sep</a></div></article>
 <article class="story" id="story-nanchengxiang"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Breakfast_selections_at_a_restaurant_near_Wanshousi%2C_Beijing_%2820230313082120%29.jpg/960px-Breakfast_selections_at_a_restaurant_near_Wanshousi%2C_Beijing_%2820230313082120%29.jpg" alt="Nanchengxiang breakfast" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Breakfast_selections_at_a_restaurant_near_Wanshousi,_Beijing_(20230313082120).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Nanchengxiang 南城香</h4><div class="when"><b>Mon 21 Sep</b> · Breakfast · Local food</div>
@@ -694,7 +831,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <article class="story" id="story-mutianyu"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Great_Wall_of_China_July_2006.JPG/960px-Great_Wall_of_China_July_2006.JPG" alt="Great Wall, Mutianyu" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Great_Wall_of_China_July_2006.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Great Wall at Mutianyu</h4><div class="when"><b>Tue 22 Sep</b> · Full day · Landmark, reframed</div>
 <p>The Wall is the one landmark where the popular story is older than the official one. It was built and rebuilt by conscript labour, convicts and soldiers; the folk legend of Meng Jiangnü, the widow who walked to the Wall to find her husband, learned he&#x27;d been buried inside it, and wept until a section collapsed, has been sung for two thousand years as the peasant&#x27;s verdict on imperial glory. Mutianyu is less crowded than Badaling and the woods around it are the Wall&#x27;s best setting. The route matters here. Two lifts go up and they land in different places: the enclosed cable car at Tower 14, the open chairlift at Tower 6, and the toboggan only descends from Tower 6. So ride the cable car to 14, walk the wall east to 6 — roughly two hours, undulating, some steep staircases but nothing technical — and take the chute down. Nobody has to climb the long stone stairway from the bottom, which is the genuinely punishing part, and the brutal section is west of Tower 20, the other way. Between 14 and 6 there is no exit: once you start walking, you finish at 6.</p>
-<p class="tip">Car, cable car up and toboggan down are all booked and paid; entrance and the shuttle bus are included in the car. Ask the driver for a 06:45–07:00 pickup: the scenic area opens 07:30 but the cable car only runs from 08:30, so leaving earlier just means waiting at a closed lift. Cable car to Tower 14, walk the wall to Tower 6 (about 2 hours), toboggan down. 1h30 each way; the charter is 10 hours from pickup.</p>
+<p class="tip">Cable car to Tower 14, walk the wall west to Tower 6 — about two hours, and the steep, unrestored-looking stretch is in the middle of it — then the toboggan down. 1h30 each way from the city.</p>
 <a class="back" style="color:#F9A825" href="#day-beijing-2">Back to Tue 22 Sep</a></div></article>
 <article class="story" id="story-mutianyufarm"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Great_Wall_of_China_July_2006.JPG/960px-Great_Wall_of_China_July_2006.JPG" alt="Farmhouse lunch, Mutianyu village" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Great_Wall_of_China_July_2006.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Farmhouse lunch below the Wall 农家院</h4><div class="when"><b>Tue 22 Sep</b> · Lunch · Local food</div>
@@ -724,7 +861,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <article class="story" id="story-tiananmen"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Beijing_China_Tiananmen-Square-Young_Pioneers_of_China-01.jpg/960px-Beijing_China_Tiananmen-Square-Young_Pioneers_of_China-01.jpg" alt="Tiananmen Square" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Beijing_China_Tiananmen-Square-Young_Pioneers_of_China-01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Tiananmen Square</h4><div class="when"><b>Wed 23 Sep</b> · Morning · People's history</div>
 <p>Every popular movement of the 20th century met here. May Fourth 1919: students marched against the Versailles handover of German concessions to Japan, and against their own government&#x27;s weakness. April 1976: the mass mourning for Zhou Enlai became the first open defiance of the Cultural Revolution leadership; the crowd was cleared by force on 5 April. April to June 1989: students, then workers (the Beijing Workers&#x27; Autonomous Federation set up its tents on the north-west corner), held the square for seven weeks. None of this is marked. The one thing to read is the ten marble reliefs at the base of the Monument to the People&#x27;s Heroes: the state&#x27;s own selection, but the subjects are the Opium War burning, the Taiping, the 1911 uprising, May Fourth, the May Thirtieth strike of 1925, and the Nanchang mutiny. The Party tells the story of popular revolt right up to the day it took power.</p>
-<p class="tip">Advance reservation with passport via WeChat mini-program is required. Book before you fly.</p>
+<p class="tip">Enter from the east side and expect a long security line even when the square looks empty. Nothing in your pockets that reads as a banner or a slogan.</p>
 <a class="back" style="color:#F9A825" href="#day-beijing-3">Back to Wed 23 Sep</a></div></article>
 <article class="story" id="story-muxidi"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Platform_of_L1_Muxidi_Station_%2820230520154327%29.jpg/960px-Platform_of_L1_Muxidi_Station_%2820230520154327%29.jpg" alt="Muxidi" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Platform_of_L1_Muxidi_Station_(20230520154327).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Chang&#x27;an Avenue west to Muxidi</h4><div class="when"><b>Wed 23 Sep</b> · Late morning · People's history</div>
@@ -744,7 +881,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <article class="story" id="story-forbidden"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Sunset_of_the_Forbidden_City_2006.JPG/960px-Sunset_of_the_Forbidden_City_2006.JPG" alt="Forbidden City" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Sunset_of_the_Forbidden_City_2006.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Forbidden City</h4><div class="when"><b>Wed 23 Sep</b> · Afternoon · Landmark, reframed</div>
 <p>The imperial palace complex, 1420 to 1912. The people&#x27;s-history note is the exits: in 1900 the Boxers and then the eight foreign armies came through these gates; in 1924 the warlord Feng Yuxiang finally evicted the last emperor. It&#x27;s the group&#x27;s landmark; treat it as the walk to Jingshan.</p>
-<p class="tip">Closed every Monday, which is why this sits on Wednesday. Book at bookingticket.dpm.org.cn up to 7 days ahead; bring the passport you booked with to the Meridian Gate.</p>
+<p class="tip">Closed every Monday, which is why this sits on Wednesday. In at the Meridian Gate with the passports the tickets are in, out at the north gate for Jingshan.</p>
 <a class="back" style="color:#F9A825" href="#day-beijing-3">Back to Wed 23 Sep</a></div></article>
 <article class="story" id="story-jingshan"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/The_Forbidden_City_-_View_from_Coal_Hill.jpg/960px-The_Forbidden_City_-_View_from_Coal_Hill.jpg" alt="Jingshan Park" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:The_Forbidden_City_-_View_from_Coal_Hill.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Jingshan Park</h4><div class="when"><b>Wed 23 Sep</b> · Sunset · Landmark, reframed</div>
@@ -781,7 +918,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <article class="story" id="story-xianfoodtour"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/1_xian_muslim_quarter_china_2011.JPG/960px-1_xian_muslim_quarter_china_2011.JPG" alt="Muslim quarter backstreets" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:1_xian_muslim_quarter_china_2011.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Food tour of the backstreets</h4><div class="when"><b>Thu 24 Sep</b> · Night · Local food</div>
 <p>The value of a food tour here is not the food, it is the ordering. The good Hui stalls are in the lanes — Sajinqiao, Dapiyuan, Miaohou Street — where nothing is written in English, the queue moves fast and you get one shot at pointing. A guide who takes you off Beiyuanmen, the strip behind the Drum Tower that has turned into a food court for coach parties, earns their fee on the first night and leaves you able to navigate the rest of Xi&#x27;an on your own. The usual format is a small group moved between four or five family stalls by tuk-tuk, with beer. Check the operator is still running before you count on it.</p>
-<p class="tip">Lost Plate run an evening tuk-tuk tour through the backstreets; book ahead and ask for a 19:00 start given the 17:30 arrival. Skip any tour that stays on Beiyuanmen.</p>
+<p class="tip">Lost Plate run an evening tuk-tuk tour through the backstreets, into courtyards you would not push a door on alone. Skip any tour that stays on Beiyuanmen.</p>
 <a class="back" style="color:#00897B" href="#day-xian-0">Back to Thu 24 Sep</a></div></article>
 <article class="story" id="story-hulatang"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/20210708_Henan-style_Hulatang.jpg/960px-20210708_Henan-style_Hulatang.jpg" alt="Hulatang on Sajinqiao" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:20210708_Henan-style_Hulatang.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Hulatang 胡辣汤 on Sajinqiao</h4><div class="when"><b>Fri 25 Sep</b> · Breakfast · Local food</div>
@@ -791,7 +928,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <article class="story" id="story-terracotta"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Terracotta_Army_-_Pit_1%2C_Xi%27an%2C_China_%2814148051282%29.jpg/960px-Terracotta_Army_-_Pit_1%2C_Xi%27an%2C_China_%2814148051282%29.jpg" alt="Terracotta Army" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Terracotta_Army_-_Pit_1,_Xi%27an,_China_(14148051282).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Terracotta Army</h4><div class="when"><b>Fri 25 Sep</b> · Full day · Landmark, reframed</div>
 <p>Qin Shihuang unified China by conquest, standardised the written language and buried himself with an army of clay. The state&#x27;s version stops there. The people&#x27;s version: 700,000 conscripts and convicts built the mausoleum, many of them buried around it in mass graves the archaeologists have found. Three years after the emperor died, two conscript labourers, Chen Sheng and Wu Guang, late for a work detail and facing execution, launched China&#x27;s first recorded peasant uprising with the line &#x27;Are kings and nobles born to it?&#x27; The dynasty fell within four years. And in 1974 the farmer Yang Zhifa dug a well, found the first head, and was paid ten yuan; he spent his later years signing books at the gift shop.</p>
-<p class="tip">About 1h by car or the tourist bus from the station. Hire a guide who will talk about the workers.</p>
+<p class="tip">Didi both ways, about an hour each. Walk the pits backwards — 3, then 2, then 1 — and read the story below before you go, because no licensed guide will tell you who dug it.</p>
 <a class="back" style="color:#00897B" href="#day-xian-1">Back to Fri 25 Sep</a></div></article>
 <article class="story" id="story-lintong"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Pomegranate02_edit.jpg/960px-Pomegranate02_edit.jpg" alt="Lintong pomegranate stalls" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Pomegranate02_edit.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Lintong: pomegranate stalls 临潼石榴</h4><div class="when"><b>Fri 25 Sep</b> · Lunch · Local food</div>
@@ -801,7 +938,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <article class="story" id="story-huaqing"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Lintong_Xian_China_Huaqing-Pool-02.jpg/960px-Lintong_Xian_China_Huaqing-Pool-02.jpg" alt="Huaqing Palace, Five-Room Hall" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Lintong_Xian_China_Huaqing-Pool-02.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Huaqing Palace: the Five-Room Hall 华清宫 · 五间厅</h4><div class="when"><b>Fri 25 Sep</b> · Late afternoon · People's history</div>
 <p>Before dawn on 12 December 1936, Zhang Xueliang&#x27;s Manchurian troops surrounded this compound. Chiang Kai-shek went out of the bedroom window of the Five-Room Hall in his nightclothes and was found a few hours later hiding behind a boulder up the slope of Mount Li. He was held for a fortnight and released on Christmas Day, having agreed to stop the war against the Communists and turn on the Japanese occupying the north-east. The pressure came from below: Zhang&#x27;s soldiers had lost their homes to Japan in 1931 and were refusing to spend the war killing other Chinese. The Incident forced the united front and changed the shape of the war. Zhang spent the next fifty years under house arrest. Yang Hucheng, who did it with him, was murdered along with his family in a Chongqing prison in 1949 — you will be standing in that prison in nine days. The bullet marks are on the outer wall of the bedroom, the window is where it was, and the boulder has a pavilion over it. The rest of the site is Tang dynasty bathing pools and a Yang Guifei romance; walk through that to get to the Hall.</p>
-<p class="tip">14 km from the tomb, 20 minutes&#x27; drive — do it on the way back. ¥120, open to 18:30. Ask for 五间厅 and the pavilion on the hillside.</p>
+<p class="tip">14 km from the tomb, 20 minutes&#x27; drive — do it on the way back. Ask for 五间厅 and the pavilion up the hillside — the bullet holes in the window frames are the point, not the hot springs.</p>
 <a class="back" style="color:#00897B" href="#day-xian-1">Back to Fri 25 Sep</a></div></article>
 <article class="story" id="story-dongxinjie"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/2015-01-04_street_food_vendor_at_%28a_night_market%29_in_Xi%27an.jpg/960px-2015-01-04_street_food_vendor_at_%28a_night_market%29_in_Xi%27an.jpg" alt="Dongxin Jie night market" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:2015-01-04_street_food_vendor_at_(a_night_market)_in_Xi%27an.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Dongxin Jie night market 东新街夜市</h4><div class="when"><b>Fri 25 Sep</b> · Dinner · Local food</div>
@@ -851,7 +988,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <article class="story" id="story-shaanximuseum"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Glazed_ceramic_earthenware_tomb_model_of_a_building_%28mingqi%29_Han_Dynasty_%28206_BCE_-_220_CE%29_Shaanxi_Province_China.jpg/960px-Glazed_ceramic_earthenware_tomb_model_of_a_building_%28mingqi%29_Han_Dynasty_%28206_BCE_-_220_CE%29_Shaanxi_Province_China.jpg" alt="Shaanxi History Museum" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Glazed_ceramic_earthenware_tomb_model_of_a_building_(mingqi)_Han_Dynasty_(206_BCE_-_220_CE)_Shaanxi_Province_China.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Shaanxi History Museum</h4><div class="when"><b>Sun 27 Sep</b> · Morning (optional) · Landmark, reframed</div>
 <p>The province&#x27;s main museum: Zhou bronzes, Han tomb figures, Tang murals. The exhibit worth your time is the Han dynasty tomb figures of farmers, cooks and servants, the closest we have to portraits of the people who built all this.</p>
-<p class="tip">Free but timed tickets; book in advance. Near Ziwu Lu.</p>
+<p class="tip">Free but timed, capped at 6,000 a day and nothing sold at the counter. Near Ziwu Lu, so pair it with the breakfast.</p>
 <a class="back" style="color:#00897B" href="#day-xian-3">Back to Sun 27 Sep</a></div></article>
 </div>
 <div class="storycity" id="stories-chengdu"><h3 style="background:#43A047">Chengdu</h3>
@@ -883,7 +1020,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <article class="story" id="story-pandas"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Chengdu-pandas-d10.jpg/960px-Chengdu-pandas-d10.jpg" alt="Panda Base" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Chengdu-pandas-d10.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Panda Base</h4><div class="when"><b>Mon 28 Sep</b> · Early morning · Landmark, reframed</div>
 <p>The research base is the group&#x27;s landmark and the pandas are genuinely worth an hour at feeding time. After 10:00 it&#x27;s a crowd. Leave and come back to the city for the afternoon.</p>
-<p class="tip">Still to book — the window opens 14 days ahead and this one does sell out. Metro line 3 to Panda Avenue.</p>
+<p class="tip">Metro line 3 to Panda Avenue, about 40 minutes from the hotel. Nursery first, adult enclosures on the way back down, out by 10:30 when they go to sleep.</p>
 <a class="back" style="color:#43A047" href="#day-chengdu-1">Back to Mon 28 Sep</a></div></article>
 <article class="story" id="story-chenmapo"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Billyfoodmabodofu3.jpg/960px-Billyfoodmabodofu3.jpg" alt="Chen Mapo Tofu" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Billyfoodmabodofu3.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Chen Mapo Tofu 陈麻婆豆腐</h4><div class="when"><b>Mon 28 Sep</b> · Lunch · Local food</div>
@@ -893,7 +1030,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <article class="story" id="story-cuisinemuseum"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Doubanjiang.jpg/960px-Doubanjiang.jpg" alt="Sichuan Cuisine Museum, Pidu" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Doubanjiang.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Sichuan Cuisine Museum 中国川菜博物馆</h4><div class="when"><b>Mon 28 Sep</b> · Afternoon · Local food</div>
 <p>The museum sits in Pidu, the old Pixian, which is where doubanjiang is made: the fermented broad bean and chilli paste that is the base of nearly everything you have eaten this week, turned by hand in open jars in the sun for a year or more before it is worth anything. The site has the paste yards, a hall of old kitchen tools, a kitchen-god shrine and a reconstructed Qing restaurant street, and it is the only museum on this trip built entirely around the labour of cooking rather than the people who were served. The hands-on session puts the four of you in chef jackets at your own woks with an instructor for three dishes and sends you out with a certificate nobody needs. Be clear-eyed about the cost in time: an hour out, four hours there, an hour back, and the afternoon is gone.</p>
-<p class="tip">Pidu District, an hour each way. Sessions 09:50–13:40 or 13:50–17:40; ¥60 entry, ¥360 with the class. Book ahead. The class is your lunch.</p>
+<p class="tip">Pidu District, an hour each way. The class is your lunch: you grind the chilli, fold the dumplings and eat what you made.</p>
 <a class="back" style="color:#43A047" href="#day-chengdu-1">Back to Mon 28 Sep</a></div></article>
 <article class="story" id="story-peoplespark"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Monument_to_the_Martyrs_of_the_Railway_Protection_Movement_%281911%29_%2813913374751%29.jpg/960px-Monument_to_the_Martyrs_of_the_Railway_Protection_Movement_%281911%29_%2813913374751%29.jpg" alt="People&#x27;s Park &amp; Railway Protection Monument" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Monument_to_the_Martyrs_of_the_Railway_Protection_Movement_(1911)_(13913374751).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>People&#x27;s Park: Railway Protection Monument 辛亥保路死事纪念碑</h4><div class="when"><b>Mon 28 Sep</b> · Afternoon · People's history</div>
@@ -933,7 +1070,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <article class="story" id="story-jianchuan"><div><div class="ph" style="border-top-color:#E53935"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg/960px-Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg" alt="Jianchuan Museum Cluster" loading="lazy"><span class="badge" style="background:#E53935">✊</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Jianchuan Museum Cluster 建川博物馆</h4><div class="when"><b>Tue 29 Sep</b> · Full day · People's history</div>
 <p>Fan Jianchuan, a former soldier and property developer, spent his fortune building the only large private history museum in China. The Red Era halls hold the largest Cultural Revolution collection anywhere: badges, posters, clocks, a whole hall of mirrors and one of porcelain Maos, and the letters and diaries of the people who lived it. The Resistance halls are dedicated to the ordinary Sichuan soldiers, over three million of them, who fought Japan mostly under the KMT and were ignored or persecuted for decades. The Wenchuan earthquake hall is about the 2008 disaster and the collapsed schools. It is the closest thing China has to a people&#x27;s museum, and it survives on a knife-edge of official tolerance.</p>
-<p class="tip">Anren town, about 1h15 by car; hire a driver for the day. Allow five hours inside.</p>
+<p class="tip">Anren town, about 1h15 by car. Allow five hours inside, and start with the Cultural Revolution clock hall before your patience goes.</p>
 <a class="back" style="color:#43A047" href="#day-chengdu-2">Back to Tue 29 Sep</a></div></article>
 <article class="story" id="story-anren"><div><div class="ph" style="border-top-color:#FB8C00"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg/960px-Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg" alt="Anren town" loading="lazy"><span class="badge" style="background:#FB8C00">🍜</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Anren-Jianchuan-Museum-Maozeit-40-012-gje.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Anren town 安仁古镇</h4><div class="when"><b>Tue 29 Sep</b> · Lunch · Local food</div>
@@ -1020,7 +1157,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color
 <article class="story" id="story-cq1949"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/The_People%27s_Great_Hall_of_Chongqing.jpg/960px-The_People%27s_Great_Hall_of_Chongqing.jpg" alt="Chongqing 1949 Grand Theatre" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:The_People%27s_Great_Hall_of_Chongqing.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Chongqing 1949 《重庆·1949》</h4><div class="when"><b>Thu 1 Oct</b> · Evening · Landmark, reframed</div>
 <p>The show is built around the prisoners of Zhazidong and Baigongguan — the same cells you will have walked through a few hours earlier — and their execution in the days before the city fell in November 1949. The auditorium holds about 1,500 people and the seating platform rotates between several stages built around and above it, which is genuinely a remarkable machine. It is also, without ambiguity, the state&#x27;s telling: the Red Crag martyrdom story at full volume, with every resource money can buy and none of the complications. Taken on those terms it is the best possible pairing with your afternoon — the real cells, unmarked and quiet, and then three kilometres away the version the whole country is taught, staged on a rotating floor. Do them in that order.</p>
-<p class="tip">The theatre is in the Ciqikou scenic area, so the whole day stays in Shapingba. Shows at 14:00, 16:00 and 19:30, around ¥300. Book well ahead — National Day will sell it out. Take the 19:30 and skip Hongyadong.</p>
+<p class="tip">The theatre is in the Ciqikou scenic area, so the whole day stays in Shapingba. You are on the 19:30, which means Hongyadong is out — no loss on National Day.</p>
 <a class="back" style="color:#3949AB" href="#day-chongqing-1">Back to Thu 1 Oct</a></div></article>
 <article class="story" id="story-hongyadong"><div><div class="ph" style="border-top-color:#1E88E5"><img class="" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Hongyadong_night_lights_Chongqing.jpg/960px-Hongyadong_night_lights_Chongqing.jpg" alt="Hongyadong" loading="lazy"><span class="badge" style="background:#1E88E5">🏛️</span></div><div class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Hongyadong_night_lights_Chongqing.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></div></div>
 <div><h4>Hongyadong and the Yangtze cableway</h4><div class="when"><b>Thu 1 Oct</b> · Evening · Landmark, reframed</div>

@@ -1,8 +1,9 @@
 import json, html, datetime
-from data import cities, days, items
+from data import cities, days, items, bookings
 P=json.load(open("places.json"))
 P["aperture"]["img"]=P["maochengdu"]["img"]; P["aperture"]["imgpage"]=P["maochengdu"]["imgpage"]
 CAT={"struggle":("#E53935","✊","People's history"),"music":("#8E24AA","🎸","Live music"),"food":("#FB8C00","🍜","Local food"),"landmark":("#1E88E5","🏛️","Landmark, reframed"),"transit":("#607D8B","🚄","Travel")}
+BST={"booked":("#2E7D32","Booked"),"todo":("#C62828","Still to book"),"gate":("#546E7A","Pay at the gate")}
 E=html.escape
 
 def img(pid,cls=""):
@@ -68,6 +69,8 @@ section.city{margin-top:64px}
 .card .tip:before{content:"↳";position:absolute;left:0;top:0}
 .card .more{margin-top:auto;padding-top:8px;font-size:14px;font-weight:700;text-decoration:none}
 .card .more:hover{text-decoration:underline}
+.card .pill{position:absolute;left:10px;bottom:10px;font-size:12.5px;font-weight:700;color:#fff;padding:4px 11px;border-radius:999px;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.card .pill:hover{text-decoration:underline}
 .transit{grid-column:1/-1;display:flex;align-items:center;gap:16px;background:#ECEFF1;border-radius:12px;padding:14px 18px;border-left:7px solid #607D8B}
 .transit .ic{font-size:28px}
 .transit b{font-size:18px}
@@ -85,6 +88,22 @@ section.city{margin-top:64px}
 .far{margin:12px 0 0;font-size:15px;color:var(--muted)}
 .far span{display:inline-block;margin-right:14px}
 
+section.tickets{margin-top:96px}
+section.tickets>.wrap>h2{font-size:clamp(40px,6vw,72px);letter-spacing:-.025em;line-height:1;margin:0 0 8px;font-weight:800}
+section.tickets>.wrap>p.lead{font-size:20px;color:var(--muted);margin:0 0 20px;max-width:760px}
+.tksum{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 8px}
+.tksum span{font-size:14px;font-weight:700;color:#fff;padding:6px 14px;border-radius:999px}
+.tkcity{margin-top:52px}
+.tkcity h3{font-size:30px;margin:0 0 6px;padding:10px 16px;color:#fff;border-radius:8px;display:inline-block}
+.tk{display:grid;grid-template-columns:210px 1fr;gap:10px 28px;padding:24px 0;border-top:1px solid var(--line);scroll-margin-top:16px}
+.tk .pill2{display:inline-block;font-size:13px;font-weight:700;color:#fff;padding:5px 13px;border-radius:999px}
+.tk .when{font-size:15.5px;margin-top:9px;font-weight:700;line-height:1.35}
+.tk h4{margin:0 0 12px;font-size:23px;letter-spacing:-.015em;line-height:1.2}
+.tk h4 a{font-size:14px;font-weight:400;color:var(--muted);text-decoration:none;margin-left:10px;white-space:nowrap}
+.tk h4 a:hover{text-decoration:underline}
+.tk dl{margin:0;display:grid;grid-template-columns:112px 1fr;gap:8px 20px;max-width:82ch}
+.tk dt{font-size:12.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding-top:4px}
+.tk dd{margin:0;font-size:16.5px;line-height:1.45}
 section.stories{margin-top:96px;padding-bottom:80px}
 section.stories>.wrap>h2{font-size:clamp(40px,6vw,72px);letter-spacing:-.025em;line-height:1;margin:0 0 8px;font-weight:800}
 section.stories>.wrap>p.lead{font-size:20px;color:var(--muted);margin:0 0 40px;max-width:720px}
@@ -104,7 +123,7 @@ section.stories>.wrap>p.lead{font-size:20px;color:var(--muted);margin:0 0 40px;m
 .story .credit{font-size:12px;color:var(--muted);margin-top:6px}
 .story .credit a{color:var(--muted)}
 footer{border-top:1px solid var(--line);padding:24px 0 48px;font-size:14px;color:var(--muted)}
-@media (max-width:760px){.citynav{grid-template-columns:1fr 1fr}.day{grid-template-columns:1fr}.datecol{position:static;display:flex;gap:12px;align-items:baseline;margin-bottom:14px}.datecol .dn{font-size:36px}.datecol .theme{border-left:0;padding-left:0;margin-top:0}.story{grid-template-columns:1fr}.cityhead .quick{position:static;margin-top:16px}.legend .how{margin-left:0}.map{height:400px}}
+@media (max-width:760px){.tk{grid-template-columns:1fr;gap:6px}.tk dl{grid-template-columns:1fr;gap:0}.tk dt{margin-top:12px}.citynav{grid-template-columns:1fr 1fr}.day{grid-template-columns:1fr}.datecol{position:static;display:flex;gap:12px;align-items:baseline;margin-bottom:14px}.datecol .dn{font-size:36px}.datecol .theme{border-left:0;padding-left:0;margin-top:0}.story{grid-template-columns:1fr}.cityhead .quick{position:static;margin-top:16px}.legend .how{margin-left:0}.map{height:400px}}
 @media print{.map,.citynav,.quick{display:none}.card{break-inside:avoid}.story{break-inside:avoid}}
 </style></head><body>
 """)
@@ -120,9 +139,9 @@ w('</nav>')
 w('<div class="legend">')
 for k,(col,ic,lab) in CAT.items():
     w(f'<span class="chip"><span class="dot" style="background:{col}">{ic}</span>{lab}</span>')
-w('<span class="how">Numbers on the cards match the pins on each city map. <a href="#stories">Full backstories</a> are at the bottom.</span>')
+w('<span class="how">Numbers on the cards match the pins on each city map. <a href="#tickets">Tickets and bookings</a> and the <a href="#stories">full backstories</a> are at the bottom.</span>')
 w('</div>')
-w('<div class="notice"><b>Two public holidays fall inside this trip.</b>Mid-Autumn is Fri 25 – Sun 27 September, covering all of Xi\'an and the arrival in Chengdu. National Day Golden Week is Thu 1 – Wed 7 October: 30 September is Martyrs\' Day and the heaviest travel day of the Chinese year, and Chongqing sits in days one and two. Hongyadong, Ciqikou and Liziba will be jammed and security around monuments is heavy — do the crowd-magnets before 09:00 or after 21:00. Mon 28 and Tue 29 September in Chengdu are the only clear days in the second half. <b>Booked and paid:</b> the Mutianyu private car with entrance and shuttle, the cable car up, the toboggan down. <b>Still to book:</b> Chongqing 1949 (National Day will sell it out), the Panda Base, and from 16 September the Forbidden City at bookingticket.dpm.org.cn and Tiananmen Square via the WeChat mini-program at noon Beijing time. The Temple of Heaven is the exception: buy the ¥15 park ticket at the gate on the morning, because every booking site sells timed entry from 08:00 and the reason to go is 07:00. Install Showstart 秀动 and Damai 大麦 for gig tickets, and Amap 高德 for navigation.</div>')
+w('<div class="notice"><b>Two public holidays fall inside this trip.</b>Mid-Autumn is Fri 25 – Sun 27 September, covering all of Xi\'an and the arrival in Chengdu. National Day Golden Week is Thu 1 – Wed 7 October: 30 September is Martyrs\' Day and the heaviest travel day of the Chinese year, and Chongqing sits in days one and two. Hongyadong, Ciqikou and Liziba will be jammed and security around monuments is heavy — do the crowd-magnets before 09:00 or after 21:00. Mon 28 and Tue 29 September in Chengdu are the only clear days in the second half. Every ticket, price and collection detail is in <a href="#tickets"><b>Tickets and bookings</b></a> at the bottom of the page, and the cards carry a pill where there is something to buy. Two things can only be done by you: the Forbidden City needs a signed-in account, and Tiananmen Square sits on a domain my browser is blocked from. Install Showstart 秀动 for gig tickets and Amap 高德 for navigation before you fly.</div>')
 w('</div></header>')
 
 # cities
@@ -135,7 +154,8 @@ for c in cities:
     w(f'<section class="city" id="{cid}"><div class="cityhead" style="background:{col}"><div class="wrap">')
     w(f'<h2>{E(c["name"])}</h2><div class="sub">{E(c["sub"])}</div>')
     w(f'<div class="meta"><span><b>{c["dates"]}</b> · {c["nights"]} nights</span><span>Hotel: {E(c["hotel"])}</span></div>')
-    w(f'<div class="quick"><a href="#map-{cid}">Map</a><a href="#stories-{cid}">Stories</a></div>')
+    tklink=f'<a href="#tickets-{cid}">Tickets</a>' if any(it[0] in bookings for it in citems) else ''
+    w(f'<div class="quick"><a href="#map-{cid}">Map</a>{tklink}<a href="#stories-{cid}">Stories</a></div>')
     w('</div></div><div class="wrap">')
     for di,(dlabel,theme) in enumerate(days[cid]):
         wd,dn,mo=dlabel.split()
@@ -148,7 +168,9 @@ for c in cities:
                 w(f'<div class="transit"><span class="ic">{ic}</span><div><b>{E(title)}</b> <span class="slot" style="color:#607D8B;font-weight:700"> {E(slot)}</span><div class="one">{E(one)}</div><div class="tip">{E(tip)}</div></div></div>')
                 continue
             farlab=' <span style="font-weight:400;color:#5f6368">(out of town)</span>' if far else ''
-            w(f'<article class="card" style="border-top-color:{ccol}"><div class="ph">{img(pid)}<span class="badge" style="background:{ccol}" title="{lab}">{ic}</span><span class="num">{nums[pid]}</span></div>')
+            bk=bookings.get(pid)
+            pill=f'<a class="pill" style="background:{BST[bk["state"]][0]}" href="#ticket-{pid}">{E(bk["pill"])}</a>' if bk else ''
+            w(f'<article class="card" style="border-top-color:{ccol}"><div class="ph">{img(pid)}<span class="badge" style="background:{ccol}" title="{lab}">{ic}</span><span class="num">{nums[pid]}</span>{pill}</div>')
             w(f'<div class="bd"><div class="slot" style="color:{ccol}">{E(slot)}{farlab}</div><h4>{E(title)}</h4><p class="one">{E(one)}</p>')
             if tip: w(f'<p class="tip">{E(tip)}</p>')
             if story: w(f'<a class="more" style="color:{ccol}" href="#story-{pid}">Read the story</a>')
@@ -160,6 +182,34 @@ for c in cities:
     if fars:
         w('<p class="far">Out of town, off the edge of the map: '+" ".join(f'<span><b>{nums[it[0]]}</b> {E(it[5])}</span>' for it in fars)+'</p>')
     w('</div></div></section>')
+
+# tickets
+counts={k:sum(1 for b in bookings.values() if b["state"]==k) for k in BST}
+w('<section class="tickets" id="tickets"><div class="wrap"><h2>Tickets and bookings</h2>')
+w('<p class="lead">Everything that has to be bought, collected or shown at a gate, in day order. Check this page on the plane; after that it is passports and the confirmation emails.</p>')
+w('<div class="tksum">')
+for k,(kcol,klab) in BST.items():
+    if counts[k]: w(f'<span style="background:{kcol}">{counts[k]} {E(klab.lower() if k!="booked" else "booked")}</span>')
+w('</div>')
+for c in cities:
+    cid=c["id"]
+    rows=[it for it in items if it[1]==cid and it[0] in bookings]
+    if not rows: continue
+    w(f'<div class="tkcity" id="tickets-{cid}"><h3 style="background:{c["color"]}">{E(c["name"])}</h3>')
+    for it in rows:
+        pid,_,d,slot,cat,title,one,tip,story,far=it
+        b=bookings[pid]; bcol,blab=BST[b["state"]]
+        w(f'<div class="tk" id="ticket-{pid}">')
+        w(f'<div><span class="pill2" style="background:{bcol}">{E(b["pill"])}</span><div class="when">{E(b["when"])}</div></div>')
+        w(f'<div><h4>{E(title)}<a href="#day-{cid}-{d}">\u2191 {E(days[cid][d][0])}</a></h4><dl>')
+        if b.get('what'): w('<dt>What</dt><dd>'+E(b['what'])+'</dd>')
+        if b.get('price'): w('<dt>Price</dt><dd>'+E(b['price'])+'</dd>')
+        if b.get('how'): w('<dt>Where to book</dt><dd>'+E(b['how'])+'</dd>')
+        if b.get('change'): w('<dt>Changes</dt><dd>'+E(b['change'])+'</dd>')
+        if b.get('onday'): w('<dt>On the day</dt><dd>'+E(b['onday'])+'</dd>')
+        w('</dl></div></div>')
+    w('</div>')
+w('</div></section>')
 
 # stories
 w('<section class="stories" id="stories"><div class="wrap"><h2>The stories behind each stop</h2><p class="lead">The long version, in the same order as the days. Read on the train, not on the street; most of what follows is not for conversation with strangers.</p>')
