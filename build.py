@@ -141,7 +141,7 @@ for k,(col,ic,lab) in CAT.items():
     w(f'<span class="chip"><span class="dot" style="background:{col}">{ic}</span>{lab}</span>')
 w('<span class="how">Numbers on the cards match the pins on each city map. <a href="#tickets">Tickets and bookings</a> and the <a href="#stories">full backstories</a> are at the bottom.</span>')
 w('</div>')
-w('<div class="notice"><b>Two public holidays fall inside this trip.</b>Mid-Autumn is Fri 25 – Sun 27 September, covering all of Xi\'an and the arrival in Chengdu. National Day Golden Week is Thu 1 – Wed 7 October: 30 September is Martyrs\' Day and the heaviest travel day of the Chinese year, and Chongqing sits in days one and two. Hongyadong, Ciqikou and Liziba will be jammed and security around monuments is heavy — do the crowd-magnets before 09:00 or after 21:00. Mon 28 and Tue 29 September in Chengdu are the only clear days in the second half. Every ticket, price and collection detail is in <a href="#tickets"><b>Tickets and bookings</b></a> at the bottom of the page, and the cards carry a pill where there is something to buy. Two things can only be done by you: the Forbidden City needs a signed-in account, and Tiananmen Square sits on a domain my browser is blocked from. Install Showstart 秀动 for gig tickets and Amap 高德 for navigation before you fly.</div>')
+w('<div class="notice"><b>Two public holidays fall inside this trip.</b>Mid-Autumn is Fri 25 – Sun 27 September, covering all of Xi\'an and the arrival in Chengdu. National Day Golden Week is Thu 1 – Wed 7 October: 30 September is Martyrs\' Day and the heaviest travel day of the Chinese year, and Chongqing sits in days one and two. Hongyadong, Ciqikou and Liziba will be jammed and security around monuments is heavy — do the crowd-magnets before 09:00 or after 21:00. Mon 28 and Tue 29 September in Chengdu are the only clear days in the second half. Every ticket, price and collection detail is in <a href="#tickets" style="font-weight:700">Tickets and bookings</a> at the bottom of the page, and the cards carry a pill where there is something to buy. Two things can only be done by you: the Forbidden City needs a signed-in account, and Tiananmen Square sits on a domain my browser is blocked from. Install Showstart 秀动 for gig tickets and Amap 高德 for navigation before you fly.</div>')
 w('</div></header>')
 
 # cities
@@ -204,7 +204,7 @@ for c in cities:
         w(f'<div><h4>{E(title)}<a href="#day-{cid}-{d}">\u2191 {E(days[cid][d][0])}</a></h4><dl>')
         if b.get('what'): w('<dt>What</dt><dd>'+E(b['what'])+'</dd>')
         if b.get('price'): w('<dt>Price</dt><dd>'+E(b['price'])+'</dd>')
-        if b.get('how'): w('<dt>Where to book</dt><dd>'+E(b['how'])+'</dd>')
+        if b.get('how'): w('<dt>Book via</dt><dd>'+E(b['how'])+'</dd>')
         if b.get('change'): w('<dt>Changes</dt><dd>'+E(b['change'])+'</dd>')
         if b.get('onday'): w('<dt>On the day</dt><dd>'+E(b['onday'])+'</dd>')
         w('</dl></div></div>')
