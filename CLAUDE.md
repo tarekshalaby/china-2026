@@ -24,11 +24,15 @@ Workflow for any change:
 # edit data.py (or places.json)
 python3 build.py                              # writes China-Must-Do-List-Tarek.html
 cp China-Must-Do-List-Tarek.html index.html   # index.html is what Pages serves
-git add -A && git commit -m "short message" && git push
+git add -A && git commit -m "short message" && git push origin main
 ```
 
 `China-Must-Do-List-Tarek.html` is gitignored; `index.html` is the committed artifact.
 Never hand-edit `index.html` — it is generated.
+
+**Commit and push straight to `main`, never to a `claude/…` branch.** GitHub Pages
+serves `main`, so anything pushed to a branch does nothing for the live site and leaves
+Tarek merging it by hand from his phone. This applies to every change, in every session.
 
 ### Verify before pushing
 
