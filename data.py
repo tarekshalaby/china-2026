@@ -25,6 +25,7 @@ days={
 
 items=[
 # ---------- BEIJING ----------
+("yandai","beijing",0,"First walk","struggle","Yandai Xiejie 烟袋斜街","Hamama’s find, and he is right that it is next door. 232 metres that have changed class three times.","Three minutes from the hotel. Walk it east to west and you come out at Yinding Bridge on Houhai, which is the evening handed to you.","Two hundred and thirty-two metres, running north-east to south-west off Di’anmen Outer Street, which is why it is called 斜 — slanting. It does not obey the imperial grid, and the name is a joke about its shape: the long street is the stem of a pipe, the east entrance the mouthpiece, and the west end, curving south towards Yinding Bridge, the bowl.\n\nIt is named for what it sold and for whom. The Manchu banner garrison was quartered in the north of the city, and banner households smoked — dry tobacco and water tobacco — so the shopkeepers here made and sold the pouches and long-stemmed pipes they needed. The Guangxu-era Shuntian Prefecture Gazetteer records the street under this name. Under the Qing it was a high-end strip for officials and nobility, with houses like Huixianlou and Qingyunlou on it, and ordinary Beijingers did not shop here.\n\nThen the dynasty fell. After the 1912 abdication the aristocracy began selling its possessions, and the antique dealers moved in — Baowenzhai, Minwenzhai — turning a court street into a second-hand market where you could buy the empire by the piece. That is the second class regime on the same 232 metres.\n\nThe third arrived in November 2010, when Yandai Xiejie was named one of China’s Historical and Cultural Famous Streets and Shichahai was earmarked as a showcase for “Humanistic Beijing”. The shopfronts were restored to a Qing look and the trade became souvenirs, snacks and coffee for visitors. So you are walking a street built for a garrison caste, repurposed to liquidate that caste’s property, and finally restored as a picture of itself. Guangfu Temple, Ming, is still standing on it, protected, in among the fridge magnets.",False),
 ("sanlitun","beijing",0,"Late afternoon","landmark","Sanlitun Taikoo Li 三里屯太古里","The Uniqlo global flagship and the best open-air shopping in Beijing.","Uniqlo\'s flagship is in Taikoo Li West. 25 min by taxi from the hotel — do it straight off the airport run if you land early enough, then go back to Houhai for the evening.",
  "Sanlitun was the embassy quarter\'s bar street: through the 1980s and 90s a strip of dive bars serving diplomats, foreign students and anyone else who could get in, and by the 2000s the centre of Beijing nightlife. Most of it was demolished. What stands there now is Taikoo Li, an open-air mall built in 2008 as a grid of separate buildings rather than one box, and it is very good at what it does — which is the polished opposite of everything else on this list, and that is fine, because this is the shopping stop. Uniqlo opened its Beijing global flagship in the west section in November 2021 and it is the largest in the city. Hamama can have his hour; the rest of you can drink coffee outside and watch the most photographed pavement in Chaoyang.",False),
 ("houhai","beijing",0,"Evening","landmark","Houhai and the Drum Tower","Walk the lake and the towers from your front door, then eat.","Your hotel is 5 minutes from everything here.",
@@ -46,8 +47,8 @@ items=[
  "Shuan yangrou is Beijing\'s own hotpot: a charcoal-fired copper pot with a chimney, plain water, paper-thin lamb, a sesame dipping sauce. Jubaoyuan is the Hui institution locals queue for; nobody will speak English and the meat is the best in the city.",False),
 ("dashilar","beijing",1,"Afternoon","struggle","Dashilar and Yangmeizhu Xiejie","The old commercial-worker hutongs south of Qianmen. Skip Qianmen Street itself.","Enter from the west end; the further from Qianmen Street you walk, the more of the neighbourhood is left.",
  "South of the imperial city was where the workers, entertainers and traders lived, outside the walls and beneath notice. Dashilar was the crafts and shops district; Yangmeizhu Xiejie a street of printers and booksellers, and later the hub of pre-1949 leftist publishing. The area has been half-gentrified by a design scheme but the residents are still mostly there, unlike the theme-park version on Qianmen Street.",False),
-("wangfujing","beijing",1,"Late afternoon","landmark","Wangfujing 王府井 and St Joseph\'s Church","The flagship shopping street. Worth half an hour for the church the Boxers burned, not the shops.","Walk north from Dashilar or two metro stops. The old snack alley with the scorpions on sticks is gone; don\'t go looking for it.",
- "By your standards there is nothing here: this is the pedestrianised centre of consumer Beijing, malls and flagship stores, and until it was cleared away a manufactured \'snack street\' selling scorpions on sticks to people who were never going to eat them. What earns the walk is two-thirds of the way up on the east side. St Joseph\'s Church, the Dongtang, was founded by Jesuits in 1655 on land granted by the Shunzhi emperor. It burned in 1900, when the Boxers moved through Beijing attacking foreign missions and, far more often, Chinese converts, and it was rebuilt in 1904 out of the reparations the eight allied powers extracted from the Qing after the siege — a building that is itself a receipt for an indemnity. The square in front of it is where Beijing teenagers skateboard in the evening, which is the best thing about the street. fRUITYSPACE is fifteen minutes north; treat this as the walk to the gig.",False),
+("wangfujing","beijing",1,"Late afternoon","landmark","Wangfujing 王府井 and St Joseph\'s Church","Mai’s pick for the clothes, and the church the Boxers burned. Both on one street.","Beijing apm and Oriental Plaza are the Chinese brands Mai found; the church is two-thirds up on the east side. Give it two hours, not half an hour.",
+ "This is where the clothes are — Beijing apm, Oriental Plaza, Wangfujing Department Store and the mid-market Chinese labels Mai went looking for, which are genuinely worth an afternoon. It is also the pedestrianised centre of consumer Beijing, malls and flagship stores, and until it was cleared away a manufactured \'snack street\' selling scorpions on sticks to people who were never going to eat them. What earns the walk is two-thirds of the way up on the east side. St Joseph\'s Church, the Dongtang, was founded by Jesuits in 1655 on land granted by the Shunzhi emperor. It burned in 1900, when the Boxers moved through Beijing attacking foreign missions and, far more often, Chinese converts, and it was rebuilt in 1904 out of the reparations the eight allied powers extracted from the Qing after the siege — a building that is itself a receipt for an indemnity. The square in front of it is where Beijing teenagers skateboard in the evening, which is the best thing about the street. fRUITYSPACE is fifteen minutes north; treat this as the walk to the gig.",False),
 ("fangzhuan","beijing",1,"Dinner","food","Fangzhuanchang 69 方砖厂69号炸酱面","Beijing's fried-sauce noodles, done properly, walking distance from the hotel.","Cash-free; queue at peak hours. fRUITYSPACE is 20 min back south afterwards.",
  "Zhajiangmian is the dish Beijingers actually eat at home: hand-pulled noodles, a fermented soybean and pork sauce, and eight little dishes of raw vegetables you mix in yourself. Fangzhuanchang is a tiny hutong shop near Gulou that does the definitive version, and the queue outside it is entirely local.",False),
 ("fruity","beijing",1,"Night","music","fRUITYSPACE 果空间","DIY experimental basement by the National Art Museum. 40 people, no compromise.","Small, cheap, cash-free, and nothing is published in advance anywhere — the bill goes up on its WeChat account and on the door. If you want a certainty instead, Dorena play 疆进酒 OMNI SPACE the same night, 20:00, ¥188.",
@@ -173,7 +174,7 @@ items=[
 ("jinjiangtheatre","chengdu",2,"Alternative","music","Jinjiang Theatre 锦江剧场 (Sichuan opera)","Proper repertory Sichuan opera for locals. Not the face-changing tourist show.","Ask at Heming Teahouse what's on; performances are mostly afternoons and weekends.",
  "Sichuan opera is earthy, comic and acrobatic, and the tourist packages reduce it to twenty minutes of face-changing. The Jinjiang Theatre is the provincial company's own house, where full plays are staged for an audience of retirees who know every line. If the timing works, it beats any club.",False),
 
-("cdtrain","chengdu",3,"12:50","transit","Chengdu East → Chongqing Shapingba","Paid but not yet ticketed — the seats are bought the morning tickets open. About 70 minutes.","Shapingba station is on the west side; the Yuzhong hotel is 30–40 min by metro or taxi. Check the booking is ticketed before you leave Chengdu.","",False),
+("cdtrain","chengdu",3,"12:50","transit","Chengdu East → Chongqing Shapingba","Train G8619, 2nd class, car 03. Arrives Shapingba 14:01.","Ticket gate A15, and they want you there an hour before. Shapingba is on the west side; the Yuzhong hotel is 30–40 min by metro or taxi.","",False),
 
 # ---------- CHONGQING ----------
 ("suanlafen","chongqing",0,"Late lunch","food","Suan la fen 酸辣粉","Hot-and-sour sweet potato noodles, eaten standing up. The landing meal.","You arrive at 14:01; there are counters all around Jiefangbei and on the way down to Shibati. About ¥10.",
@@ -351,13 +352,7 @@ bands=[("Mid-Autumn","#8D6E63",7,10),("Golden Week","#C62828",13,16)]
 heroes={"beijing":"houhai","xian":"belltower","chengdu":"kuanzhai","chongqing":"nanshanbbq"}
 
 nextup=[
- dict(when="Tonight",sub="03:45 Cairo",icon="train",tone="w",
-  head="Chengdu → Chongqing seats go on sale",
-  line="Paid, not issued. Trip.com buys automatically — then “issued” is fine, “waitlist” needs you."),
- dict(when="Wed 16 Sep",sub="",icon="passport",tone="n",
-  head="Collect your visa",
-  line="Application CAI3260819AL7600188, Cairo."),
- dict(when="Wed 16 Sep",sub="window opens",icon="ticket",tone="w",
+ dict(when="Today",sub="window opens",icon="ticket",tone="w",
   head="Forbidden City and Tiananmen, for the 23rd",
   line="Seven days ahead. Both need you: one wants your login, the other blocks my browser."),
  dict(when="by Sat 19 Sep",sub="",icon="alert",tone="w",
@@ -402,14 +397,14 @@ trains=[
   ref="Trip.com 1658115605344855 · code EJ50112599",
   line="Leave the Bell Tower by 10:00. Exit at Chengdu by A3, B3, A4 or B4.",
   fine=["This replaced the G321 at 11:25, which sold out on the waitlist and was cancelled on 14 September. The old 11:25 departure is dead."]),
- dict(state="todo",pill="Not ticketed",no="—",date="Wed 30 Sep",
-  a="Chengdu East",acn="成都东",at="12:50",b="Chongqing Shapingba",bcn="沙坪坝",bt="~14:00",dur="~1h 10m",
-  chips=[("w","Seats not issued"),("k","Already paid US$113"),("n","2nd class"),("n","On sale tonight")],
-  seats="All four are on the reservation — seats come with the tickets",
-  ref="Trip.com 1658114333265511",
-  line="Check it is ticketed before you leave Chengdu.",
-  fine=["Tickets go on sale 08:45 China time on 16 September and Trip.com buys them at that moment. The train number and the seats only exist afterwards.",
-    "Both earlier legs sold out the second sales opened. If the email says waitlist or asks for an extra payment, that one needs you."]),
+ dict(state="booked",pill="Ticketed",no="G8619",date="Wed 30 Sep",
+  a="Chengdu East",acn="成都东",at="12:50",b="Chongqing Shapingba",bcn="沙坪坝",bt="14:01",dur="1h 11m",
+  chips=[("k","E-ticket, no paper"),("n","2nd class, car 03"),("n","Gate A15"),("n","US$113")],
+  seats="Tarek 005A · May 005B · Mohamed 005C · Nora 005D",
+  ref="Trip.com 1658114333265511 · code EJ04869479",
+  line="Passport at the gate. All four seats together, in a row.",
+  fine=["It went to the waitlist for about forty seconds when sales opened at 08:45 on 16 September, then issued. All three legs of the trip are now ticketed.",
+    "Shapingba station sits underneath a shopping centre on the west side of Chongqing, not the main east station."]),
 ]
 
 hotels=[
@@ -461,10 +456,10 @@ hotels=[
 ]
 
 prep=[
- dict(icon="passport",t="Visa",chips=[("w","Collect Wed 16 Sep")],
-  line="Application CAI3260819AL7600188, China Visa Application Service Center, Cairo.",
-  fine=["Nora, Mohamed and May applied separately.",
-    "Three earlier rejections were the photo, then twice the claim that a US passport enters visa-free. It does not here: 13 nights exceeds the 240-hour transit allowance, and a Cairo round trip via Doha has no third country."]),
+ dict(icon="passport",t="Visa",chips=[("k","Issued 16 Sep"),("k","Multiple entry"),("n","60 days a stay"),("n","Valid to 2036")],
+  line="Category L, ten years, multiple entry. Nothing left to do but carry the passport.",
+  fine=["Issued in Cairo on 16 September 2026 against application CAI3260819AL7600188, after three rejections \u2014 the photo once, then twice on the claim that a US passport enters China visa-free. It does not on this trip: 13 nights exceeds the 240-hour transit allowance, and a Cairo round trip via Doha has no third country. Worth knowing if anyone else in the group is told the same thing.",
+    "Nora, Mohamed and May applied separately."]),
  dict(icon="sim",t="Data",chips=[("k","eSIM ready"),("n","3GB a day"),("n","13 days")],
   line="Bought and installed. Switch it on when you land — the clock starts then, not now.",
   fine=["Mainland China 5G, 3GB a day then throttled to 384kbps. APN cmhk.",

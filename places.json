@@ -719,5 +719,12 @@
   "lng": 106.5884,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/A_night_view_of_Yuzhong_peninsula%2CChongqing.JPG/960px-A_night_view_of_Yuzhong_peninsula%2CChongqing.JPG",
   "imgpage": "https://commons.wikimedia.org/wiki/File:A_night_view_of_Yuzhong_peninsula,Chongqing.JPG"
+ },
+ "yandai": {
+  "name": "Yandai Xiejie (Tobacco Pouch Street)",
+  "lat": 39.9397,
+  "lng": 116.3907,
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/East_entrance_of_Yandai_Xiejie_Street.jpg/960px-East_entrance_of_Yandai_Xiejie_Street.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:East_entrance_of_Yandai_Xiejie_Street.jpg"
  }
 }
