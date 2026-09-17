@@ -166,6 +166,44 @@ SPACE on Wed 23 Sep, ¥320.
 
 ---
 
+## Still to book
+
+As of 17 Sep 2026. Everything else on the trip is booked and paid.
+
+| What | When | Where | Who can do it |
+|---|---|---|---|
+| **Forbidden City** ¥60 x4 | Wed 23 Sep, afternoon | bookingticket.dpm.org.cn | Browser, Tarek's login |
+| **Tiananmen Square** free | Wed 23 Sep | yuyue.tap.com.cn / WeChat mini-program | Phone, likely WeChat only |
+| **God Is An Astronaut** ¥320 x4 | Wed 23 Sep, 20:00 | Showstart, at 疆进酒 OMNI SPACE | **Phone only** |
+| **Naire 奈热** ¥158 x4 | Sat 26 Sep, doors 20:00 | Showstart, at 光圈CLUB | **Phone only** |
+| **Xi'an food tour** | Thu 24 Sep, ask 19:00 | Lost Plate, direct | Browser + email |
+| **Sichuan Cuisine Museum** ¥360 x4 | Mon 28 Sep, 13:50–17:40 | Direct or Trip.com | Browser |
+| **Shaanxi History Museum** free | Sun 27 Sep, optional | Museum WeChat account | **Phone only** |
+| **Jianchuan driver** | Tue 29 Sep, full day | Chengdu hotel desk | In person, on arrival |
+
+Also outstanding: the **Temple of Heaven QR code** has not arrived. It is the entry
+method for Mon 21 Sep. Chase +86 186 1124 1332.
+
+Notes that cost time to rediscover:
+
+- The Palace Museum releases at **20:00 Beijing, 7 days ahead**, and its API exposes a
+  `canBuyDays` counter confirming the window. **Afternoon sessions survive longest.**
+  Sold out at first look is not final — unpaid orders drop back into the pool roughly
+  every ten minutes, and **20:30–21:00 Beijing** is the strongest refresh window.
+- Do not script against their `/lotsapi/` endpoints. It is a real-name system with a
+  daily cap; automated probing risks the account the tickets are booked in. Drive the
+  normal UI.
+- Showstart needs a Chinese number or a WeChat login. No browser reaches it.
+- Tarek presses the pay button. Fill the forms, stop at checkout.
+
+Settled, do not raise again: checked baggage **is** included on all four Qatar segments
+(the confirmation PDFs are wrong, Manage Booking is the truth); seats are picked at
+online check-in 48 hours out; the 13-day eSIM covers all 13 nights in China; no travel
+insurance is wanted; **no cash will be carried at any point** — ATM on arrival if ever
+needed.
+
+---
+
 ## Working with Tarek
 
 - Ask clarifying questions as **multiple-choice options**, always ending with an
