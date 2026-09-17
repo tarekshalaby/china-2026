@@ -106,9 +106,6 @@ items=[
  "A working night market of grilled skewers, crayfish, spicy cold noodles and beer, patronised by office workers and students rather than tour groups. Loud, cheap, and the antidote to the Muslim Quarter main strip.",False),
 ("xianmassage","xian",1,"Evening","landmark","Foot massage 足疗","Ninety minutes on your feet after ten kilometres on them. About ¥100.","Shops all over the streets inside the wall; look for 足疗 or 按摩 and a lit shopfront. The blind-masseur places, 盲人按摩, are the ones locals rate.",
  "Massage in China is not a spa treatment, it is an ordinary evening that costs about the price of two rounds of beer, and after a day at the tomb your legs will make the argument for you. Worth knowing what you are walking into: massage is the single largest occupation for blind people in the country, taught through a state vocational system that goes back to the 1950s, and the small shops signed 盲人按摩 are staffed and often run by blind workers. Bi Feiyu's novel Massage, and Lou Ye's 2014 film of it, are both about that world and are worth reading before you go. Zuliao is the foot session with a herb soak first; tuina is the deep joint-and-muscle version, and it hurts.",False),
-("aperture","xian",1,"Night","music","Aperture Club 光圈CLUB","Xi'an's main independent venue: rock, folk, hip-hop, indie film.","Two bills in your window: BikaBreezy on Fri 25th, 20:00, ¥228, and 奈热 Naire — Inner Mongolian folk-rock — on Sat 26th, 20:00, ¥158. The Saturday is the better room by a distance.",
- "Aperture, in the Juhuayuan lanes off East Street, is where touring Chinese bands play Xi'an and where the city's own bands rehearse and record. It doubles as a small theatre and an independent film space. Xi'an is the home city of the 1990s rock generation (Zhang Chu, Xu Wei, Zheng Jun), whose songs about aimless young men in a changing country still fill rooms.",False),
-
 ("balujun","xian",2,"Morning","struggle","Eighth Route Army Xi'an Office 八路军西安办事处","The courtyard where tens of thousands of young people signed up and walked north to Yan'an.","Qixian Zhuang, north-east corner inside the wall. Free with passport, about an hour.",
  "Once the Xi'an Incident had forced the united front, the Communists were able to run an open liaison office in the city, and they ran it here from 1937 to 1946. Officially it handled telegrams and supplies for the Eighth Route Army. In practice it was the gate to Yan'an: students, writers, teachers and factory workers arriving from the occupied east came into this courtyard to be interviewed, issued a letter and a bedroll, and pointed at the four-hundred-kilometre road north. Estimates of how many went through run into the tens of thousands across those nine years. Zhou Enlai worked out of these rooms. It is furnished as it was — the bunks, the telegraph desk, the bicycles in the yard — and it is the one site in Xi'an that is about ordinary people deciding to go, rather than about generals deciding for them.",False),
 ("shuipan","xian",2,"Lunch","food","Shuipan yangrou 水盆羊肉","Clear mutton soup with a flatbread to crumble in. The everyday cousin of paomo.","Small shops around the Muslim quarter and Xiyangshi. Ask for a whole flatbread and tear it in yourself.",
@@ -270,15 +267,6 @@ bookings={
   fine=["Left unbooked on purpose. After four or five hours at the tomb this is either the best twenty minutes of the day or one stop too many, and you will know which in the car.",
     "Fourteen kilometres from the tomb, twenty minutes’ drive."]),
 
- "aperture": dict(state="todo",pill="App or door",when="Sat 26 Sep",clock="doors 20:00",
-  chips=[("n","¥158 presale"),("n","Dearer on the door"),("w","Mid-Autumn Saturday"),("k","Best bill in Xi’an")],
-  line="奈热 Naire, Inner Mongolian folk-rock, at 西演SPACE · 光圈CLUB. Walk up and pay, or presell on Showstart.",
-  ref="",
-  fine=["Chinese live houses sell a cheaper 预售 presale through the app and a dearer 全票 on the door, usually ¥20–30 more. The door is only shut to you if the room has sold out.",
-    "Showstart 秀动 needs a Chinese number or a WeChat login, and that friction is the only reason to bother in advance.",
-    "26 September sits inside Mid-Autumn, so a holiday Saturday is the worst night of the trip to chance it on.",
-    "Support first; the headliner is rarely on before 21:15."]),
-
  "pandas": dict(state="booked",pill="Booked",when="Mon 28 Sep",clock="in by 07:30",
   chips=[("k","Paid US$32.76"),("n","¥55 each"),("k","No collection"),("k","Free cancellation")],
   line="Passport at the gate. Nursery first, out by 10:30 — after that they sleep all afternoon.",
@@ -344,9 +332,9 @@ nextup=[
  dict(when="Sun 27 Sep",sub="at the desk",icon="book",tone="n",
   head="Ask Wenjun Courtyard for the Jianchuan car",
   line="A driver for Tuesday who will wait five hours. Not a tour, not a guide."),
- dict(when="When you can",sub="1 left",icon="book",tone="n",
-  head="Still to book",
-  line="Naire at 光圈CLUB, Sat 26 Sep. Showstart app, or chance it on the door."),
+ dict(when="Done",sub="nothing left",icon="ticket",tone="k",
+  head="Everything bookable is booked",
+  line="The Jianchuan car is asked for at the hotel desk, Huaqing is paid at the gate."),
 ]
 
 flights=dict(

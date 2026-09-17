@@ -116,7 +116,7 @@ hutong or on a train, which separate pages would not.
 | **Map** | One Leaflet map per city, lazy-loaded. Pin numbers match the Plan numbers. |
 | **Tickets** | Booking rows, filterable by status. Tap any reference to copy it. |
 | **Travel** | Hotels, trains, flights, before you fly — hotels first, because the address is the thing you need in a hurry. |
-| **Stories** | An index of all 90 stories. Tapping one opens the same sheet the Plan does. |
+| **Stories** | An index of all 83 stories. Tapping one opens the same sheet the Plan does. |
 
 A stop is a **compact row** on a phone (84px photo, slot, title, one-liner) and the same DOM
 becomes a **photo card** in a grid at ≥820px. Tapping a stop opens a **full-screen sheet** with
@@ -218,8 +218,8 @@ Mon 28 and Tue 29 Sep in Chengdu are the only clear days in the second half.
 
 Music reality, established from Showstart: fRUITYSPACE, School Bar and .TAG do not publish
 online at all (door/WeChat only). DDC is dark 19 Sep – 11 Oct. All four listed Chengdu venues
-are empty on 27–29 Sep. The best show in the fortnight is God Is An Astronaut at 疆进酒 OMNI
-SPACE on Wed 23 Sep, ¥320.
+are empty on 27–29 Sep. Both ticketed shows in the window — God Is An Astronaut and Naire —
+are dropped, so live music is door-only now and decided on the night.
 
 ---
 
@@ -240,7 +240,6 @@ the wall, then Sajinqiao, which was always the un-touristed version of the same 
 
 | What | When | Where | Who can do it |
 |---|---|---|---|
-| **Naire 奈热** ¥158 x4 | Sat 26 Sep, doors 20:00 | Showstart app, or pay on the door | Tarek decides |
 | **Jianchuan driver** | Tue 29 Sep, full day | Chengdu hotel desk | In person, on arrival |
 
 Also outstanding: the **Temple of Heaven QR code** has not arrived. It is the entry
@@ -266,15 +265,16 @@ mobile, and the eSIM is data only — so either keep Egyptian roaming alive for 
 the Trip.com in-app messages daily. A missed call on a private charter is a real problem.
 
 **Dropped on 17 Sep, do not reinstate:** God Is An Astronaut (an Irish touring band, and only
-ever the fallback if School Bar was dark), the Shaanxi History Museum (imperial bronzes, 90
+ever the fallback if School Bar was dark), Naire 奈热 at 光圈CLUB on 26 Sep — the last ticketed
+show, and the Aperture stop went with it — the Shaanxi History Museum (imperial bronzes, 90
 rushed minutes before the 11:35 train, and furthest of anything from the brief), Chen Mapo Tofu
 (the cooking class is that lunch, and no other day has a free lunch slot), Little Bar, Dongjiao
 Memory and .TAG.
 
 **The group splits on late nights.** Nora and May are not the late-night crowd. Tarek and Hamama
 are happy with a drink at any bar, which needs no planning and no stop on the page — so do not
-add club or late-gig stops for their sake. Naire on 26 Sep is the one exception worth keeping,
-because it is a proper regional act rather than somewhere to end up.
+add club or late-gig stops for their sake. No concert is booked at all now: what is left is
+door-only (School Bar, fRUITYSPACE), walked into on the night or skipped.
 
 **Booking state lives in one place: the `bookings` dict in `data.py`, rendered on the Tickets
 tab.** Do not start a side tracker in another file — a second source of truth is what caused
