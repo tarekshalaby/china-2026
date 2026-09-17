@@ -726,5 +726,26 @@
   "lng": 116.3907,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/East_entrance_of_Yandai_Xiejie_Street.jpg/960px-East_entrance_of_Yandai_Xiejie_Street.jpg",
   "imgpage": "https://commons.wikimedia.org/wiki/File:East_entrance_of_Yandai_Xiejie_Street.jpg"
+ },
+ "wenhuagong": {
+  "name": "Taimiao, the Working People's Cultural Palace, Beijing",
+  "lat": 39.91,
+  "lng": 116.3936,
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/The_Main_hall_of_Imperial_Ancestral_Temple.jpg/960px-The_Main_hall_of_Imperial_Ancestral_Temple.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:The_Main_hall_of_Imperial_Ancestral_Temple.jpg"
+ },
+ "qingshiqiao": {
+  "name": "A Chengdu produce market",
+  "lat": 30.6555,
+  "lng": 104.0693,
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/China_-_Chengdu_5_-_vegetable_market_%28135953962%29.jpg/960px-China_-_Chengdu_5_-_vegetable_market_%28135953962%29.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:China_-_Chengdu_5_-_vegetable_market_(135953962).jpg"
+ },
+ "jiaotong": {
+  "name": "Graffiti Street, Huangjueping, Jiulongpo, Chongqing",
+  "lat": 29.499,
+  "lng": 106.533,
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Grafitti_Street%2C_Tuyajie%2C_Jiulongpo%2C_Huangjueping%2C_Chongqing%2C_People%27s_Republic_of_China.jpg/960px-Grafitti_Street%2C_Tuyajie%2C_Jiulongpo%2C_Huangjueping%2C_Chongqing%2C_People%27s_Republic_of_China.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Grafitti_Street,_Tuyajie,_Jiulongpo,_Huangjueping,_Chongqing,_People%27s_Republic_of_China.jpg"
  }
 }
