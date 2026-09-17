@@ -240,9 +240,7 @@ the wall, then Sajinqiao, which was always the un-touristed version of the same 
 
 | What | When | Where | Who can do it |
 |---|---|---|---|
-| **God Is An Astronaut** ¥320 x4 | Wed 23 Sep, 20:00 | Showstart, at 疆进酒 OMNI SPACE | **Phone only** |
-| **Naire 奈热** ¥158 x4 | Sat 26 Sep, doors 20:00 | Showstart, at 光圈CLUB | **Phone only** |
-| **Shaanxi History Museum** free | Sun 27 Sep, optional | Museum WeChat account | **Phone only** |
+| **Naire 奈热** ¥158 x4 | Sat 26 Sep, doors 20:00 | Showstart app, or pay on the door | Tarek decides |
 | **Jianchuan driver** | Tue 29 Sep, full day | Chengdu hotel desk | In person, on arrival |
 
 Also outstanding: the **Temple of Heaven QR code** has not arrived. It is the entry
@@ -266,6 +264,17 @@ Notes that cost time to rediscover:
 the cuisine museum by 20:00 on the 27th. The number on file is +20 1142002004, an Egyptian
 mobile, and the eSIM is data only — so either keep Egyptian roaming alive for voice or watch
 the Trip.com in-app messages daily. A missed call on a private charter is a real problem.
+
+**Dropped on 17 Sep, do not reinstate:** God Is An Astronaut (an Irish touring band, and only
+ever the fallback if School Bar was dark), the Shaanxi History Museum (imperial bronzes, 90
+rushed minutes before the 11:35 train, and furthest of anything from the brief), Chen Mapo Tofu
+(the cooking class is that lunch, and no other day has a free lunch slot), Little Bar, Dongjiao
+Memory and .TAG.
+
+**The group splits on late nights.** Nora and May are not the late-night crowd. Tarek and Hamama
+are happy with a drink at any bar, which needs no planning and no stop on the page — so do not
+add club or late-gig stops for their sake. Naire on 26 Sep is the one exception worth keeping,
+because it is a proper regional act rather than somewhere to end up.
 
 **Booking state lives in one place: the `bookings` dict in `data.py`, rendered on the Tickets
 tab.** Do not start a side tracker in another file — a second source of truth is what caused

@@ -81,7 +81,7 @@ items=[
  "The artificial hill built from the palace moat\'s spoil. Locals come here to sing in choirs, dance and practise instruments in the evening; the last Ming emperor hanged himself on the slope in 1644 as a peasant army entered the city. Best view of the Forbidden City for no money.",False),
 ("sijiminfu","beijing",3,"Dinner","food","Siji Minfu 四季民福 (Peking duck)","The duck Beijingers queue for themselves. The Forbidden City branch is 10 min from Jingshan.","Nanchizi Dajie branch, on the palace moat. Take a ticket and wait; no reservations at peak. Order the duck, the mustard-root salad and the dried-tofu strips.",
  "Two ways to roast a duck in this city. Bianyifang, which claims 1416, seals the bird in a closed oven heated by the walls; Quanjude, founded in 1864, hangs it over an open fruitwood fire, and that is the version that became famous. Quanjude was nationalised after 1949, is now a state-owned chain, and today mostly sells the name to coach parties at three times the price of a better bird. Siji Minfu is where Beijingers went instead: a local chain doing a properly rendered duck, carved at the table, with a queue of families and office workers rather than tour groups. The Nanchizi branch looks out over the moat and the south-east corner tower of the palace. If the group wants one expensive night in Beijing, 1949 Duck de Chine in Sanlitun is the good version of that — but you are paying for the courtyard and the room, not for better duck.",False),
-("schoolbar","beijing",3,"Night","music","School Bar 学校酒吧","Beijing\'s punk dive. Wudaoying Hutong, 10 min from the hotel.","School doesn\'t sell through Showstart — the bill goes up on its WeChat account and on the door, cover ¥50–150. If it is empty, God Is An Astronaut play 疆进酒 OMNI SPACE the same night, 20:00, ¥320, and that is the best show in the fortnight.",
+("schoolbar","beijing",3,"Night","music","School Bar 学校酒吧","Beijing\'s punk dive. Wudaoying Hutong, 10 min from the hotel.","School doesn\'t sell through Showstart — the bill goes up on its WeChat account and on the door, cover ¥50–150.",
  "Co-founded by Liu Hao of the band Joyside, School Bar is the room where a generation of Chinese punk and garage bands played their first shows: sweaty, loud, cheap beer, a local crowd that shows up on weeknights. Beijing rock has been a protest form since Cui Jian\'s \'Nothing to My Name\' became the anthem of the 1989 square, and School is its dive-bar descendant.",False),
 
 ("wudaoying","beijing",4,"Morning","landmark","Wudaoying and Fangjia Hutong 五道营 · 方家胡同","Coffee, small shops and two alleys that survived. The last walk before the train.","Both are 15 min from the hotel and 10 min from each other. Cafés open around 09:00; leave for Beijing West by 11:15.",
@@ -122,8 +122,6 @@ items=[
 
 ("ziwulu","xian",3,"Breakfast","food","Ziwu Lu Zhang Ji 子午路张记肉夹馍","The roujiamo locals argue about. On the way south if you have time.","Slightly out of the way (south); skip if the train is tight.",
  "Roujiamo, braised pork chopped into a crisp flatbread, is Xi'an's sandwich and possibly the world's oldest. Zhang Ji on Ziwu Road is the shop Xi'an people name when asked for the best, and it's nowhere near a tourist.",False),
-("shaanximuseum","xian",3,"Morning (optional)","landmark","Shaanxi History Museum","For the group, if there's time before the train.","Free but timed, capped at 6,000 a day and nothing sold at the counter. Near Ziwu Lu, so pair it with the breakfast.",
- "The province's main museum: Zhou bronzes, Han tomb figures, Tang murals. The exhibit worth your time is the Han dynasty tomb figures of farmers, cooks and servants, the closest we have to portraits of the people who built all this.",False),
 ("xatrain","xian",3,"11:35","transit","Xi\'an North → Chengdu East","Train D1927, 2nd class, car 03. Arrives Chengdu East 15:03.","Xi\'an North is 30–40 min from the Bell Tower by metro. Leave by 10:00 — the gate is 22B and they want you there an hour ahead.","",False),
 
 # ---------- CHENGDU ----------
@@ -160,8 +158,6 @@ items=[
  "Cangying guanzi, 'fly restaurants', is Sichuan slang for the bare, cheap, brilliant places where the food outranks the décor. Ming Ting in Caojia Alley is the king of them: the pig-brain mapo tofu is the dish, the kidney and the stir-fried offal follow. Bring the whole group's appetite.",False),
 ("chengduspa","chengdu",2,"Evening","landmark","Massage in Chengdu 按摩","The city that made leisure a point of pride. Two hours of tuina, ¥150.","Ask the hotel for the nearest 盲人按摩 and book for four. Zuliao is the foot session with a herb soak; tuina is the deep one.",
  "Chengdu's reputation across China is for xianshi — taking your time, being unhurried, treating leisure as the point rather than the reward — and the massage trade sits alongside the teahouses and the ear-cleaners as part of that. This is the second of your two, and it lands on the right evening: the Jianchuan day is five hours of concentration and a long drive, and doing anything more demanding afterwards than lying face down is optimistic. Caiershi, the ear-cleaning you will have watched at Heming Teahouse, is a separate trade with its own tools and its own guild history, and costs about thirty yuan if anyone is brave.",False),
-("tag","chengdu",2,"Late night","music",".TAG","One of China's best-regarded underground electronic clubs.","Poly Centre; opens late. A club rather than a gig, so there is no bill to check and nothing to book — which makes it the right call in a week when nothing else in Chengdu is on.",
- ".TAG is a small, dark, musically serious club that put Chengdu on the electronic map, with local residents and international guests. If a band you want is at MAO Livehouse the same night, take that instead.",False),
 ("jinjiangtheatre","chengdu",2,"Alternative","music","Jinjiang Theatre 锦江剧场 (Sichuan opera)","Proper repertory Sichuan opera for locals. Not the face-changing tourist show.","Ask at Heming Teahouse what's on; performances are mostly afternoons and weekends.",
  "Sichuan opera is earthy, comic and acrobatic, and the tourist packages reduce it to twenty minutes of face-changing. The Jinjiang Theatre is the provincial company's own house, where full plays are staged for an audience of retirees who know every line. If the timing works, it beats any club.",False),
 
@@ -274,20 +270,14 @@ bookings={
   fine=["Left unbooked on purpose. After four or five hours at the tomb this is either the best twenty minutes of the day or one stop too many, and you will know which in the car.",
     "Fourteen kilometres from the tomb, twenty minutes’ drive."]),
 
- "aperture": dict(state="todo",pill="Showstart",when="Sat 26 Sep",clock="doors 20:00",
-  chips=[("n","¥158 each"),("w","App only"),("k","Best bill in Xi’an")],
-  line="奈热 Naire, Inner Mongolian folk-rock, at 西演SPACE · 光圈CLUB.",
+ "aperture": dict(state="todo",pill="App or door",when="Sat 26 Sep",clock="doors 20:00",
+  chips=[("n","¥158 presale"),("n","Dearer on the door"),("w","Mid-Autumn Saturday"),("k","Best bill in Xi’an")],
+  line="奈热 Naire, Inner Mongolian folk-rock, at 西演SPACE · 光圈CLUB. Walk up and pay, or presell on Showstart.",
   ref="",
-  fine=["Showstart 秀动, in the app, which needs a Chinese number or a WeChat login — so this is one to do together, and install it before you fly.",
-    "The Friday BikaBreezy show is the same venue at ¥228 and not as good. Support first, headliner rarely before 21:15.",
-    "Small shows are the one thing you cannot buy at the door once they sell out."]),
-
- "shaanximuseum": dict(state="todo",pill="Free, timed",when="Sun 27 Sep",clock="optional, before the train",
-  chips=[("k","Free"),("w","6,000 a day cap"),("w","Nothing at the counter")],
-  line="Book on the museum WeChat account five to seven days ahead. If it has gone, drop it.",
-  ref="",
-  fine=["Marked optional because the train is at 11:35. Do not rearrange the morning for it.",
-    "Near Ziwu Lu, so pair it with the breakfast."]),
+  fine=["Chinese live houses sell a cheaper 预售 presale through the app and a dearer 全票 on the door, usually ¥20–30 more. The door is only shut to you if the room has sold out.",
+    "Showstart 秀动 needs a Chinese number or a WeChat login, and that friction is the only reason to bother in advance.",
+    "26 September sits inside Mid-Autumn, so a holiday Saturday is the worst night of the trip to chance it on.",
+    "Support first; the headliner is rarely on before 21:15."]),
 
  "pandas": dict(state="booked",pill="Booked",when="Mon 28 Sep",clock="in by 07:30",
   chips=[("k","Paid US$32.76"),("n","¥55 each"),("k","No collection"),("k","Free cancellation")],
@@ -342,21 +332,21 @@ bands=[("Mid-Autumn","#8D6E63",7,10),("Golden Week","#C62828",13,16)]
 heroes={"beijing":"houhai","xian":"belltower","chengdu":"kuanzhai","chongqing":"nanshanbbq"}
 
 nextup=[
- dict(when="Now",sub="closes tonight",icon="ticket",tone="w",
-  head="Forbidden City, for Wed 23 Sep",
-  line="The 23rd is the last date the booking window covers. Afternoon session, four tickets."),
- dict(when="Now",sub="same day",icon="ticket",tone="w",
-  head="Tiananmen Square, for Wed 23 Sep",
-  line="Free, compulsory, one slot per passport. No walk-up."),
  dict(when="by Sat 19 Sep",sub="",icon="alert",tone="w",
   head="The Temple of Heaven QR should arrive",
   line="It is the entry method. Chase +86 186 1124 1332 if not."),
  dict(when="Mon 21 Sep",sub="by 22:00",icon="phone",tone="n",
   head="The Wall driver calls",
   line="Your chance to move the 09:00 pickup to 07:00."),
- dict(when="When you can",sub="6 left",icon="book",tone="n",
+ dict(when="Sun 27 Sep",sub="by 20:00",icon="phone",tone="n",
+  head="The cooking class calls",
+  line="On the Egyptian number. Watch the Trip.com messages if roaming is off."),
+ dict(when="Sun 27 Sep",sub="at the desk",icon="book",tone="n",
+  head="Ask Wenjun Courtyard for the Jianchuan car",
+  line="A driver for Tuesday who will wait five hours. Not a tour, not a guide."),
+ dict(when="When you can",sub="1 left",icon="book",tone="n",
   head="Still to book",
-  line="God Is An Astronaut \u00b7 Naire at Aperture \u00b7 Xi\u2019an food tour \u00b7 Cooking class \u00b7 Jianchuan driver \u00b7 Shaanxi museum."),
+  line="Naire at 光圈CLUB, Sat 26 Sep. Showstart app, or chance it on the door."),
 ]
 
 flights=dict(
