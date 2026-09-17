@@ -44,10 +44,11 @@ pip install playwright     # the browser itself is already at /opt/pw-browsers/c
 ```
 
 ```python
+import os
 from playwright.sync_api import sync_playwright
 with sync_playwright() as pw:
     b = pw.chromium.launch(executable_path="/opt/pw-browsers/chromium",
-                           proxy={"server": "http://127.0.0.1:45501"},   # for the photos
+                           proxy={"server": os.environ["HTTPS_PROXY"]},  # port changes per session
                            args=["--ignore-certificate-errors"])
     for w, h, tag in [(1440, 900, "desk"), (390, 844, "phone")]:
         pg = b.new_context(viewport={"width": w, "height": h}, is_mobile=(w < 820),
@@ -64,6 +65,12 @@ stop from the Plan, use the sheet's prev/next, press the browser back button, ta
 rail, filter the tickets, open the Taxi card and copy the address, switch to the Map and change
 city. Check the console is clean. The Map tab must not scroll: it is sized to the viewport by
 `sizeMap()` in JS, and the footer is hidden over it.
+
+**Assert what a tap should do, not what the code does.** A test that said
+`flying day -> flights` passed happily while tapping 19 Sep threw Tarek out of the Plan into
+the middle of another tab. The useful check is the property: tapping any rail chip leaves you
+in the Plan, on a day block whose date matches the chip, with its header just under the
+sticky bars. `railtest.py` walks all 15 chips and asserts exactly that.
 
 **A trap that has already bitten once:** `.tabs` must stay a *sibling* of `.appbar`, never a
 child. `backdrop-filter` on `.appbar` makes it a containing block, which pins the "fixed"
@@ -123,6 +130,13 @@ whichever day you last scrolled past.
 Routing is hash-based: `#/plan`, `#/map/chengdu`, `#/doc/panjiayuan`. Every old anchor
 (`#story-x`, `#ticket-x`, `#hotel-x`, `#day-city-n`, `#beijing`, `#prep`) still resolves, so
 links Tarek has already sent anyone keep working. The browser back button closes the sheet.
+
+**The day rail must never leave the Plan.** It has a chip per ribbon day, so the Plan must
+have a block for every one of those 15 days — including the two flying days, which are real
+blocks (`day-air-0`, `day-air-1`) carrying their flight legs, not a jump to the Travel tab.
+`FIRSTBLOCK` in `build.py` maps each date to the **first** block that renders for it, because
+24, 27 and 30 Sep each appear twice — you start those days in one city and end them in the
+next, and a chip that skipped to the arrival city skipped that last morning.
 
 ### Item tuple in `data.py`
 

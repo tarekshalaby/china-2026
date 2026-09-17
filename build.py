@@ -93,6 +93,42 @@ for _cid in days:
         _wd, _dn, _mo = _lbl.split()
         DAYKEY[(_cid, _dn, _mo)] = _di
 
+def isoof(dn, mo):
+    return f'2026-{MONTH[mo]}-{int(dn):02d}'
+
+# The two flying days are real days with real content, so they get real blocks in the Plan.
+# Without them the rail had 15 chips for 13 days and the odd two had to jump you to another
+# tab, which is disorienting. Every chip now scrolls within the Plan.
+AIR_ISO = [isoof(dn, mo) for cid, dn, mo in ribbon if cid == "air"]
+
+def seg_iso(datestr):
+    _wd, _dn, _mo = datestr.split()
+    return isoof(_dn, _mo)
+
+# A segment belongs to the last flying day that has already begun, so the overnight
+# Cairo-Doha-Beijing pair sits together under 19 Sep rather than splitting across two days.
+AIRSEGS = {a: [] for a in AIR_ISO}
+for _g in flights["segs"]:
+    _gi = seg_iso(_g["date"])
+    _owner = AIR_ISO[0]
+    for _a in AIR_ISO:
+        if _a <= _gi: _owner = _a
+    AIRSEGS[_owner].append(_g)
+
+# day blocks in the order the Plan renders them
+BLOCKS = [(AIR_ISO[0], "day-air-0")]
+for _c in cities:
+    for _di, (_lbl, _th) in enumerate(days[_c["id"]]):
+        _wd, _dn, _mo = _lbl.split()
+        BLOCKS.append((isoof(_dn, _mo), f'day-{_c["id"]}-{_di}'))
+BLOCKS.append((AIR_ISO[-1], "day-air-1"))
+
+# 24, 27 and 30 Sep each appear twice — you start the day in one city and end it in the
+# next. A chip must land on the first block for the date, or you skip that last morning.
+FIRSTBLOCK = {}
+for _iso, _bid in BLOCKS:
+    FIRSTBLOCK.setdefault(_iso, _bid)
+
 # stop order across the whole trip, for the sheet's prev/next
 ORDER = [it[0] for it in items if it[8]]
 NUMS = {}
@@ -240,6 +276,12 @@ body.mapview footer{display:none}
 .chead .quick{display:flex;gap:7px;margin-top:13px}
 .chead .quick button{color:#fff;background:rgba(0,0,0,.3);padding:0 13px;height:36px;border-radius:999px;
  font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.chead.air{background:var(--c)}
+.chead.air .in{padding:17px var(--gut) 15px}
+.chead.air h2{font-size:25px}
+.chead.air .csub{font-size:14.5px;margin-top:4px}
+.jumpbtn{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);border-radius:999px;
+ padding:0 15px;height:42px;font-size:13.5px;font-weight:700;margin:15px 0 4px}
 
 /* ---------------- days and stops ---------------- */
 .day{scroll-margin-top:calc(var(--stick) + 62px)}
@@ -451,6 +493,8 @@ footer{border-top:1px solid var(--line);margin-top:34px;padding:20px var(--gut) 
  .tod{max-width:1180px;margin:22px auto 0}
  .chead{border-radius:0;margin-top:52px}
  .chead .in{padding:44px var(--gut) 38px;max-width:1180px;margin:0 auto}
+ .chead.air .in{padding:26px var(--gut) 24px}
+ .chead.air h2{font-size:34px}
  .chead h2{font-size:60px}
  .chead .csub{font-size:19px}
  .chead .meta{font-size:14px;gap:8px}
@@ -510,6 +554,36 @@ footer{border-top:1px solid var(--line);margin-top:34px;padding:20px var(--gut) 
 """)
 w(sprite())
 
+def airday(idx, aiso, title, theme):
+    """A flying day, rendered in the Plan in the same shape as a city day."""
+    segs = AIRSEGS[aiso]
+    wd, dn, mo = segs[0]["date"].split()
+    stops = [segs[0]["an"].split(" \u00b7 ")[0]] + [g["bn"].split(" \u00b7 ")[0] for g in segs]
+    route = " \u2192 ".join(stops)
+    w('<div class="chead air" style="--c:#546E7A"><div class="in">')
+    w(f'<h2>{E(title)}</h2><div class="csub">{E(route)}</div>')
+    w(f'<div class="meta"><span>{ic("clock",13)}{wd} {dn} {mo}</span>'
+      f'<span>{ic("plane",13)}{len(segs)} flights</span>'
+      f'<span>{ic("alert",13)}No checked bag</span></div>')
+    w('</div></div><div class="wrap">')
+    w(f'<section class="day" id="day-air-{idx}" data-iso="{aiso}" style="--c:#546E7A">')
+    w(f'<div class="dayhd"><span class="wd">{wd}</span><span class="dn">{dn} {mo}</span>'
+      f'<span class="cnt">{len(segs)} flights</span><span class="th">{E(theme)}</span></div>')
+    w('<div class="legs">')
+    for g in segs:
+        w(f'<div class="leg"><div class="lno"><b>{E(g["no"])}</b><span>{E(g["date"])}</span></div>'
+          f'<div class="route">')
+        w(f'<div><div class="t">{E(g["at"])}</div><div class="c">{E(g["a"])}</div>'
+          f'<div class="n">{E(g["an"])}</div></div>')
+        w(f'<div class="mid"><i></i>{ic("plane",14)}<i></i></div>')
+        w(f'<div class="r"><div class="t">{E(g["bt"])}</div><div class="c">{E(g["b"])}</div>'
+          f'<div class="n">{E(g["bn"])}</div></div>')
+        w(f'</div><div class="ld">{E(g["dur"])} \u00b7 {E(g["note"])}</div></div>')
+    w('</div>')
+    w(f'<button type="button" class="jumpbtn" data-go="travel" data-anchor="flights">'
+      f'{ic("plane",16)}Booking codes and the small print</button>')
+    w('</section></div>')
+
 # ===================== chrome =====================
 TABS = [("plan", "cal", "Plan"), ("map", "map", "Map"), ("tickets", "ticket", "Tickets"),
         ("travel", "plane", "Travel"), ("stories", "book", "Stories")]
@@ -541,11 +615,9 @@ for label, col, a, b in bands:
     used = b
 if used <= 15: w(f'<span style="grid-row:1;grid-column:{used}/16"></span>')
 for cid, dn, mo in ribbon:
-    iso = f'2026-{MONTH[mo]}-{int(dn):02d}'
-    di = DAYKEY.get((cid, dn, mo))
-    tgt = f'day-{cid}-{di}' if di is not None else 'flights'
-    w(f'<button type="button" class="rd" style="--c:{CCOL[cid]}" data-day="{tgt}" data-iso="{iso}" '
-      f'data-city="{cid}"><b>{dn}</b><span>{mo}</span></button>')
+    iso = isoof(dn, mo)
+    w(f'<button type="button" class="rd" style="--c:{CCOL[cid]}" data-day="{FIRSTBLOCK[iso]}" '
+      f'data-iso="{iso}" data-city="{cid}"><b>{dn}</b><span>{mo}</span></button>')
 w('</div></div></div>')
 
 # countdown / today banner, filled in by JS
@@ -567,6 +639,10 @@ w('<div class="key">')
 for k, (kcol, kemoji, klab) in CAT.items():
     w(f'<span><span class="dot" style="background:{kcol}">{kemoji}</span>{klab}</span>')
 w('</div>')
+
+airday(0, AIR_ISO[0], "Getting there",
+       "Out of Cairo at " + flights["segs"][0]["at"] + ", and into Beijing at "
+       + AIRSEGS[AIR_ISO[0]][-1]["bt"] + " the next afternoon.")
 
 # city blocks
 for c in cities:
@@ -618,6 +694,9 @@ for c in cities:
         w('<p class="far">Off the edge of the map: '
           + " · ".join(f'<b>{NUMS[it[0]]}</b> {E(it[5])}' for it in fars) + '</p>')
     w('</div>')
+airday(1, AIR_ISO[-1], "Getting home",
+       "You leave the hotel at 22:30 on the 2nd. Wheels up at "
+       + AIRSEGS[AIR_ISO[-1]][0]["at"] + ", Cairo at " + AIRSEGS[AIR_ISO[-1]][-1]["bt"] + ".")
 w('</section>')
 
 # ===================== MAP =====================
@@ -853,8 +932,8 @@ for c in cities:
 caldays = []
 for cid, dn, mo in ribbon:
     di = DAYKEY.get((cid, dn, mo))
-    caldays.append(dict(iso=f'2026-{MONTH[mo]}-{int(dn):02d}', city=cid,
-                        target=(f'day-{cid}-{di}' if di is not None else None),
+    i = isoof(dn, mo)
+    caldays.append(dict(iso=i, city=cid, target=FIRSTBLOCK[i],
                         theme=(days[cid][di][1] if di is not None else "In the air"),
                         cityname=(CBY[cid]["name"] if cid in CBY else "In the air")))
 
@@ -1013,7 +1092,6 @@ document.addEventListener('click',function(e){
   const rd=t.closest('.rd');
   if(rd){e.preventDefault();
     const tgt=rd.dataset.day;
-    if(tgt==='flights'){nav('#/travel',{anchor:'flights'});return;}
     const el=document.getElementById(tgt);
     if(cur!=='plan'){nav('#/plan',{anchor:tgt});}
     else if(el){el.scrollIntoView({block:'start'});}
