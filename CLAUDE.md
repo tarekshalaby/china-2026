@@ -225,21 +225,26 @@ SPACE on Wed 23 Sep, ¥320.
 
 ## Still to book
 
-As of 17 Sep 2026. Everything else on the trip is booked and paid.
+As of 17 Sep 2026, evening. Everything else on the trip is booked and paid.
+
+Booked today: the **Forbidden City** (23 Sep afternoon, four standard, ¥240, no number
+issued — the passport is the ticket) and **Tiananmen Square** (23 Sep 06:03–12:00, free,
+checkpoint 广场东侧路北安检03, ref R260917210725076173). Both are in `bookings` in `data.py`
+and live on the Tickets tab.
 
 | What | When | Where | Who can do it |
 |---|---|---|---|
-| **Forbidden City** ¥60 x4 | Wed 23 Sep, afternoon | bookingticket.dpm.org.cn | Browser, Tarek's login |
-| **Tiananmen Square** free | Wed 23 Sep | yuyue.tap.com.cn / WeChat mini-program | Phone, likely WeChat only |
 | **God Is An Astronaut** ¥320 x4 | Wed 23 Sep, 20:00 | Showstart, at 疆进酒 OMNI SPACE | **Phone only** |
 | **Naire 奈热** ¥158 x4 | Sat 26 Sep, doors 20:00 | Showstart, at 光圈CLUB | **Phone only** |
 | **Xi'an food tour** | Thu 24 Sep, ask 19:00 | Lost Plate, direct | Browser + email |
-| **Sichuan Cuisine Museum** ¥360 x4 | Mon 28 Sep, 13:50–17:40 | Direct or Trip.com | Browser |
+| **Sichuan Cuisine Museum** ¥1,390 total | Mon 28 Sep, meet 12:50 | Trip.com, at checkout | Tarek pays |
 | **Shaanxi History Museum** free | Sun 27 Sep, optional | Museum WeChat account | **Phone only** |
 | **Jianchuan driver** | Tue 29 Sep, full day | Chengdu hotel desk | In person, on arrival |
 
 Also outstanding: the **Temple of Heaven QR code** has not arrived. It is the entry
-method for Mon 21 Sep. Chase +86 186 1124 1332.
+method for Mon 21 Sep. Chase +86 186 1124 1332. Checked again on 17 Sep — the inbox still
+holds only the 15 Sep confirmation, no voucher. The promised window is one to five days
+ahead, so this is not late yet; chase on the 19th if it is still missing.
 
 Notes that cost time to rediscover:
 
@@ -252,6 +257,17 @@ Notes that cost time to rediscover:
   normal UI.
 - Showstart needs a Chinese number or a WeChat login. No browser reaches it.
 - Tarek presses the pay button. Fill the forms, stop at checkout.
+
+**Suppliers phone the contact number the day before.** Mutianyu calls by 22:00 on the 21st,
+the cuisine museum by 20:00 on the 27th. The number on file is +20 1142002004, an Egyptian
+mobile, and the eSIM is data only — so either keep Egyptian roaming alive for voice or watch
+the Trip.com in-app messages daily. A missed call on a private charter is a real problem.
+
+**Booking state lives in one place: the `bookings` dict in `data.py`, rendered on the Tickets
+tab.** Do not start a side tracker in another file — a second source of truth is what caused
+a whole session to be spent reconstructing what was already booked. If a local folder looks
+empty or stale, it is not the repo: check `git remote -v`, and that a fetch refspec exists
+(`git config --get-all remote.origin.fetch`), before concluding anything is missing.
 
 Settled, do not raise again: checked baggage **is** included on all four Qatar segments
 (the confirmation PDFs are wrong, Manage Booking is the truth); seats are picked at
