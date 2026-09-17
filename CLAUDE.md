@@ -36,21 +36,39 @@ Tarek merging it by hand from his phone. This applies to every change, in every 
 
 ### Verify before pushing
 
-Render it and look at it. Chromium is available:
+Render it and look at it. Chromium is pre-installed but Playwright is not, and the browser is
+not where Playwright expects, so both have to be pointed at:
+
+```bash
+pip install playwright     # the browser itself is already at /opt/pw-browsers/chromium
+```
 
 ```python
 from playwright.sync_api import sync_playwright
 with sync_playwright() as pw:
-    b = pw.chromium.launch()
-    for w, tag in [(1440, "desk"), (414, "phone")]:
-        pg = b.new_page(viewport={"width": w, "height": 900})
-        pg.goto("file:///<repo>/index.html"); pg.wait_for_timeout(2500)
-        pg.add_style_tag(content="html{scroll-behavior:auto!important}")
-        pg.screenshot(path=f"/tmp/{tag}.png")
-        print(tag, pg.evaluate("document.documentElement.scrollWidth-window.innerWidth"))
+    b = pw.chromium.launch(executable_path="/opt/pw-browsers/chromium",
+                           proxy={"server": "http://127.0.0.1:45501"},   # for the photos
+                           args=["--ignore-certificate-errors"])
+    for w, h, tag in [(1440, 900, "desk"), (390, 844, "phone")]:
+        pg = b.new_context(viewport={"width": w, "height": h}, is_mobile=(w < 820),
+                           has_touch=(w < 820), ignore_https_errors=True).new_page()
+        pg.goto("file:///home/user/china-2026/index.html"); pg.wait_for_timeout(2500)
+        print(tag, pg.evaluate("document.documentElement.scrollWidth-window.innerWidth"),
+                   pg.evaluate("document.documentElement.scrollHeight"))
 ```
 
 Horizontal overflow must be 0 at both widths. Then actually read the screenshots.
+
+Because it is an app now, rendering is not enough — **click through it**. At minimum: open a
+stop from the Plan, use the sheet's prev/next, press the browser back button, tap a day in the
+rail, filter the tickets, open the Taxi card and copy the address, switch to the Map and change
+city. Check the console is clean. The Map tab must not scroll: it is sized to the viewport by
+`sizeMap()` in JS, and the footer is hidden over it.
+
+**A trap that has already bitten once:** `.tabs` must stay a *sibling* of `.appbar`, never a
+child. `backdrop-filter` on `.appbar` makes it a containing block, which pins the "fixed"
+bottom tab bar to the header instead of the viewport and silently breaks the whole phone
+layout.
 
 ---
 
@@ -80,13 +98,31 @@ alternative, then do what Tarek decides.
 
 ## Structure
 
-Three layers, linked both ways:
+**One file that behaves like an app.** `index.html` holds five views; only one is displayed at
+a time, and a fixed tab bar switches between them with no network round trip. That is
+deliberate: once the page has loaded at the hotel it keeps working when the signal drops in a
+hutong or on a train, which separate pages would not.
 
-1. **Day-by-day cards** per city — time slot, title, one-line what-it-is, one practical tip,
-   a status pill if there is a booking, and a "Read the story" link.
-2. **A Leaflet / OpenStreetMap map** per city. Card numbers match pin numbers.
-3. **Reference sections** at the bottom: Flights/trains/hotels, Tickets, Before you fly, and
-   the full stories.
+| Tab | What is in it |
+|---|---|
+| **Plan** | All 15 days in one scroll, grouped by city. Opens on today's real date during the trip. |
+| **Map** | One Leaflet map per city, lazy-loaded. Pin numbers match the Plan numbers. |
+| **Tickets** | Booking rows, filterable by status. Tap any reference to copy it. |
+| **Travel** | Hotels, trains, flights, before you fly — hotels first, because the address is the thing you need in a hurry. |
+| **Stories** | An index of all 90 stories. Tapping one opens the same sheet the Plan does. |
+
+A stop is a **compact row** on a phone (84px photo, slot, title, one-liner) and the same DOM
+becomes a **photo card** in a grid at ≥820px. Tapping a stop opens a **full-screen sheet** with
+the photo, the whole tip, the story, and prev/next arrows to read straight through. Stories are
+rendered **once**, into a hidden `#bank`; the sheet copies them in. Never render a story twice.
+
+A **Taxi** button in the top bar is on every screen: it opens the current city's hotel address
+in large Chinese, tap-to-copy, with the phone as a tap-to-call link. "Current city" follows
+whichever day you last scrolled past.
+
+Routing is hash-based: `#/plan`, `#/map/chengdu`, `#/doc/panjiayuan`. Every old anchor
+(`#story-x`, `#ticket-x`, `#hotel-x`, `#day-city-n`, `#beijing`, `#prep`) still resolves, so
+links Tarek has already sent anyone keep working. The browser back button closes the sheet.
 
 ### Item tuple in `data.py`
 
@@ -99,9 +135,9 @@ Three layers, linked both ways:
 
 City colours: Beijing #F9A825 · Xi'an #00897B · Chengdu #43A047 · Chongqing #3949AB
 
-**`build.py` numbers cards by iterating `items` in file order**, skipping `transit`. So a
-block's physical position in the file must match its day order, or card numbers stop matching
-map pins. When you move a stop between days, move the block too.
+**`build.py` numbers stops by iterating `items` in file order**, skipping `transit`. So a
+block's physical position in the file must match its day order, or the row numbers stop
+matching the map pins. When you move a stop between days, move the block too.
 
 Every stop needs: a Wikimedia Commons photo, coordinates, a Chinese name in the title, and a
 plain-English story with real dates and names. Fetch photos from the Commons API with a
@@ -121,12 +157,19 @@ Tarek's standing instruction: **no walls of text, visual wherever possible, noth
 - Reference rows are always three layers: **fact chips** you can scan, **one short sentence**,
   then the caveats folded into a `<details>` "small print". Never a paragraph in the open.
 - Chip tones: `k` settled/green, `w` needs attention/amber, `n` neutral fact.
-- Card tips render as their **first sentence only**; the story below shows the whole thing.
-- Icons are inline SVG from the `ICON` dict in `build.py`. No icon fonts, no external images.
-- City headers are a hero photo with the city colour as a gradient panel on the left.
-- The 15-day ribbon at the top carries the holiday bands. It replaces prose about dates.
-- Helvetica-like, white background, vibrant Material colours, generous spacing, works on a phone.
+- **Mobile first, literally.** The base CSS is the phone. `@media (min-width:820px)` is the
+  only real upgrade, and it moves the tab bar from the bottom of the screen to under the
+  title, and turns stop rows into photo cards. Never write a desktop rule and then undo it.
+- Stop rows show the one-liner, never the tip. The tip belongs in the sheet, in full.
+- Icons come from the `ICON` dict in `build.py` and are emitted **once** as a `<symbol>`
+  sprite; `ic()` writes a `<use>`. Inlining them cost 110KB and thousands of DOM nodes.
+- City headers are a hero photo with the city colour as a gradient panel.
+- The 15-day ribbon is now the **sticky day rail** at the top of Plan: it carries the holiday
+  bands, marks today with a dot, follows your scroll, and jumps you to any day in one tap.
+- Helvetica-like, white background, vibrant Material colours, generous spacing.
 - Avoid large red blocks — they read as errors.
+- Tap targets are 40px minimum. Anything you might need in a panic (the Chinese address, a
+  booking reference, the hotel phone) is one tap and copies or dials.
 
 ---
 
