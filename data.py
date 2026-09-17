@@ -94,8 +94,6 @@ items=[
 ("sajinqiao","xian",0,"Dinner","food","Sajinqiao street 洒金桥","The Muslim Quarter locals eat on. Same food as Beiyuanmen, none of the tourists.","Mutton paomo, roast meat skewers, persimmon cakes, cold noodles. Go after 19:00.",
  "Beiyuanmen, the famous strip behind the Drum Tower, is a tourist food court. Sajinqiao, a ten-minute walk west, is where the Hui families of the quarter actually eat: the same cumin-lamb skewers, yangrou paomo (flatbread torn into mutton broth), roujiamo and rose-syrup persimmon cakes, at family stalls with residents on the stools.",False),
 
-("xianfoodtour","xian",0,"Night","food","Food tour of the backstreets","Someone local doing the ordering on night one, in the lanes off the Muslim Quarter.","Lost Plate run an evening tuk-tuk tour through the backstreets, into courtyards you would not push a door on alone. Skip any tour that stays on Beiyuanmen.",
- "The value of a food tour here is not the food, it is the ordering. The good Hui stalls are in the lanes — Sajinqiao, Dapiyuan, Miaohou Street — where nothing is written in English, the queue moves fast and you get one shot at pointing. A guide who takes you off Beiyuanmen, the strip behind the Drum Tower that has turned into a food court for coach parties, earns their fee on the first night and leaves you able to navigate the rest of Xi'an on your own. The usual format is a small group moved between four or five family stalls by tuk-tuk, with beer. Check the operator is still running before you count on it.",False),
 ("hulatang","xian",1,"Breakfast","food","Hulatang 胡辣汤 on Sajinqiao","The working breakfast: peppery beef and vegetable stew with a flatbread torn into it.","Stalls run from about 06:30. This is the move both mornings — the same street you eat dinner on, completely different at dawn.",
  "Hulatang is the north's breakfast: a thick, black-pepper-hot broth with beef balls, potato, tofu skin and wood-ear fungus, ladled over torn flatbread and eaten standing up before work. Xi'an's Hui version is beefy and coarse; the Henan version you will see in photographs elsewhere is thinner and more starchy. Sajinqiao cooks it at family stalls for the neighbourhood rather than for anyone with a camera.",False),
 ("terracotta","xian",1,"Full day","landmark","Terracotta Army","Not the emperor: the 700,000 conscripts, the first peasant uprising, and the farmer who found it.","Didi both ways, about an hour each. Walk the pits backwards — 3, then 2, then 1 — and read the story below before you go, because no licensed guide will tell you who dug it.",
@@ -266,13 +264,6 @@ bookings={
     "Holding only a palace ticket you cannot reach the Meridian Gate from inside the square — come in off West Tongzi River Road, which is the direction you will be walking from lunch at Xidan anyway.",
     "The Treasure Gallery and the Gallery of Clocks are ¥10 a head each and can still be added as a separate order any time before the visit."]),
 
- "xianfoodtour": dict(state="todo",pill="Book ahead",when="Thu 24 Sep",clock="ask for 19:00",
-  chips=[("n","Lost Plate"),("n","Food and drink included"),("w","Not yet booked")],
-  line="The 19:00 start is the one that works with a 17:30 arrival. They collect from the hotel.",
-  ref="",
-  fine=["Book direct on Lost Plate’s own site and email them for the 19:00 rather than taking the default slot.",
-    "Skip any tour that stays on Beiyuanmen — that is the Muslim Quarter’s tourist spine, not where people eat."]),
-
  "terracotta": dict(state="booked",pill="Booked",when="Fri 25 Sep",clock="any time 08:30–17:00",
   chips=[("k","Paid ¥480"),("n","¥120 each"),("w","Collect at the window"),("n","+ ¥600 of taxis")],
   line="Collect at the ticket hall on the booking passport, then walk the pits backwards: 3, then 2, then 1.",
@@ -314,12 +305,14 @@ bookings={
     "Four e-tickets, one a head: <a href=\"https://t.trip.com/?hUaYkIr/RCQw\">one</a>, <a href=\"https://t.trip.com/?8xK6DqU/NCWg\">two</a>, <a href=\"https://t.trip.com/?BdZv5V4/FwbA\">three</a>, <a href=\"https://t.trip.com/?kUS7BhQ/dhdA\">four</a>. If a passport is not on you, the non-original-ID channel takes a photo of it instead.",
     "Free cancellation until 17:00 on 28 October, a month after the visit. But it cannot be bought after noon on the day, which is why it was paid now."]),
 
- "cuisinemuseum": dict(state="todo",pill="Book ahead",when="Mon 28 Sep",clock="13:50–17:40",
-  chips=[("n","¥360 each with the class"),("k","The class is lunch"),("w","Caps numbers")],
-  line="You grind the chilli, fold the dumplings, and eat what you made. Pidu District, an hour each way.",
-  ref="",
-  fine=["Book direct or through Trip.com; the class caps numbers, so not on the day.",
-    "The other session is 09:50–13:40, but the afternoon one is what fits after the pandas."]),
+ "cuisinemuseum": dict(state="booked",pill="Booked",when="Mon 28 Sep",clock="meet 12:50, class to 14:02",
+  chips=[("k","Paid ¥1,390"),("n","¥360 each"),("k","The class is lunch"),("k","Free cancellation")],
+  line="Meet at the museum in Pidu at 12:50. Passports and the booking phone number at the desk.",
+  ref="Trip.com 1658115212363279 · PIN 3338",
+  fine=["Three dishes — kung pao chicken, mapo tofu and panda steamed dumplings — with an English-speaking guide through the museum, and a certificate at the end.",
+    "This is lunch. Chen Mapo Tofu cannot also happen, and you will be making mapo tofu anyway.",
+    "Pidu District is an hour each way. Leave the pandas by 10:30 to make 12:50 comfortably.",
+    "Free cancellation until 20:00 on the 27th. A member of staff calls the contact number by then — that is the Egyptian mobile, so watch the Trip.com messages if roaming is off."]),
 
  "jianchuan": dict(state="todo",pill="Driver to book",when="Tue 29 Sep",clock="full day",
   chips=[("n","Entry at the gate"),("w","Driver not booked"),("n","1h15 each way")],

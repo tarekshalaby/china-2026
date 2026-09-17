@@ -228,16 +228,20 @@ SPACE on Wed 23 Sep, ¥320.
 As of 17 Sep 2026, evening. Everything else on the trip is booked and paid.
 
 Booked today: the **Forbidden City** (23 Sep afternoon, four standard, ¥240, no number
-issued — the passport is the ticket) and **Tiananmen Square** (23 Sep 06:03–12:00, free,
-checkpoint 广场东侧路北安检03, ref R260917210725076173). Both are in `bookings` in `data.py`
-and live on the Tickets tab.
+issued — the passport is the ticket), **Tiananmen Square** (23 Sep 06:03–12:00, free,
+checkpoint 广场东侧路北安检03, ref R260917210725076173) and the **Sichuan Cuisine Museum
+cooking class** (28 Sep, meet 12:50, three dishes, ¥1,390, Trip.com 1658115212363279 · PIN
+3338). All three are in `bookings` in `data.py` and live on the Tickets tab.
+
+**The Lost Plate Xi'an food tour is dropped** — Tarek does not want a tour aimed at foreigners,
+and the fixed 18:00 departure did not survive a 17:08 arrival at Xi'an North anyway. The stop
+is deleted, not deferred; do not reinstate it. Thursday night in Xi'an is the Bell Tower and
+the wall, then Sajinqiao, which was always the un-touristed version of the same food.
 
 | What | When | Where | Who can do it |
 |---|---|---|---|
 | **God Is An Astronaut** ¥320 x4 | Wed 23 Sep, 20:00 | Showstart, at 疆进酒 OMNI SPACE | **Phone only** |
 | **Naire 奈热** ¥158 x4 | Sat 26 Sep, doors 20:00 | Showstart, at 光圈CLUB | **Phone only** |
-| **Xi'an food tour** | Thu 24 Sep, ask 19:00 | Lost Plate, direct | Browser + email |
-| **Sichuan Cuisine Museum** ¥1,390 total | Mon 28 Sep, meet 12:50 | Trip.com, at checkout | Tarek pays |
 | **Shaanxi History Museum** free | Sun 27 Sep, optional | Museum WeChat account | **Phone only** |
 | **Jianchuan driver** | Tue 29 Sep, full day | Chengdu hotel desk | In person, on arrival |
 
