@@ -11,7 +11,8 @@
   "lat": 39.90612,
   "lng": 116.33151,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Platform_of_L1_Muxidi_Station_%2820230520154327%29.jpg/960px-Platform_of_L1_Muxidi_Station_%2820230520154327%29.jpg",
-  "imgpage": "https://commons.wikimedia.org/wiki/File:Platform_of_L1_Muxidi_Station_(20230520154327).jpg"
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Platform_of_L1_Muxidi_Station_(20230520154327).jpg",
+  "amap": "木樨地地铁站"
  },
  "xidan": {
   "name": "Xidan",
@@ -60,7 +61,8 @@
   "lat": 39.88434,
   "lng": 116.35841,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Niujie_Mosque_-_CIMG3716.JPG/960px-Niujie_Mosque_-_CIMG3716.JPG",
-  "imgpage": "https://commons.wikimedia.org/wiki/File:Niujie_Mosque_-_CIMG3716.JPG"
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Niujie_Mosque_-_CIMG3716.JPG",
+  "amap": "牛街礼拜寺"
  },
  "forbidden": {
   "name": "Forbidden City",
@@ -81,7 +83,8 @@
   "lat": 39.87991,
   "lng": 116.40287,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg/960px-Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg",
-  "imgpage": "https://commons.wikimedia.org/wiki/File:Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg"
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Beijing_China_Hall-of-Prayer-for-Good-Harvests-01.jpg",
+  "amap": "天坛公园"
  },
  "schoolbar": {
   "name": "School Bar",
@@ -109,7 +112,8 @@
   "lat": 39.94078,
   "lng": 116.37965,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Houhai_Lake_and_Drum_Tower_Beijing_2015_October.jpg/960px-Houhai_Lake_and_Drum_Tower_Beijing_2015_October.jpg",
-  "imgpage": "https://commons.wikimedia.org/wiki/File:Houhai_Lake_and_Drum_Tower_Beijing_2015_October.jpg"
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Houhai_Lake_and_Drum_Tower_Beijing_2015_October.jpg",
+  "amap": "东岸爵士"
  },
  "zhaodai": {
   "name": "Zhao Dai",
@@ -305,7 +309,8 @@
   "lat": 30.67064,
   "lng": 104.05164,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Dub_Joint_band_performing_live%3B_Caribbean_Club%2C_Kyiv_2022.jpg/960px-Dub_Joint_band_performing_live%3B_Caribbean_Club%2C_Kyiv_2022.jpg",
-  "imgpage": "https://commons.wikimedia.org/wiki/File:Dub_Joint_band_performing_live;_Caribbean_Club,_Kyiv_2022.jpg"
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Dub_Joint_band_performing_live;_Caribbean_Club,_Kyiv_2022.jpg",
+  "amap": "NU SPACE"
  },
  "maochengdu": {
   "name": "MAO Livehouse Chengdu",
@@ -424,14 +429,16 @@
   "lat": 29.552,
   "lng": 106.459,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Night_in_Chongqing_%2820250501%29.jpg/960px-Night_in_Chongqing_%2820250501%29.jpg",
-  "imgpage": "https://commons.wikimedia.org/wiki/File:Night_in_Chongqing_(20250501).jpg"
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Night_in_Chongqing_(20250501).jpg",
+  "amap": "坚果NUTS LIVE HOUSE"
  },
  "maocq": {
   "name": "MAO Livehouse Chongqing",
   "lat": 29.57,
   "lng": 106.55,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Live_rock_concert_featuring_musicians_playing_electric_guitars_on_stage_at_night_with_vibrant_lights_and_an_enthusiastic_crowd_present.jpg/960px-Live_rock_concert_featuring_musicians_playing_electric_guitars_on_stage_at_night_with_vibrant_lights_and_an_enthusiastic_crowd_present.jpg",
-  "imgpage": "https://commons.wikimedia.org/wiki/File:Live_rock_concert_featuring_musicians_playing_electric_guitars_on_stage_at_night_with_vibrant_lights_and_an_enthusiastic_crowd_present.jpg"
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Live_rock_concert_featuring_musicians_playing_electric_guitars_on_stage_at_night_with_vibrant_lights_and_an_enthusiastic_crowd_present.jpg",
+  "amap": "MAO Livehouse"
  },
  "xiaomian": {
   "name": "Xiaomian breakfast",
@@ -445,7 +452,8 @@
   "lat": 29.56528,
   "lng": 106.57713,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Hongyadong_night_lights_Chongqing.jpg/960px-Hongyadong_night_lights_Chongqing.jpg",
-  "imgpage": "https://commons.wikimedia.org/wiki/File:Hongyadong_night_lights_Chongqing.jpg"
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Hongyadong_night_lights_Chongqing.jpg",
+  "amap": "洪崖洞"
  },
  "ciqikou": {
   "name": "Ciqikou",
@@ -599,7 +607,8 @@
   "lat": 30.6325,
   "lng": 104.0545,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Intersection_of_Yulin_West_Road_and_Yulin_North_Road_20241007194803.jpg/960px-Intersection_of_Yulin_West_Road_and_Yulin_North_Road_20241007194803.jpg",
-  "imgpage": "https://commons.wikimedia.org/wiki/File:Intersection_of_Yulin_West_Road_and_Yulin_North_Road_20241007194803.jpg"
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Intersection_of_Yulin_West_Road_and_Yulin_North_Road_20241007194803.jpg",
+  "amap": "玉林西路"
  },
  "anren": {
   "name": "Anren town",
@@ -704,7 +713,8 @@
   "lat": 29.583,
   "lng": 106.443,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/The_People%27s_Great_Hall_of_Chongqing.jpg/960px-The_People%27s_Great_Hall_of_Chongqing.jpg",
-  "imgpage": "https://commons.wikimedia.org/wiki/File:The_People%27s_Great_Hall_of_Chongqing.jpg"
+  "imgpage": "https://commons.wikimedia.org/wiki/File:The_People%27s_Great_Hall_of_Chongqing.jpg",
+  "amap": "重庆1949大剧院"
  },
  "sanlitun": {
   "name": "Taikoo Li Sanlitun",

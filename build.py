@@ -2,6 +2,7 @@
 # Generator for the China 2026 site. Mobile first: five views, a fixed tab bar,
 # stops as rows that open a full-screen story sheet. One file, nothing reloads.
 import json, html, datetime, re
+from urllib.parse import urlencode
 from data import (cities, days, items, bookings, flights, trains, hotels, prep,
                   nextup, ribbon, bands, heroes)
 
@@ -47,6 +48,7 @@ ICON = {
  "left":'<path d="M15 5l-7 7 7 7"/>',
  "copy":'<rect x="8.5" y="8.5" width="12" height="12" rx="2.5"/><path d="M15.5 5.5h-9a2 2 0 0 0-2 2v9"/>',
  "up":'<path d="M12 19V5M5 12l7-7 7 7"/>',
+ "nav":'<path d="M3.4 11.2 20.6 4.1a.7.7 0 0 1 .9.9l-7.1 17.2a.7.7 0 0 1-1.3-.1l-2-6.6-6.6-2a.7.7 0 0 1-.1-1.3z"/>',
 }
 # Icons are defined once as a <symbol> sprite and referenced with <use>: 605 uses across
 # the page, so inlining each one costs ~110KB of markup and several thousand DOM nodes.
@@ -62,6 +64,44 @@ def ic(name, size=22, cls=""):
     c = f'i {cls}'.strip()
     return (f'<svg class="{c}" width="{size}" height="{size}" aria-hidden="true">'
             f'<use href="#i-{name}"/></svg>')
+
+# Getting directions in China is a coordinate-system trap. Amap draws on GCJ-02, the
+# mandated offset grid; our coordinates are WGS-84 from OpenStreetMap, so handing them to
+# Amap puts every pin 300-500m out. Converting is easy enough, but it does not help: an
+# audit of these 86 places found 26 stored coarsely enough to be 60-740m wrong at source,
+# and OpenStreetMap has no record at all for 13 of them (交通茶馆, 重庆工业博物馆,
+# 红卫兵墓园, MAO Livehouse). Fuzzy geocoding made it worse, not better — "足疗 西安市"
+# matched a foot massage shop in Toronto.
+#
+# So we are not the source of truth. The links search Amap's own POI database by Chinese
+# name, scoped to the city. Amap knows exactly where 交通茶馆 is; we do not. That also
+# handles chains properly: 南城香 has 160 branches, and a search sorts them by distance
+# from wherever you are standing, which a single pin never could.
+#
+# Everything on the site's own Leaflet map stays WGS-84, which is correct for OSM tiles.
+# The two systems never meet, which is the point.
+CITYCN = {"beijing": "北京市", "xian": "西安市", "chengdu": "成都市", "chongqing": "重庆市"}
+# Chinese characters and digits only: names like 大华1935 need the digits, but letting
+# Latin in drags trailing English into the query ("王府井 and St Joseph"). A title naming
+# two places splits into two runs here, and the longest one is what the stop is about.
+_CJK = re.compile(r'[\u4e00-\u9fff][\u4e00-\u9fff0-9]*')
+
+def amap_keyword(title):
+    """The Chinese name out of a title like 'Jiaotong Teahouse 交通茶馆 · 黄桷坪'.
+    Amap matches one POI at a time, so a title naming two places yields the longer name."""
+    hits = _CJK.findall(title or "")
+    return max(hits, key=len) if hits else (title or "").strip()
+
+def amap_url(keyword, city):
+    if not keyword: return ""
+    return "https://uri.amap.com/search?" + urlencode(
+        {"keyword": keyword, "city": CITYCN[city], "src": "china2026",
+         "coordinate": "gaode", "callnative": "1"})
+
+def amap_for(title, city, pid=None):
+    """places.json may carry an explicit "amap" term where the derived one is wrong."""
+    p = P.get(pid) if pid else None
+    return amap_url((p or {}).get("amap") or amap_keyword(title), city)
 
 def img(pid, cls=""):
     p = P.get(pid)
@@ -137,6 +177,8 @@ for _c in cities:
     for _it in items:
         if _it[1] != _c["id"] or _it[4] == "transit": continue
         _n += 1; NUMS[_it[0]] = _n
+
+HOTELCN = {h["city"]: h["addrcn"] for h in hotels}
 
 out = []; w = out.append
 
@@ -457,6 +499,10 @@ details.fine p{font-size:14.5px;margin:12px 0 0;max-width:66ch;line-height:1.56;
 .doc .dacts button{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);border-radius:999px;
  padding:0 14px;height:42px;font-size:13.5px;font-weight:700}
 .doc .dacts button.gate{background:var(--c);border-color:var(--c);color:#fff}
+.doc .dacts .amap{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--ink);
+ background:var(--ink);color:#fff;border-radius:999px;padding:0 15px;height:42px;
+ font-size:13.5px;font-weight:700;text-decoration:none}
+.addrblock .tel.go,.addrblock .tel.go svg{color:var(--ink)}
 .doc .story{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
 .doc .story p{margin:0 0 13px;font-size:16.5px;line-height:1.62;max-width:64ch}
 .doc .credit{font-size:11.5px;color:var(--muted);margin-top:14px}
@@ -775,6 +821,7 @@ for h in hotels:
       f'<em>{ic("copy",13)}<span>Show this to the driver · tap to copy</span></em></button>')
     w(f'<a class="tel" href="tel:{h["phone"].replace(" ","")}">{ic("phone",18)}{E(h["phone"])}'
       f'<em>Tap to call</em></a>')
+    w(f'<a class="tel go" href="{amap_url(h["addrcn"], h["city"])}" target="_blank" rel="noopener">{ic("nav",18)}Directions in Amap<em>Opens the app</em></a>')
     w('</div>')
     w('<div class="rlist">' + ''.join(
         f'<div><span class="rk">{E(what)}</span>{copyable(no + "  " + pin, "booking")}</div>'
@@ -884,6 +931,10 @@ for c in cities:
         if tip:
             w(f'<div class="dtip"><b>{ic("alert",13)}The practical bit</b>{E(tip)}</div>')
         w('<div class="dacts">')
+        _am = amap_for(title, cid, pid)
+        if _am:
+            w(f'<a class="amap" href="{_am}" target="_blank" rel="noopener">'
+              f'{ic("nav",16)}Directions in Amap</a>')
         if bk:
             w(f'<button type="button" class="gate" data-go="tickets" data-anchor="ticket-{pid}">'
               f'{ic("ticket",16)}{E(bk["pill"])} — see the ticket</button>')
@@ -908,6 +959,7 @@ for h in hotels:
     w(f'<div class="en">{E(h["addr"])}</div>')
     w(f'<a class="tel" href="tel:{h["phone"].replace(" ","")}">{ic("phone",18)}{E(h["phone"])}'
       f'<em>Tap to call</em></a>')
+    w(f'<a class="tel go" href="{amap_url(h["addrcn"], h["city"])}" target="_blank" rel="noopener">{ic("nav",18)}Directions in Amap<em>Opens the app</em></a>')
     w('</div>')
     w(f'<div class="dtip"><b>{ic("clock",13)}Check in and out</b>In {E(h["inn"])}. Out {E(h["out"])}.</div>')
     w('<div class="dacts">'
@@ -926,8 +978,10 @@ for c in cities:
         if it[1] != cid or it[4] == "transit": continue
         p = P[it[0]]
         pts.append(dict(n=NUMS[it[0]], lat=p["lat"], lng=p["lng"], title=it[5],
-                        day=days[cid][it[2]][0], slot=it[3], col=CAT[it[4]][0], far=it[9], id=it[0]))
-    mapdata[cid] = dict(pts=pts, hotel=hotelpins[cid], hname=c["hotel"])
+                        day=days[cid][it[2]][0], slot=it[3], col=CAT[it[4]][0], far=it[9], id=it[0],
+                        amap=amap_for(it[5], cid, it[0])))
+    mapdata[cid] = dict(pts=pts, hotel=hotelpins[cid], hname=c["hotel"],
+                        hamap=amap_url(HOTELCN[cid], cid))
 
 caldays = []
 for cid, dn, mo in ribbon:

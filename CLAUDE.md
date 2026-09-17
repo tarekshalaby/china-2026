@@ -131,6 +131,40 @@ Routing is hash-based: `#/plan`, `#/map/chengdu`, `#/doc/panjiayuan`. Every old 
 (`#story-x`, `#ticket-x`, `#hotel-x`, `#day-city-n`, `#beijing`, `#prep`) still resolves, so
 links Tarek has already sent anyone keep working. The browser back button closes the sheet.
 
+### Directions: never ship our own coordinates to Amap
+
+Every stop, hotel and taxi card has a **Directions in Amap** button. It is a keyword search
+against Amap's own POI database, scoped to the city — `uri.amap.com/search?keyword=…&city=…`
+— and it deliberately carries **no coordinates**. Three reasons, all found the hard way:
+
+1. **Coordinate systems.** Amap draws on GCJ-02, the mandated Chinese offset grid. Ours are
+   WGS-84 from OpenStreetMap and Wikimedia. Handing them over unconverted puts every pin
+   300–500m out. Converting is easy, and it is not enough.
+2. **Our coordinates are not metre-accurate and cannot be made so.** An audit of the 86
+   places found 26 stored coarsely enough to be 60–740m wrong at source. OpenStreetMap has
+   no record at all for 13 of them (交通茶馆, 重庆工业博物馆, 红卫兵墓园, MAO Livehouse), and
+   fuzzy geocoding made it worse: "足疗 西安市" matched a foot massage shop in Toronto,
+   "坚果 重庆市" a school in Japan. There is no open source of truth for Chinese POIs.
+3. **Venues move.** Nuts Livehouse relocated in 2026; our stored pin was still its 2009–2014
+   address in Shapingba, about 10km out. Amap's record tracks the move. A coordinate never
+   will.
+
+A search also handles chains correctly — 南城香 has 160 branches, and Amap sorts them by
+distance from wherever you are standing, which one pin never could.
+
+So the two coordinate systems never meet. The site's Leaflet map stays WGS-84, which is
+correct for OSM tiles and is for orientation. Navigation is Amap's job, by name.
+
+`build.py` derives the search term from the Chinese name in the title — Chinese characters
+and digits only, because letting Latin in drags trailing English into the query. Where the
+derived term is wrong or too vague, put an explicit `"amap"` field on that place in
+`places.json`; that is why `maocq` searches "MAO Livehouse" and `muxidi` searches
+"木樨地地铁站" rather than a 40km avenue. Terms like 足疗, 按摩 and 烤鱼 are left generic on
+purpose: those stops mean "find one near you".
+
+**Every stop needs its Chinese name in the title** — the brief already said so, and the
+directions button now depends on it.
+
 **The day rail must never leave the Plan.** It has a chip per ribbon day, so the Plan must
 have a block for every one of those 15 days — including the two flying days, which are real
 blocks (`day-air-0`, `day-air-1`) carrying their flight legs, not a jump to the Travel tab.
