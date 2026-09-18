@@ -89,7 +89,12 @@ Priorities, in order:
 2. **Live music** — underground, local, passionate crowds. Listings come from Showstart 秀动
    and venue WeChat accounts, never Western aggregators.
 3. **Working-class neighbourhoods**, and what gentrification and demolition did to them.
-4. **Food where locals actually eat.** Offal welcome.
+4. **Food where locals actually eat** — **but no offal.** Tarek does not want it: no intestine,
+   tripe, brain, kidney, lung, blood or head as the point of a dish. This overrides how good or
+   how local a place is, and it is why Ming Ting, the best-regarded restaurant that was ever on
+   this list, was dropped on 18 Sep. A market or a hotpot having offal on the menu is fine; a
+   dish or a card that leads with it is not. Do not propose 卤煮, 爆肚, 夫妻肺片 or
+   脑花 again.
 
 Not interested in: state-propaganda framing, folkloric tourist performances, tourist food
 streets, generic landmark tourism. Big landmarks that the visa itinerary requires stay on the
@@ -297,6 +302,11 @@ Notes that cost time to rediscover:
 the cuisine museum by 20:00 on the 27th. The number on file is +20 1142002004, an Egyptian
 mobile, and the eSIM is data only — so either keep Egyptian roaming alive for voice or watch
 the Trip.com in-app messages daily. A missed call on a private charter is a real problem.
+
+**Dropped on 18 Sep, do not reinstate:** Ming Ting 明婷饭店 — the pig-brain mapo tofu is the
+dish and Tarek will not eat it. Replaced by **Yutian 雨田饭店** on 红星路二段, opened 1985 by Lei
+Ailing with ¥400 and four tables, doing lotus-leaf steamed pork, red-braised pork and lotus-root
+soup at ¥40–60 a head.
 
 **Dropped on 17 Sep, do not reinstate:** God Is An Astronaut (an Irish touring band, and only
 ever the fallback if School Bar was dark), Naire 奈热 at 光圈CLUB on 26 Sep — the last ticketed
