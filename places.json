@@ -765,5 +765,13 @@
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/%E7%B2%89%E8%92%B8%E8%82%89.jpg/960px-%E7%B2%89%E8%92%B8%E8%82%89.jpg",
   "imgpage": "https://commons.wikimedia.org/wiki/File:%E7%B2%89%E8%92%B8%E8%82%89.jpg",
   "amap": "雨田饭店"
+ },
+ "huaiyangfu": {
+  "name": "Huaiyang Fu",
+  "lat": 39.9638,
+  "lng": 116.4016,
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/%E7%8B%AE%E5%AD%90%E6%A5%BC%E7%8B%AE%E5%AD%90%E5%A4%B4.jpg/960px-%E7%8B%AE%E5%AD%90%E6%A5%BC%E7%8B%AE%E5%AD%90%E5%A4%B4.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:%E7%8B%AE%E5%AD%90%E6%A5%BC%E7%8B%AE%E5%AD%90%E5%A4%B4.jpg",
+  "amap": "淮扬府 安定门"
  }
 }

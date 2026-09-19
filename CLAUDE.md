@@ -315,6 +315,7 @@ the wall, then Sajinqiao, which was always the un-touristed version of the same 
 
 | What | When | Where | Who can do it |
 |---|---|---|---|
+| **Huaiyang Fu dinner** | Sun 20 Sep, 19:30 | Message Manxin Mansion, who call 010 6426 5959 | Anyone, and it has to be today |
 | **Jianchuan driver** | Tue 29 Sep, full day | Chengdu hotel desk | In person, on arrival |
 
 Also outstanding: the **Temple of Heaven QR code** has not arrived. It is the entry
@@ -338,6 +339,28 @@ Notes that cost time to rediscover:
 the cuisine museum by 20:00 on the 27th. The number on file is +20 1142002004, an Egyptian
 mobile, and the eSIM is data only — so either keep Egyptian roaming alive for voice or watch
 the Trip.com in-app messages daily. A missed call on a private charter is a real problem.
+
+**Changed on 19 Sep: 20 Sep is Tarek's birthday.** The group wanted somewhere nice, so the
+arrival-day dinner is now **Huaiyang Fu 淮扬府** (Michelin one star, Andingmen branch,
+198 安定门外大街, ~¥200 a head, 15 min by taxi) and **Zhang Mama is dropped** — there was no
+free dinner slot left in Beijing to move it to. Say so once and move on: a starred restaurant
+is not "where locals actually eat", and it is his birthday.
+
+The fallback is written into the stop's own tip rather than added as a second stop, the way
+fRUITYSPACE carries Dorena: **Kaorouji 烤肉季** on Yinding Bridge, 1848, 13 minutes' walk,
+walk-ins, ask upstairs for the iron griddle and the tower view.
+
+Three things that decided it, so nobody re-litigates them:
+
+- **Da Dong would have been the pick** — one star, the upscale duck — but **23 Sep dinner is
+  already Peking duck** at Siji Minfu. Check the other days' dinners before proposing a
+  restaurant.
+- **Mei Mansion 梅府家宴 has closed.** It was the obvious courtyard answer on Houhai's south
+  bank, next to Prince Gong's Mansion; the brand moved to Shanghai as Salon Mei. Do not
+  propose it.
+- **No Michelin-starred restaurant is within walking distance of Gulou.** The nearest are
+  10–15 minutes by taxi: King's Joy 京兆尹 (two stars, vegetarian, Wudaoying), TRB Hutong
+  (one star, French, in Zhizhu Temple), Huaiyang Fu, Da Dong.
 
 **Dropped on 18 Sep, do not reinstate:** Ming Ting 明婷饭店 — the pig-brain mapo tofu is the
 dish and Tarek will not eat it. Replaced by **Yutian 雨田饭店** on 红星路二段, opened 1985 by Lei
