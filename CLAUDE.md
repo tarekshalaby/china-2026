@@ -318,10 +318,13 @@ the wall, then Sajinqiao, which was always the un-touristed version of the same 
 | **Huaiyang Fu dinner** | Sun 20 Sep, 19:30 | Message Manxin Mansion, who call 010 6426 5959 | Anyone, and it has to be today |
 | **Jianchuan driver** | Tue 29 Sep, full day | Chengdu hotel desk | In person, on arrival |
 
-Also outstanding: the **Temple of Heaven QR code** has not arrived. It is the entry
-method for Mon 21 Sep. Chase +86 186 1124 1332. Checked again on 17 Sep — the inbox still
-holds only the 15 Sep confirmation, no voucher. The promised window is one to five days
-ahead, so this is not late yet; chase on the 19th if it is still missing.
+**The Temple of Heaven QR codes arrived on 19 Sep** — four of them, one per person, in the
+Trip.com app's Attractions & Tours chat rather than by email, which is why the inbox stayed
+empty. Nothing is outstanding on Mon 21 Sep any more; do not re-raise the chase. Each code is
+issued against one passport, so all four passports still travel to the gate. The message also
+confirms the ticket is park admission only — Hall of Prayer, Echo Wall and Circular Mound
+Altar excluded — and that the “English guide” is a web audio tour, not a person. **The codes
+themselves, and the masked passport numbers printed beside each name, stay off the page.**
 
 Notes that cost time to rediscover:
 

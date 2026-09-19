@@ -35,7 +35,7 @@ items=[
 ("eastshore","beijing",0,"Night","music","East Shore Jazz Café 东岸","Serious jazz over the water, 5 min walk, first night.","Sets from about 21:30. Arrive early for a window seat.",
  "Founded by saxophonist Liu Yuan, who played in Cui Jian\'s original band, East Shore is where Beijing\'s jazz musicians play for each other. No cover, no tourist show, a view over Houhai. A soft landing for jet-lagged night one, and a direct link to the rock godfather whose song the 1989 students sang.",False),
 
-("tiantan","beijing",1,"Early morning","landmark","Temple of Heaven 天坛","Go before 09:30 for the retirees: opera, tai chi, cards, choirs. The building is secondary.","The halls are shut on Mondays, so this is a park day — which is where the point is anyway. Tiantandongmen metro to the east gate, ninety minutes, and the singing thins out after 10:30.",
+("tiantan","beijing",1,"Early morning","landmark","Temple of Heaven 天坛","Go before 09:30 for the retirees: opera, tai chi, cards, choirs. The building is secondary.","The halls are shut on Mondays, so this is a park day — which is where the point is anyway. Your own QR code is in the Trip.com app, and the passport it was issued against comes too. Tiantandongmen metro to the east gate, ninety minutes, and the singing thins out after 10:30.",
  "The imperial altar where emperors prayed for harvests is now the biggest public living room in Beijing. Every morning thousands of pensioners, many of them laid-off state workers of the 1990s, take over the cypress groves to sing, dance, play instruments and argue. It\'s the best hour of people-watching in the city, and it\'s free before the tour buses.",False),
 ("nanchengxiang","beijing",1,"Breakfast","food","Nanchengxiang 南城香","A three-yuan breakfast buffet, and the queue is the whole neighbourhood.","Branches all over the south of the city, including near the Temple of Heaven. Eat after the park at about 08:30, not before it.",
  "Nanchengxiang is a Beijing chain of around 160 shops that put on a three-yuan breakfast buffet — porridge, soy milk, eggs, pickles, as much as you want — and turned it into a small national story about deflation and about what people will get out of bed for. There is nothing picturesque about it. It is precisely where working Beijing eats before a shift, at a price that is essentially zero, and after a week of eating well it is a useful thing to have seen.",False),
@@ -222,13 +222,13 @@ items=[
 bookings={
 
  "tiantan": dict(state="booked",pill="Booked",when="Mon 21 Sep",clock="enter 08:00–12:00",
-  chips=[("k","Paid ¥60"),("n","¥15 each"),("k","No collection"),("k","Free cancellation")],
-  line="Passports at the east gate, Tiantandongmen metro. Arrive about 09:00, give it ninety minutes.",
+  chips=[("k","Paid ¥60"),("k","4 QR codes in hand"),("w","Passports as well"),("n","Park only")],
+  line="One QR code each at the east gate, Tiantandongmen metro. Arrive about 09:00, give it ninety minutes.",
   ref="Trip.com 1658115150429606 · PIN 3500",
-  fine=["The halls — Hall of Prayer, Imperial Vault, Echo Wall — are shut on Mondays, so this is a park day. That is where the point is anyway.",
-    "Trip.com email the actual QR code one to five days before the date, and the booking note makes that QR the entry method even though the redemption line says passport. Watch for it. Nothing by the 19th, call +86 186 1124 1332.",
-    "The confirmation also lists an English guide it never explains. Do not count on one.",
-    "If the QR still has not come, it is not a locked gate. Beijing's city parks reportedly dropped the advance-booking requirement on 22 August 2026, so the same ¥15 park ticket can be bought at any gate window on the day — worst case you pay the ¥60 twice, which is not worth losing a morning over. Entry is real-name either way, so the passports come regardless."]),
+  fine=["The four codes are in the Trip.com app, in the Attractions & Tours chat with the advisor — one per person, each one named. Save all four to the phone before you fly; the chat needs a signal to load them.",
+    "Each code is issued against one person\'s passport, so everybody carries their own and goes through as themselves.",
+    "The ticket is the ¥15 park admission only. The Hall of Prayer, the Echo Wall and the Circular Mound Altar are excluded from it — and shut on Mondays anyway, so this is a park day. That is where the point is.",
+    "The “English guide” on the confirmation turns out to be a web audio tour at audio.totripchina.com, not a person."]),
 
  "mutianyu": dict(state="booked",pill="Booked",when="Tue 22 Sep",clock="09:00 pickup",
   chips=[("k","Car, lifts, entry all paid"),("k","Door to door"),("w","All four together"),("n","10-hour charter")],
@@ -330,9 +330,6 @@ nextup=[
  dict(when="Sat 19 Sep",sub="before you fly",icon="phone",tone="w",
   head="Get Huaiyang Fu booked for tomorrow",
   line="Have the hotel call 010 6426 5959. Kaorouji is the walk-up if it fails."),
- dict(when="by Sat 19 Sep",sub="",icon="alert",tone="w",
-  head="The Temple of Heaven QR should arrive",
-  line="It is the entry method. Chase +86 186 1124 1332 if not."),
  dict(when="Mon 21 Sep",sub="by 22:00",icon="phone",tone="n",
   head="The Wall driver calls",
   line="Your chance to move the 09:00 pickup to 07:00."),
