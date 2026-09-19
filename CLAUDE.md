@@ -186,6 +186,19 @@ day block. A hero is about 250px tall, so between a city's header and its first 
 day-based answer still says the previous city — and that is the city the Taxi button was
 handing you. `spy()` tracks `.chead[data-city]` for that reason.
 
+**Jumps glide the last stretch, and only the last stretch.** `goTo()` in the JS hops to
+within a screen and a half of the target instantly, then smooth-scrolls the rest. Chrome
+caps a smooth scroll at about 780ms *whatever the distance*, so animating the 11,262px from
+Beijing to Chongqing is seventeen screens a second — a blur that orients nobody, and eighty
+photos repainted on the way (worst frame 47ms, against 21ms capped). A screen and a half is
+measured, not guessed: it is the gap between consecutive day blocks in 16 of 17 cases, so
+tapping the next day along stays smooth end to end. `prefers-reduced-motion` lands instantly,
+and a tab switch always does — the whole view changed, so there is no continuity to carry.
+
+`railtest.py` waits for the page to stop moving rather than for a fixed number of
+milliseconds. A fixed wait raced the 655ms animation and would have gone flaky on a slow
+phone before it ever failed here.
+
 **The day rail must never leave the Plan.** It has a chip per ribbon day, so the Plan must
 have a block for every one of those 15 days — including the two flying days, which are real
 blocks (`day-air-0`, `day-air-1`) carrying their flight legs, not a jump to the Travel tab.

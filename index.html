@@ -2405,6 +2405,26 @@ document.addEventListener('keydown',function(e){
   else if(e.key==='ArrowLeft'){step(-1);}
 });
 
+/* ---------- moving within the Plan ----------
+   Motion is worth having for the arrival and nothing else. Chrome caps a smooth scroll at
+   about 780ms whatever the distance, so gliding the 11,262px from Beijing to Chongqing is
+   seventeen screens a second -- a blur that orients nobody, and eighty photos repainted on
+   the way. So hop to within a screen and a half of the target instantly, then glide that
+   last stretch. A screen and a half is measured, not guessed: it is the gap between
+   consecutive day blocks in 16 of the 17 cases, so tapping the next day along is smooth end
+   to end, and only the long hauls arrive instead of flying.
+   A tab switch stays instant, because the whole view changed and there is nothing to carry. */
+function goTo(el){
+  if(!el)return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches){
+    el.scrollIntoView({block:'start'});return;}
+  const m=parseFloat(getComputedStyle(el).scrollMarginTop)||0;
+  const dest=el.getBoundingClientRect().top+window.scrollY-m;
+  const glide=Math.round(window.innerHeight*1.5), d=dest-window.scrollY;
+  if(Math.abs(d)>glide)window.scrollTo(0,dest-(d>0?glide:-glide));
+  el.scrollIntoView({block:'start',behavior:'smooth'});
+}
+
 /* ---------- one delegated click handler ---------- */
 function copyValue(el){
   const t=el.getAttribute('data-copy')||'';
@@ -2443,17 +2463,17 @@ document.addEventListener('click',function(e){
     const id=cj.dataset.cj, el=document.getElementById(id);
     curCity=id;
     if(cur!=='plan'){nav('#/plan',{anchor:id});}
-    else if(el){el.scrollIntoView({block:'start'});}
+    else{goTo(el);}
     return;}
   const rd=t.closest('.rd');
   if(rd){e.preventDefault();
     const tgt=rd.dataset.day;
     const el=document.getElementById(tgt);
     if(cur!=='plan'){nav('#/plan',{anchor:tgt});}
-    else if(el){el.scrollIntoView({block:'start'});}
+    else{goTo(el);}
     return;}
   const j=t.closest('.jumpto');
-  if(j){e.preventDefault();const el=document.getElementById(j.dataset.anchor);if(el)el.scrollIntoView({block:'start'});return;}
+  if(j){e.preventDefault();goTo(document.getElementById(j.dataset.anchor));return;}
   const mc=t.closest('.mapcity'); if(mc){e.preventDefault();selectMapCity(mc.dataset.city);
     history.replaceState({},'','#/map/'+mc.dataset.city);return;}
   const tk=t.closest('.tkf'); if(tk){e.preventDefault();filterTickets(tk);return;}

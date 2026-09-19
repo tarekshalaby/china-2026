@@ -2,6 +2,19 @@ import os, sys
 from playwright.sync_api import sync_playwright
 URL = sys.argv[1] if len(sys.argv)>1 else "file:///home/user/china-2026/China-Must-Do-List-Tarek.html"
 ok=fail=0
+SETTLE = """() => new Promise(done => {
+  // a jump now glides the last stretch, so wait for the page to stop moving rather than
+  // for a number of milliseconds: a fixed wait races the animation on a slow phone.
+  let prev = -1, still = 0;
+  const t0 = performance.now();
+  const tick = () => {
+    const y = Math.round(window.scrollY);
+    still = (y === prev) ? still + 1 : 0; prev = y;
+    if (still > 6 || performance.now() - t0 > 3000) done(true); else requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+})"""
+def settle(pg): pg.evaluate(SETTLE)
 def chk(l,g,wv):
     global ok,fail
     if g==wv: ok+=1
@@ -17,7 +30,7 @@ with sync_playwright() as pw:
     print(f"{len(isos)} chips in the rail")
     for i in isos:
         pg.click(".tabs button[data-tab='plan']"); pg.wait_for_timeout(250)
-        pg.click(f".rd[data-iso='{i}']"); pg.wait_for_timeout(700)
+        pg.click(f".rd[data-iso='{i}']"); settle(pg)
         r=pg.evaluate("""(iso)=>{
           const view=[...document.querySelectorAll('.view')].find(v=>v.classList.contains('on')).id;
           const chip=document.querySelector(`.rd[data-iso="${iso}"]`);
@@ -50,8 +63,8 @@ with sync_playwright() as pw:
         # start from somewhere else every time, so a pass cannot mean "was already there"
         pg.click(".tabs button[data-tab='stories']"); pg.wait_for_timeout(250)
         pg.click(".tabs button[data-tab='plan']"); pg.wait_for_timeout(250)
-        pg.evaluate("window.scrollTo(0,0)"); pg.wait_for_timeout(300)
-        pg.click(f".cj[data-cj='{cid}']"); pg.wait_for_timeout(800)
+        pg.evaluate("window.scrollTo(0,0)"); settle(pg)
+        pg.click(f".cj[data-cj='{cid}']"); settle(pg)
         r=pg.evaluate("""(cid)=>{
           const view=[...document.querySelectorAll('.view')].find(v=>v.classList.contains('on')).id;
           const bar=document.querySelector('#v-plan .sub').getBoundingClientRect().bottom;
@@ -67,5 +80,29 @@ with sync_playwright() as pw:
             bool(r["bar"]-24 < r["heroTop"] < r["bar"]+24), True)
         chk(f"{cid} first day on screen is that city's", r["landedCity"], cid)
         chk(f"{cid} is the only lit button", r["lit"], [cid])
+    # a long jump must not animate the whole way, and reduced motion must not animate at all
+    pg.evaluate("window.scrollTo(0,0)"); settle(pg)
+    # where the page sits the instant the click returns is the end of the instant hop;
+    # everything after that is the animation, and that is what must stay bounded.
+    afterHop=pg.evaluate("""()=>{
+      document.querySelector('.cj[data-cj="chongqing"]').click();
+      return Math.round(window.scrollY);}""")
+    settle(pg)
+    glide=abs(pg.evaluate("Math.round(window.scrollY)")-afterHop)
+    chk("a long jump animates at most a screen and a half", bool(glide <= round(844*1.5)+2), True)
+    chk("...and still animates: it is a glide, not a teleport", bool(glide > 200), True)
+
+    c2=b.new_context(viewport={"width":390,"height":844},is_mobile=True,has_touch=True,
+                     ignore_https_errors=True,reduced_motion="reduce")
+    p2=c2.new_page(); p2.goto(URL); p2.wait_for_timeout(3000)
+    p2.evaluate("window.scrollTo(0,0)"); settle(p2)
+    moved=p2.evaluate("""()=>{const y=window.scrollY;
+      document.querySelector('.cj[data-cj="chongqing"]').click();
+      return Math.round(window.scrollY)-y;}""")
+    chk("reduced motion lands in one frame, no animation", bool(abs(moved) > 9000), True)
+    settle(p2)
+    chk("reduced motion still lands on Chongqing",
+        p2.evaluate("[...document.querySelectorAll('.cj.here')].map(x=>x.dataset.cj)"), ["chongqing"])
+
     print(f"\n{ok} passed, {fail} failed, JS errors: {errs[:4] if errs else 'none'}")
     b.close()
