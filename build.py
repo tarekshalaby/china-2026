@@ -169,6 +169,29 @@ FIRSTBLOCK = {}
 for _iso, _bid in BLOCKS:
     FIRSTBLOCK.setdefault(_iso, _bid)
 
+# A band is written as grid columns a..b, and column n is ribbon day n-1. The bands used to
+# be their own row above the day chips; they are now a cap on the chips themselves, which
+# is where the row the city buttons needed came from.
+HOL = {}
+for _lbl, _col, _a, _b in bands:
+    for _i in range(_a - 1, _b - 1):
+        HOL[_i] = (_lbl, _col)
+
+# ...and the name the rail no longer carries goes on the city header, narrowed to the days
+# you are actually in that city: "Mid-Autumn 25-26 Sep" on Xi'an, "27 Sep" on Chengdu.
+CITYHOL = {}
+for _i, (_cid, _dn, _mo) in enumerate(ribbon):
+    if _i in HOL and _cid != "air":
+        CITYHOL.setdefault(_cid, {}).setdefault(HOL[_i][0], []).append((_dn, _mo))
+def holchips(cid):
+    out = []
+    for _lbl, _ds in CITYHOL.get(cid, {}).items():
+        (_d0, _m0), (_d1, _m1) = _ds[0], _ds[-1]
+        span = f'{_d0} {_m0}' if _ds[0] == _ds[-1] else (
+               f'{_d0}\u2013{_d1} {_m1}' if _m0 == _m1 else f'{_d0} {_m0} \u2013 {_d1} {_m1}')
+        out.append(f'{_lbl} {span}')
+    return out
+
 # stop order across the whole trip, for the sheet's prev/next
 ORDER = [it[0] for it in items if it[8]]
 NUMS = {}
@@ -260,19 +283,31 @@ body.mapview footer{display:none}
 .seg .sd{width:9px;height:9px;border-radius:50%;background:var(--c);flex:none}
 .seg[aria-pressed=true] .sd,.seg.on .sd{box-shadow:0 0 0 2px rgba(255,255,255,.55)}
 
+/* city jump. Four buttons, no sideways scroll: every city is one tap from anywhere in
+   the Plan. It sits where the holiday bands used to, so the rail is no taller than before. */
+.crow{display:flex;gap:5px;padding:6px var(--gut) 0}
+.crow button{flex:1 1 auto;min-width:0;height:30px;border-radius:9px;display:flex;align-items:center;
+ justify-content:center;gap:6px;font-size:12px;font-weight:800;letter-spacing:-.02em;color:var(--muted);
+ background:var(--soft);white-space:nowrap;overflow:hidden}
+.crow button i{width:8px;height:8px;border-radius:50%;background:var(--c);flex:none}
+.crow button.here{background:var(--c);color:#fff}
+.crow button.here i{background:rgba(255,255,255,.9)}
+.crow button:active{transform:scale(.97)}
+
 /* day rail */
-.rail{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:8px var(--gut) 10px}
+.rail{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px var(--gut) 7px}
 .rail::-webkit-scrollbar{display:none}
 .railin{display:grid;grid-template-columns:repeat(15,46px);gap:4px}
-.rband{grid-row:1;height:15px;border-radius:5px;color:#fff;font-size:9.5px;font-weight:800;
- display:flex;align-items:center;justify-content:center;letter-spacing:.01em;overflow:hidden;white-space:nowrap}
-.rd{grid-row:2;background:var(--c);color:#fff;border-radius:10px;padding:6px 2px 5px;text-align:center;
+.rd{background:var(--c);color:#fff;border-radius:10px;padding:5px 2px 4px;text-align:center;
  line-height:1.05;display:block;width:46px;position:relative}
 .rd b{display:block;font-size:16px;font-weight:800;letter-spacing:-.03em}
 .rd span{display:block;font-size:8.5px;text-transform:uppercase;letter-spacing:.05em;opacity:.92}
+/* a holiday is a cap across the top of the days it covers, named on the city header */
+.rd.hol:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--h);
+ border-radius:10px 10px 0 0}
 .rd.here{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ink)}
 .rd.past{opacity:.4}
-.rd .tdot{position:absolute;left:50%;bottom:-7px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;
+.rd .tdot{position:absolute;left:50%;bottom:-6px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;
  background:var(--ink)}
 
 /* ---------------- the "needs you" strip ---------------- */
@@ -286,11 +321,6 @@ body.mapview footer{display:none}
 .nu .nw em{font-style:normal;opacity:.6;letter-spacing:.03em}
 .nu .nh{display:block;font-size:16px;font-weight:700;line-height:1.25;letter-spacing:-.015em;margin:5px 0 3px}
 .nu .nl{display:block;font-size:13.5px;color:var(--muted);line-height:1.4}
-.key{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;padding:15px var(--gut) 3px;
- -webkit-overflow-scrolling:touch}
-.key::-webkit-scrollbar{display:none}
-.key span{flex:none;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);white-space:nowrap}
-.key .dot{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:11px}
 .striphd{display:flex;align-items:baseline;gap:9px;padding:20px var(--gut) 0}
 .striphd h3{font-size:14px;margin:0;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
 .striphd .cnt{font-size:12px;font-weight:800;color:#C62828}
@@ -304,7 +334,7 @@ body.mapview footer{display:none}
 
 /* ---------------- city header ---------------- */
 .chead{position:relative;overflow:hidden;background:var(--c);color:#fff;margin-top:30px;
- scroll-margin-top:calc(var(--stick) + 62px)}
+ scroll-margin-top:calc(var(--stick) + 69px)}
 .chead .hero{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .chead .tint{position:absolute;inset:0;
  background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.34) 100%),var(--g)}
@@ -313,6 +343,7 @@ body.mapview footer{display:none}
  text-shadow:0 2px 16px rgba(0,0,0,.3)}
 .chead .csub{font-size:15px;margin-top:6px;max-width:30ch;text-shadow:0 1px 9px rgba(0,0,0,.35);opacity:.97}
 .chead .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px;font-size:12.5px}
+.chead .meta span.hol{background:rgba(0,0,0,.45);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.5)}
 .chead .meta span{background:rgba(0,0,0,.28);padding:5px 10px;border-radius:999px;display:inline-flex;
  align-items:center;gap:5px}
 .chead .quick{display:flex;gap:7px;margin-top:13px}
@@ -326,7 +357,7 @@ body.mapview footer{display:none}
  padding:0 15px;height:42px;font-size:13.5px;font-weight:700;margin:15px 0 4px}
 
 /* ---------------- days and stops ---------------- */
-.day{scroll-margin-top:calc(var(--stick) + 62px)}
+.day{scroll-margin-top:calc(var(--stick) + 69px)}
 .dayhd{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;padding:22px 0 8px}
 .dayhd .dn{font-size:27px;font-weight:800;letter-spacing:-.035em;line-height:1}
 .dayhd .wd{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.07em}
@@ -526,7 +557,9 @@ footer{border-top:1px solid var(--line);margin-top:34px;padding:20px var(--gut) 
  .tabs button[aria-selected=true]{background:var(--ink);color:#fff}
  .tabs button[aria-selected=true]:before{display:none}
  .tabs .bub{position:static;margin-left:2px}
- .sub .scroller,.sub .rail{max-width:1180px;margin:0 auto}
+ .sub .scroller,.sub .rail,.sub .crow{max-width:1180px;margin:0 auto}
+ .crow{padding-top:9px;gap:7px}
+ .crow button{flex:0 0 auto;padding:0 16px;height:32px;font-size:13.5px;border-radius:999px}
  .railin{grid-template-columns:repeat(15,1fr);gap:6px;width:100%;max-width:820px}
  .rd{width:auto}
  .rd b{font-size:19px}
@@ -534,8 +567,7 @@ footer{border-top:1px solid var(--line);margin-top:34px;padding:20px var(--gut) 
  .nowstrip{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));
   overflow:visible;padding-top:22px}
  .nu{width:auto;max-width:none}
- .striphd,.key{max-width:1180px;margin:0 auto}
- .key{padding-top:20px;flex-wrap:wrap}
+ .striphd{max-width:1180px;margin:0 auto}
  .tod{max-width:1180px;margin:22px auto 0}
  .chead{border-radius:0;margin-top:52px}
  .chead .in{padding:44px var(--gut) 38px;max-width:1180px;margin:0 auto}
@@ -606,7 +638,7 @@ def airday(idx, aiso, title, theme):
     wd, dn, mo = segs[0]["date"].split()
     stops = [segs[0]["an"].split(" \u00b7 ")[0]] + [g["bn"].split(" \u00b7 ")[0] for g in segs]
     route = " \u2192 ".join(stops)
-    w('<div class="chead air" style="--c:#546E7A"><div class="in">')
+    w('<div class="chead air" data-city="air" style="--c:#546E7A"><div class="in">')
     w(f'<h2>{E(title)}</h2><div class="csub">{E(route)}</div>')
     w(f'<div class="meta"><span>{ic("clock",13)}{wd} {dn} {mo}</span>'
       f'<span>{ic("plane",13)}{len(segs)} flights</span>'
@@ -652,18 +684,20 @@ w('</div></nav><main>')
 # ===================== PLAN =====================
 w('<section class="view" id="v-plan" role="tabpanel" aria-label="Plan">')
 
-# sticky day rail
-w('<div class="sub"><div class="rail"><div class="railin">')
-used = 1
-for label, col, a, b in bands:
-    if a > used: w(f'<span style="grid-row:1;grid-column:{used}/{a}"></span>')
-    w(f'<span class="rband" style="grid-column:{a}/{b};background:{col}">{E(label)}</span>')
-    used = b
-if used <= 15: w(f'<span style="grid-row:1;grid-column:{used}/16"></span>')
-for cid, dn, mo in ribbon:
+# sticky city jump, then the sticky day rail
+w('<div class="sub"><div class="crow">')
+for c in cities:
+    w(f'<button type="button" class="cj" data-cj="{c["id"]}" style="--c:{c["color"]}">'
+      f'<i></i>{E(c["name"])}</button>')
+w('</div><div class="rail"><div class="railin">')
+for idx, (cid, dn, mo) in enumerate(ribbon):
     iso = isoof(dn, mo)
-    w(f'<button type="button" class="rd" style="--c:{CCOL[cid]}" data-day="{FIRSTBLOCK[iso]}" '
-      f'data-iso="{iso}" data-city="{cid}"><b>{dn}</b><span>{mo}</span></button>')
+    hol = HOL.get(idx)
+    stl = f'--c:{CCOL[cid]}' + (f';--h:{hol[1]}' if hol else '')
+    ttl = f' title="{E(hol[0])}"' if hol else ''
+    w(f'<button type="button" class="rd{" hol" if hol else ""}" style="{stl}" '
+      f'data-day="{FIRSTBLOCK[iso]}" data-iso="{iso}" data-city="{cid}"{ttl}>'
+      f'<b>{dn}</b><span>{mo}</span></button>')
 w('</div></div></div>')
 
 # countdown / today banner, filled in by JS
@@ -671,19 +705,16 @@ w(f'<div class="tod" id="todbar" hidden><span class="tdi">{ic("cal",21)}</span><
   f'<span id="todl"></span></div></div>')
 
 # the things that still need doing
-w(f'<div class="striphd"><h3>Needs you</h3><span class="cnt">{len(nextup)}</span></div>')
+# the count is what is still open, not how many cards there are: the settled card says
+# "nothing left", and counting it made the red number claim one more job than exists
+open_n = sum(1 for n in nextup if n["tone"] != "k")
+w(f'<div class="striphd"><h3>Needs you</h3><span class="cnt">{open_n}</span></div>')
 w('<div class="nowstrip">')
 for n in nextup:
     t = TONE[n["tone"]]
     sub = f' <em>{E(n["sub"])}</em>' if n["sub"] else ''
     w(f'<div class="nu" style="--t:{t}"><span class="nw">{ic(n["icon"],15)}{E(n["when"])}{sub}</span>'
       f'<b class="nh">{E(n["head"])}</b><span class="nl">{E(n["line"])}</span></div>')
-w('</div>')
-
-# the category key, one scrollable line
-w('<div class="key">')
-for k, (kcol, kemoji, klab) in CAT.items():
-    w(f'<span><span class="dot" style="background:{kcol}">{kemoji}</span>{klab}</span>')
 w('</div>')
 
 airday(0, AIR_ISO[0], "Getting there",
@@ -695,13 +726,15 @@ for c in cities:
     cid = c["id"]; col = c["color"]
     citems = [it for it in items if it[1] == cid]
     g = (f'linear-gradient(100deg,{rgba(col,.95)} 0%,{rgba(col,.8)} 44%,{rgba(col,.25)} 78%,{rgba(col,0)} 100%)')
-    w(f'<div class="chead" id="{cid}" style="--c:{col};--g:{g}">')
+    w(f'<div class="chead" id="{cid}" data-city="{cid}" style="--c:{col};--g:{g}">')
     w(img(heroes[cid], "hero")); w('<div class="tint"></div>')
     w('<div class="in">')
     w(f'<h2>{E(c["name"])}</h2><div class="csub">{E(c["sub"])}</div>')
     w(f'<div class="meta"><span>{ic("clock",13)}{E(c["dates"])}</span>'
       f'<span>{ic("bed",13)}{E(c["hotel"].split(",")[0])}</span>'
-      f'<span>{ic("pin",13)}{c["nights"]} nights</span></div>')
+      f'<span>{ic("pin",13)}{c["nights"]} nights</span>'
+      + "".join(f'<span class="hol">{ic("alert",13)}{E(h)}</span>' for h in holchips(cid))
+      + '</div>')
     w(f'<div class="quick"><button type="button" data-go="map" data-city="{cid}">{ic("map",15)}Map</button>'
       f'<button type="button" data-go="travel" data-anchor="hotel-{cid}">{ic("bed",15)}Hotel</button>'
       f'<button type="button" data-taxi="{cid}">{ic("taxi",15)}Taxi card</button></div>')
@@ -1143,6 +1176,13 @@ document.addEventListener('click',function(e){
     nav('#/'+d+(d==='map'?'/'+curCity:''),{anchor:go.dataset.anchor||null});
     return;}
   const dc=t.closest('[data-doc]'); if(dc){e.preventDefault();nav('#/doc/'+dc.dataset.doc);return;}
+  const cj=t.closest('[data-cj]');
+  if(cj){e.preventDefault();
+    const id=cj.dataset.cj, el=document.getElementById(id);
+    curCity=id;
+    if(cur!=='plan'){nav('#/plan',{anchor:id});}
+    else if(el){el.scrollIntoView({block:'start'});}
+    return;}
   const rd=t.closest('.rd');
   if(rd){e.preventDefault();
     const tgt=rd.dataset.day;
@@ -1182,18 +1222,28 @@ function filterStories(btn){
 }
 
 /* ---------- the day rail follows where you are ---------- */
-const dayEls=$$('#v-plan .day'), railChips=$$('#v-plan .rd');
-let ticking=false, lastHere=null;
+const dayEls=$$('#v-plan .day'), railChips=$$('#v-plan .rd'), cjBtns=$$('#v-plan .cj'),
+      cityMarks=$$('#v-plan .chead');
+let ticking=false, lastHere=null, lastCity=null;
 function spy(){
   if(cur!=='plan')return;
   const line=stickBottom()+72;
+  /* Which city you are in is the last city header you have scrolled past, not the last day
+     block: a hero is ~250px tall, so between the header and its first day the day-based
+     answer is still the previous city -- and that is what the Taxi button hands you. */
+  let cm=null;
+  for(let i=0;i<cityMarks.length;i++){if(cityMarks[i].getBoundingClientRect().top<=line)cm=cityMarks[i];}
+  const city=cm?cm.dataset.city:'';
+  if(city!==lastCity){
+    lastCity=city;
+    if(DATA[city])curCity=city;
+    cjBtns.forEach(function(b){b.classList.toggle('here',b.dataset.cj===city);});
+  }
   let active=null;
   for(let i=0;i<dayEls.length;i++){if(dayEls[i].getBoundingClientRect().top<=line)active=dayEls[i];}
   if(!active)active=dayEls[0];
   if(!active||active.id===lastHere)return;
   lastHere=active.id;
-  const city=active.id.split('-')[1];
-  if(DATA[city])curCity=city;
   let chip=null;
   railChips.forEach(function(c){const on=c.dataset.day===active.id;c.classList.toggle('here',on);if(on)chip=c;});
   if(chip&&rail){
@@ -1216,7 +1266,7 @@ window.addEventListener('scroll',function(){
   if(TODAYi>=0){
     const d=CAL[TODAYi];
     b.textContent='Today · day '+(TODAYi+1)+' of 15 · '+d.cityname;
-    l.textContent=d.theme;
+    l.textContent=d.theme===d.cityname?'':d.theme;
     todbar.hidden=false;
     if(!location.hash&&d.target){
       const el=document.getElementById(d.target);

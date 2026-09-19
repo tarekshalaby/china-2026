@@ -70,7 +70,13 @@ city. Check the console is clean. The Map tab must not scroll: it is sized to th
 `flying day -> flights` passed happily while tapping 19 Sep threw Tarek out of the Plan into
 the middle of another tab. The useful check is the property: tapping any rail chip leaves you
 in the Plan, on a day block whose date matches the chip, with its header just under the
-sticky bars. `railtest.py` walks all 15 chips and asserts exactly that.
+sticky bars. `railtest.py` walks all 15 chips and asserts exactly that, then the same
+property one level up for the four city buttons: you stay in the Plan, the first day on
+screen belongs to that city, its hero header sits under the bars, and only that button is lit.
+
+The test measures the sticky bars instead of hard-coding their height. An earlier version
+compared against a literal `116`, and when the header grew by seven pixels every chip
+started "failing" while the page was in fact correct. Measure the chrome, never assume it.
 
 **A trap that has already bitten once:** `.tabs` must stay a *sibling* of `.appbar`, never a
 child. `backdrop-filter` on `.appbar` makes it a containing block, which pins the "fixed"
@@ -170,6 +176,16 @@ purpose: those stops mean "find one near you".
 **Every stop needs its Chinese name in the title** — the brief already said so, and the
 directions button now depends on it.
 
+**Jumping to a city.** Four buttons sit above the day rail, in the same sticky block: city
+colour, city name, and the one you are in is filled. They do not scroll sideways — all four
+are one tap from anywhere in the Plan, which is the whole point — so they are `flex:1 1 auto`
+and size to their names, because equal quarters clipped "Chongqing" at 320px.
+
+Which city you are in is read from the **last city header you scrolled past**, not the last
+day block. A hero is about 250px tall, so between a city's header and its first day a
+day-based answer still says the previous city — and that is the city the Taxi button was
+handing you. `spy()` tracks `.chead[data-city]` for that reason.
+
 **The day rail must never leave the Plan.** It has a chip per ribbon day, so the Plan must
 have a block for every one of those 15 days — including the two flying days, which are real
 blocks (`day-air-0`, `day-air-1`) carrying their flight legs, not a jump to the Travel tab.
@@ -217,8 +233,15 @@ Tarek's standing instruction: **no walls of text, visual wherever possible, noth
 - Icons come from the `ICON` dict in `build.py` and are emitted **once** as a `<symbol>`
   sprite; `ic()` writes a `<use>`. Inlining them cost 110KB and thousands of DOM nodes.
 - City headers are a hero photo with the city colour as a gradient panel.
-- The 15-day ribbon is now the **sticky day rail** at the top of Plan: it carries the holiday
-  bands, marks today with a dot, follows your scroll, and jumps you to any day in one tap.
+- The 15-day ribbon is now the **sticky day rail** at the top of Plan: it marks today with a
+  dot, follows your scroll, and jumps you to any day in one tap. Above it, the four **city
+  buttons**. The row the city buttons needed came from the holiday bands, which used to be a
+  labelled row of their own: a holiday is now a coloured cap across the top of the days it
+  covers (`.rd.hol`), and its name lives on the city header, narrowed to the days you are
+  actually in that city — "Mid-Autumn 25–26 Sep" on Xi'an, "27 Sep" on Chengdu. Both are
+  derived from `bands` in `data.py`; nothing about a holiday is written twice.
+- There is no category key row. Five categories, each already wearing its emoji badge on
+  every photo, did not need a legend taking a line off the top of the Plan.
 - Helvetica-like, white background, vibrant Material colours, generous spacing.
 - Avoid large red blocks — they read as errors.
 - Tap targets are 40px minimum. Anything you might need in a panic (the Chinese address, a
