@@ -28,6 +28,12 @@ git add -A && git commit -m "short message" && git push origin main
 ```
 
 `China-Must-Do-List-Tarek.html` is gitignored; `index.html` is the committed artifact.
+
+**If the site doesn't change after a push, look at the Pages run before anything else.** On 28 Sep
+the "pages build and deployment" run built fine and then failed in its deploy job with
+`Failed to get ID Token … Request timeout`, a GitHub-side timeout, not the change. Re-running
+the failed job left it stuck in "queued" with no jobs, and GitHub refused to cancel it. The
+next push to `main` starts a new, independent run and deployed normally.
 Never hand-edit `index.html` — it is generated.
 
 **Commit and push straight to `main`, never to a `claude/…` branch.** GitHub Pages
