@@ -834,5 +834,21 @@
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Chengdu_double_hotpot.jpg/960px-Chengdu_double_hotpot.jpg",
   "imgpage": "https://commons.wikimedia.org/wiki/File:Chengdu_double_hotpot.jpg",
   "amap": "巴蜀大宅门火锅清江东路店"
+ },
+ "zhanglaoer": {
+  "name": "Zhang Lao Er liangfen, Wenshu Monastery",
+  "lat": 30.6776,
+  "lng": 104.07,
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Hall_-_Wenshu_Monastery_-_Chengdu%2C_China_-_DSC05252.jpg/960px-Hall_-_Wenshu_Monastery_-_Chengdu%2C_China_-_DSC05252.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Hall_-_Wenshu_Monastery_-_Chengdu%2C_China_-_DSC05252.jpg",
+  "amap": "洞子口张老二凉粉文殊院店"
+ },
+ "hehuachi": {
+  "name": "Hehuachi luggage market, Futian Building",
+  "lat": 30.688,
+  "lng": 104.0737,
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Trolley_suitcase_shop%2C_Novosibirsk_01.jpg/960px-Trolley_suitcase_shop%2C_Novosibirsk_01.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Trolley_suitcase_shop%2C_Novosibirsk_01.jpg",
+  "amap": "荷花池福天大厦"
  }
 }

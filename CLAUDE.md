@@ -133,7 +133,7 @@ hutong or on a train, which separate pages would not.
 | **Map** | One Leaflet map per city, lazy-loaded. Pin numbers match the Plan numbers. |
 | **Tickets** | Booking rows, filterable by status. Tap any reference to copy it. |
 | **Travel** | Hotels, trains, flights, before you fly — hotels first, because the address is the thing you need in a hurry. |
-| **Stories** | An index of all 86 stories. Tapping one opens the same sheet the Plan does. |
+| **Stories** | An index of all 88 stories. Tapping one opens the same sheet the Plan does. |
 
 A stop is a **compact row** on a phone (84px photo, slot, title, one-liner) and the same DOM
 becomes a **photo card** in a grid at ≥820px. Tapping a stop opens a **full-screen sheet** with
@@ -399,7 +399,8 @@ what the group actually did, not what was planned. Keep it that way when Tarek r
 - **Sun 27 Sep, Chengdu:** Fangsuo moved to Sunday night after Kang Er Jie. The entrance is
   a narrow dark doorway down an escalator to the left of Daci Temple's gate, or beside Cartier.
 - **Tue 29 Sep, Chengdu: Jianchuan dropped, and Leshan considered and dropped.** The day is
-  the Wukuaishi wholesale markets (spices at 五块石干杂批发市场, tea at 大西南茶城, woks at
+  breakfast at Zhang Lao Er liangfen by Wenshu Monastery, a suitcase at the Hehuachi luggage
+  market (福天大厦, bought first so the haul goes home in it), then the Wukuaishi wholesale markets (spices at 五块石干杂批发市场, tea at 大西南茶城, woks at
   西南酒店用品批发城, all within a few minutes' walk), **Yutian for lunch** (twice-cooked pork;
   it moved from dinner), a rest, and **Bashu Dazhaimen hotpot** 清江东路 for dinner, with
   Longsenyuan 龙森园 on Qintai Road as the easy fallback in the same stop. No bathhouse that night.
