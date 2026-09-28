@@ -127,7 +127,7 @@ hutong or on a train, which separate pages would not.
 | **Map** | One Leaflet map per city, lazy-loaded. Pin numbers match the Plan numbers. |
 | **Tickets** | Booking rows, filterable by status. Tap any reference to copy it. |
 | **Travel** | Hotels, trains, flights, before you fly — hotels first, because the address is the thing you need in a hurry. |
-| **Stories** | An index of all 83 stories. Tapping one opens the same sheet the Plan does. |
+| **Stories** | An index of all 86 stories. Tapping one opens the same sheet the Plan does. |
 
 A stop is a **compact row** on a phone (84px photo, slot, title, one-liner) and the same DOM
 becomes a **photo card** in a grid at ≥820px. Tapping a stop opens a **full-screen sheet** with
@@ -316,7 +316,8 @@ the wall, then Sajinqiao, which was always the un-touristed version of the same 
 | What | When | Where | Who can do it |
 |---|---|---|---|
 | **Huaiyang Fu dinner** | Sun 20 Sep, 19:30 | Message Manxin Mansion, who call 010 6426 5959 | Anyone, and it has to be today |
-| **Jianchuan driver** | Tue 29 Sep, full day | Chengdu hotel desk | In person, on arrival |
+
+The Jianchuan driver is no longer wanted: the museum day was dropped on 28 Sep (see below).
 
 **The Temple of Heaven QR codes arrived on 19 Sep** — four of them, one per person, in the
 Trip.com app's Attractions & Tours chat rather than by email, which is why the inbox stayed
@@ -376,6 +377,32 @@ show, and the Aperture stop went with it — the Shaanxi History Museum (imperia
 rushed minutes before the 11:35 train, and furthest of anything from the brief), Chen Mapo Tofu
 (the cooking class is that lunch, and no other day has a free lunch slot), Little Bar, Dongjiao
 Memory and .TAG.
+
+**On the road, 23–29 Sep: the Plan is now the record.** For days already gone, the site shows
+what the group actually did, not what was planned. Keep it that way when Tarek reports a day.
+
+- **Fri 25 Sep, Xi'an:** Wei Jia Liangpi at the Terracotta exit car park for lunch, then
+  **Angsana Hot Spring 悦椿温泉** in Lintong for three hours instead of Huaqing Palace (the
+  group was not up for it) and instead of the foot massage. Metro back, then drinks at a bar
+  by the Bell Tower. Huaqing's Chiang story now lives in the Angsana stop.
+- **Sat 26 Sep, Xi'an:** started 11:30 with Jia San soup dumplings on Beiyuanmen, the mosque
+  after the midday prayer, then **Revolution Park 革命公园** (added: the 1926 siege mounds).
+  The Eighth Route Army office and Dahua stay on the page as planned; the group expected to
+  run out of time for the office. Lao Mi Jia paomo was shut at 21:15 despite listings
+  saying 23:00 — most paomo shops close about 21:00.
+- **Sun 27 Sep, Chengdu:** Fangsuo moved to Sunday night after Kang Er Jie. The entrance is
+  a narrow dark doorway down an escalator to the left of Daci Temple's gate, or beside Cartier.
+- **Tue 29 Sep, Chengdu: Jianchuan dropped, and Leshan considered and dropped.** The day is
+  the Wukuaishi wholesale markets (spices at 五块石干杂批发市场, tea at 大西南茶城, woks at
+  西南酒店用品批发城, all within a few minutes' walk), **Yutian for lunch** (twice-cooked pork;
+  it moved from dinner), a rest, and **Bashu Dazhaimen hotpot** 清江东路 for dinner, with
+  Longsenyuan 龙森园 on Qintai Road as the easy fallback in the same stop. No bathhouse that night.
+
+**Nora and May want spa time through the trip.** Both a Chinese bathhouse (洗浴中心: single-sex
+bathing floors, then pyjamas and a shared floor with buffet and nap halls) and a hot-spring resort
+(mixed pools, swimsuits) count. Angsana in Lintong was a hit. Tangyue 汤悦 on Zouma Street and FUFU
+汤 are the researched Chengdu bathhouses; Chongqing's all-night bathhouse before the 01:50 flight on
+2 Oct is still an open idea.
 
 **The group splits on late nights.** Nora and May are not the late-night crowd. Tarek and Hamama
 are happy with a drink at any bar, which needs no planning and no stop on the page — so do not

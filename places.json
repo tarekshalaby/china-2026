@@ -773,5 +773,66 @@
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/%E7%8B%AE%E5%AD%90%E6%A5%BC%E7%8B%AE%E5%AD%90%E5%A4%B4.jpg/960px-%E7%8B%AE%E5%AD%90%E6%A5%BC%E7%8B%AE%E5%AD%90%E5%A4%B4.jpg",
   "imgpage": "https://commons.wikimedia.org/wiki/File:%E7%8B%AE%E5%AD%90%E6%A5%BC%E7%8B%AE%E5%AD%90%E5%A4%B4.jpg",
   "amap": "淮扬府 安定门"
+ },
+ "weijia": {
+  "name": "Wei Jia Liangpi, Terracotta Army",
+  "lat": 34.3818,
+  "lng": 109.2745,
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Shanxi_Liangpi_%E9%99%95%E8%A5%BF_%E5%87%89%E7%9A%AE.jpg/960px-Shanxi_Liangpi_%E9%99%95%E8%A5%BF_%E5%87%89%E7%9A%AE.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Shanxi_Liangpi_%E9%99%95%E8%A5%BF_%E5%87%89%E7%9A%AE.jpg",
+  "amap": "魏家凉皮兵马俑店"
+ },
+ "angsana": {
+  "name": "Angsana Hot Spring, Lintong",
+  "lat": 34.3712,
+  "lng": 109.1785,
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Lintong_Xian_China_Huaqing-Pool-02.jpg/960px-Lintong_Xian_China_Huaqing-Pool-02.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Lintong_Xian_China_Huaqing-Pool-02.jpg",
+  "amap": "悦椿温泉"
+ },
+ "jiasan": {
+  "name": "Jia San soup dumplings, Beiyuanmen",
+  "lat": 34.2645,
+  "lng": 108.939,
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Jia_san_soup_dumplings_in_Xi_yang_shi_1.jpg/960px-Jia_san_soup_dumplings_in_Xi_yang_shi_1.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Jia_san_soup_dumplings_in_Xi_yang_shi_1.jpg",
+  "amap": "贾三灌汤包子北院门总店"
+ },
+ "revolutionpark": {
+  "name": "Revolution Park, Xi'an",
+  "lat": 34.27317,
+  "lng": 108.95355,
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/20250911_Xi%27an_Revolution_Park_03.jpg/960px-20250911_Xi%27an_Revolution_Park_03.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:20250911_Xi%27an_Revolution_Park_03.jpg"
+ },
+ "wkspice": {
+  "name": "Wukuaishi dry-goods market",
+  "lat": 30.7051,
+  "lng": 104.0666,
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Sichuan_Peppercorn_%2851076629%29.jpg/960px-Sichuan_Peppercorn_%2851076629%29.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Sichuan_Peppercorn_%2851076629%29.jpg"
+ },
+ "teacity": {
+  "name": "Daxinan Tea City",
+  "lat": 30.7051,
+  "lng": 104.0611,
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Kunming_Yunnan_China_Tea-Shop-01.jpg/960px-Kunming_Yunnan_China_Tea-Shop-01.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Kunming_Yunnan_China_Tea-Shop-01.jpg"
+ },
+ "hotelsupply": {
+  "name": "Southwest Hotel Supplies City",
+  "lat": 30.7059,
+  "lng": 104.0648,
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/DSC_9753_Well-used_woks_pans_and_utensils_arranged_on_a_rustic_outdoor_kitchen_table_ready_for_the_next_meal.jpg/960px-DSC_9753_Well-used_woks_pans_and_utensils_arranged_on_a_rustic_outdoor_kitchen_table_ready_for_the_next_meal.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:DSC_9753_Well-used_woks_pans_and_utensils_arranged_on_a_rustic_outdoor_kitchen_table_ready_for_the_next_meal.jpg",
+  "amap": "西南酒店用品批发商城"
+ },
+ "hotpot": {
+  "name": "Bashu Dazhaimen hotpot, Qingjiang East Road",
+  "lat": 30.6724,
+  "lng": 104.0214,
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Chengdu_double_hotpot.jpg/960px-Chengdu_double_hotpot.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Chengdu_double_hotpot.jpg",
+  "amap": "巴蜀大宅门火锅清江东路店"
  }
 }
