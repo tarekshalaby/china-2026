@@ -290,7 +290,7 @@ Dates, hotels and trains are **booked and fixed** — never re-plan around them.
 | Beijing | 20–24 Sep, Manxin Mansion, Houhai / Drum Tower. Two rooms. |
 | Xi'an | 24–27 Sep, Jinjiang Bell Tower Original Copy. |
 | Chengdu | 27–30 Sep, Wenjun Courtyard. |
-| Chongqing | 30 Sep – 3 Oct, Miss Xie's House With Riverview. Desk closes 18:00. |
+| Chongqing | 30 Sep – 3 Oct, Miss Xie's House With Riverview. Desk closes 18:00. Nora is in a separate hotel on the 1st floor of the same building — see below. |
 | Trains | G353 24 Sep Beijing West 12:55 → Xi'an North 17:08 · D1927 27 Sep Xi'an North 11:35 → Chengdu East 15:03 · G8619 30 Sep Chengdu East 12:50 → Shapingba 14:01. All ticketed. |
 
 Holidays inside the trip: **Mid-Autumn 25–27 Sep** (all of Xi'an), **National Day Golden Week
@@ -404,6 +404,15 @@ what the group actually did, not what was planned. Keep it that way when Tarek r
   西南酒店用品批发城, all within a few minutes' walk), **Yutian for lunch** (twice-cooked pork;
   it moved from dinner), a rest, and **Bashu Dazhaimen hotpot** 清江东路 for dinner, with
   Longsenyuan 龙森园 on Qintai Road as the easy fallback in the same stop. No bathhouse that night.
+
+**Nora does not take lifts.** She is claustrophobic, so every room she is in has to be reachable
+on foot — ground floor, or a few flights of stairs at most — and so does the reception. Check
+which floor a room is on before booking it, and say which floor it is on when proposing one.
+This is a hard constraint, not a preference to work around on the day: on 30 Sep the Chongqing
+booking turned out to have its lobby on the 16th floor of the Kairui Building and the rooms on
+the 17th, with no stair route in, so Nora left the Miss Xie's room she was booked into and took
+a room at another hotel on the 1st floor of the same building. Her bed at Miss Xie's stays
+booked and paid — nothing was cancelled.
 
 **Nora and May want spa time through the trip.** Both a Chinese bathhouse (洗浴中心: single-sex
 bathing floors, then pyjamas and a shared floor with buffet and nap halls) and a hot-spring resort
