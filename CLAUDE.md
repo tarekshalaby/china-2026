@@ -36,6 +36,13 @@ the failed job left it stuck in "queued" with no jobs, and GitHub refused to can
 next push to `main` starts a new, independent run and deployed normally.
 Never hand-edit `index.html` — it is generated.
 
+**Check you are actually on `main` before pushing.** The container can start with a detached
+HEAD and a stale local `main` — on 30 Sep it was four commits behind — so `git push origin main`
+pushes that stale branch and not your work. Git then rejects it as "a pushed branch tip is behind
+its remote counterpart", which reads as if your commit is the old one; it is not. `git status -sb`
+shows `## HEAD (no branch)` when this is what is happening. Push `git push origin HEAD:refs/heads/main`,
+or `git checkout -B main HEAD` first, and do not go looking for a merge conflict that is not there.
+
 **Commit and push straight to `main`, never to a `claude/…` branch.** GitHub Pages
 serves `main`, so anything pushed to a branch does nothing for the live site and leaves
 Tarek merging it by hand from his phone. This applies to every change, in every session.
