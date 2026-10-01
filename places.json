@@ -640,11 +640,12 @@
   "imgpage": "https://commons.wikimedia.org/wiki/File:La_Zi_Ji_(Chicken_with_Chiles)_(2269517013).jpg"
  },
  "kaoyu": {
-  "name": "Chongqing grilled fish",
-  "lat": 29.542,
-  "lng": 106.4575,
+  "name": "Shen Jie Grilled Fish",
+  "lat": 29.5447,
+  "lng": 106.4578,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Grilled_Fish_with_Douhua.jpg/960px-Grilled_Fish_with_Douhua.jpg",
-  "imgpage": "https://commons.wikimedia.org/wiki/File:Grilled_Fish_with_Douhua.jpg"
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Grilled_Fish_with_Douhua.jpg",
+  "amap": "沈姐烤鱼"
  },
  "dadukou": {
   "name": "Lunch in Dadukou",
