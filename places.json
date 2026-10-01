@@ -467,7 +467,8 @@
   "lat": 29.55804,
   "lng": 106.58444,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/%E9%87%8D%E5%BA%86%E9%95%BF%E6%B1%9F%E7%B4%A2%E9%81%93_-_Chongqing_Yangtze_River_Cableway_-_2015.04_-_panoramio.jpg/960px-%E9%87%8D%E5%BA%86%E9%95%BF%E6%B1%9F%E7%B4%A2%E9%81%93_-_Chongqing_Yangtze_River_Cableway_-_2015.04_-_panoramio.jpg",
-  "imgpage": "https://commons.wikimedia.org/wiki/File:%E9%87%8D%E5%BA%86%E9%95%BF%E6%B1%9F%E7%B4%A2%E9%81%93_-_Chongqing_Yangtze_River_Cableway_-_2015.04_-_panoramio.jpg"
+  "imgpage": "https://commons.wikimedia.org/wiki/File:%E9%87%8D%E5%BA%86%E9%95%BF%E6%B1%9F%E7%B4%A2%E9%81%93_-_Chongqing_Yangtze_River_Cableway_-_2015.04_-_panoramio.jpg",
+  "amap": "长江索道南站"
  },
  "liziba": {
   "name": "Liziba Monorail Station",
@@ -640,8 +641,8 @@
  },
  "kaoyu": {
   "name": "Chongqing grilled fish",
-  "lat": 29.562,
-  "lng": 106.578,
+  "lat": 29.542,
+  "lng": 106.4575,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Grilled_Fish_with_Douhua.jpg/960px-Grilled_Fish_with_Douhua.jpg",
   "imgpage": "https://commons.wikimedia.org/wiki/File:Grilled_Fish_with_Douhua.jpg"
  },
@@ -850,5 +851,45 @@
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Trolley_suitcase_shop%2C_Novosibirsk_01.jpg/960px-Trolley_suitcase_shop%2C_Novosibirsk_01.jpg",
   "imgpage": "https://commons.wikimedia.org/wiki/File:Trolley_suitcase_shop%2C_Novosibirsk_01.jpg",
   "amap": "荷花池福天大厦"
+ },
+ "baixiangju": {
+  "name": "White Elephant Residence",
+  "lat": 29.5617,
+  "lng": 106.5855,
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Chongqing_China_150731.jpg/960px-Chongqing_China_150731.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Chongqing_China_150731.jpg",
+  "amap": "白象居"
+ },
+ "longmenhao": {
+  "name": "Longmenhao Old Street",
+  "lat": 29.5565,
+  "lng": 106.589,
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/%E9%87%8D%E5%BA%86%E5%B8%82%E9%95%BF%E6%B1%9F%E7%B4%A2%E9%81%93%E4%BD%8D%E4%BA%8E%E5%8D%97%E5%B2%B8%E5%8C%BA%E9%BE%99%E9%97%A8%E6%B5%A9%E7%9A%84%E7%B4%A2%E9%81%93%E7%AB%99.JPG/960px-%E9%87%8D%E5%BA%86%E5%B8%82%E9%95%BF%E6%B1%9F%E7%B4%A2%E9%81%93%E4%BD%8D%E4%BA%8E%E5%8D%97%E5%B2%B8%E5%8C%BA%E9%BE%99%E9%97%A8%E6%B5%A9%E7%9A%84%E7%B4%A2%E9%81%93%E7%AB%99.JPG",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:%E9%87%8D%E5%BA%86%E5%B8%82%E9%95%BF%E6%B1%9F%E7%B4%A2%E9%81%93%E4%BD%8D%E4%BA%8E%E5%8D%97%E5%B2%B8%E5%8C%BA%E9%BE%99%E9%97%A8%E6%B5%A9%E7%9A%84%E7%B4%A2%E9%81%93%E7%AB%99.JPG",
+  "amap": "龙门浩老街"
+ },
+ "kuixinglou": {
+  "name": "Kuixing Building",
+  "lat": 29.564,
+  "lng": 106.5748,
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/%E4%B8%B4%E6%B1%9F%E9%97%A82.jpg/960px-%E4%B8%B4%E6%B1%9F%E9%97%A82.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:%E4%B8%B4%E6%B1%9F%E9%97%A82.jpg",
+  "amap": "魁星楼"
+ },
+ "escalator": {
+  "name": "Crown Escalator",
+  "lat": 29.5527,
+  "lng": 106.5516,
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Crown_Escalator%2C_Chongqing%2C_2017-09-21.jpg/960px-Crown_Escalator%2C_Chongqing%2C_2017-09-21.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Crown_Escalator,_Chongqing,_2017-09-21.jpg",
+  "amap": "皇冠大扶梯"
+ },
+ "eling": {
+  "name": "Second Factory and Eling Park",
+  "lat": 29.5527,
+  "lng": 106.5376,
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/%E9%B9%85%E5%B2%AD%E5%85%AC%E5%9B%AD_-_Eling_Park_-_2016.03_-_panoramio.jpg/960px-%E9%B9%85%E5%B2%AD%E5%85%AC%E5%9B%AD_-_Eling_Park_-_2016.03_-_panoramio.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:%E9%B9%85%E5%B2%AD%E5%85%AC%E5%9B%AD_-_Eling_Park_-_2016.03_-_panoramio.jpg",
+  "amap": "鹅岭贰厂"
  }
 }
