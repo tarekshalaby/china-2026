@@ -376,11 +376,12 @@
   "imgpage": "https://commons.wikimedia.org/wiki/File:Bombing_of_Chongqing.png"
  },
  "cavehotpot": {
-  "name": "Cave hotpot (bomb shelter)",
-  "lat": 29.558,
-  "lng": 106.576,
+  "name": "Dongting cave hotpot",
+  "lat": 29.5546,
+  "lng": 106.5527,
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Chongqing_hotpot_2.jpg/960px-Chongqing_hotpot_2.jpg",
-  "imgpage": "https://commons.wikimedia.org/wiki/File:Chongqing_hotpot_2.jpg"
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Chongqing_hotpot_2.jpg",
+  "amap": "洞亭火锅"
  },
  "zhazidong": {
   "name": "Zhazidong & Baigongguan prisons",
@@ -892,5 +893,53 @@
   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/%E9%B9%85%E5%B2%AD%E5%85%AC%E5%9B%AD_-_Eling_Park_-_2016.03_-_panoramio.jpg/960px-%E9%B9%85%E5%B2%AD%E5%85%AC%E5%9B%AD_-_Eling_Park_-_2016.03_-_panoramio.jpg",
   "imgpage": "https://commons.wikimedia.org/wiki/File:%E9%B9%85%E5%B2%AD%E5%85%AC%E5%9B%AD_-_Eling_Park_-_2016.03_-_panoramio.jpg",
   "amap": "鹅岭贰厂"
+ },
+ "guwancheng": {
+  "name": "Three Gorges Antiques City",
+  "lat": 29.564,
+  "lng": 106.5482,
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Chairman_Mao_Cultural_Revolution_Badges_%2832703894502%29.jpg/960px-Chairman_Mao_Cultural_Revolution_Badges_%2832703894502%29.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Chairman_Mao_Cultural_Revolution_Badges_(32703894502).jpg",
+  "amap": "三峡古玩城"
+ },
+ "fotuguan": {
+  "name": "Fotuguan Park and the Eling skybridge",
+  "lat": 29.551,
+  "lng": 106.529,
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/%E4%BD%9B%E5%9B%BE%E5%85%B3%E5%85%AC%E5%9B%AD_-_Fotuguan_Park_-_2016.03_-_panoramio.jpg/960px-%E4%BD%9B%E5%9B%BE%E5%85%B3%E5%85%AC%E5%9B%AD_-_Fotuguan_Park_-_2016.03_-_panoramio.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:%E4%BD%9B%E5%9B%BE%E5%85%B3%E5%85%AC%E5%9B%AD_-_Fotuguan_Park_-_2016.03_-_panoramio.jpg",
+  "amap": "鹅岭栈桥"
+ },
+ "guanghuan": {
+  "name": "The Ring (Guanghuan Shopping Park)",
+  "lat": 29.651,
+  "lng": 106.5248,
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/%E9%87%8D%E5%BA%86%E5%85%89%E7%8E%AF%E8%B4%AD%E7%89%A9%E5%85%AC%E5%9B%AD%E5%86%85%E9%83%A8.jpg/960px-%E9%87%8D%E5%BA%86%E5%85%89%E7%8E%AF%E8%B4%AD%E7%89%A9%E5%85%AC%E5%9B%AD%E5%86%85%E9%83%A8.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:%E9%87%8D%E5%BA%86%E5%85%89%E7%8E%AF%E8%B4%AD%E7%89%A9%E5%85%AC%E5%9B%AD%E5%86%85%E9%83%A8.jpg",
+  "amap": "光环购物公园"
+ },
+ "fuqiao": {
+  "name": "Fuqiao foot massage",
+  "lat": 29.561,
+  "lng": 106.5792,
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/SZ_%E6%B7%B1%E5%9C%B3_Shenzhen_%E5%85%89%E6%98%8E%E6%96%B0%E5%8D%80_Guangming_%E9%B3%B3%E5%87%B0%E8%8B%B1%E8%96%88%E5%9F%8E_Phoenix_Yinghui_Town_Mall_shop_%E9%B6%B4%E7%A5%A5%E5%AE%AE%E5%BD%B1%E9%99%A2%E5%BC%8F%E8%B6%B3%E9%81%93SPA%E9%A4%8A%E7%94%9F%E9%A4%A8_HeXiang_Palace_Film_and_SPA_Foot_Massage_November_2025_R12S_04.jpg/960px-SZ_%E6%B7%B1%E5%9C%B3_Shenzhen_%E5%85%89%E6%98%8E%E6%96%B0%E5%8D%80_Guangming_%E9%B3%B3%E5%87%B0%E8%8B%B1%E8%96%88%E5%9F%8E_Phoenix_Yinghui_Town_Mall_shop_%E9%B6%B4%E7%A5%A5%E5%AE%AE%E5%BD%B1%E9%99%A2%E5%BC%8F%E8%B6%B3%E9%81%93SPA%E9%A4%8A%E7%94%9F%E9%A4%A8_HeXiang_Palace_Film_and_SPA_Foot_Massage_November_2025_R12S_04.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:SZ_%E6%B7%B1%E5%9C%B3_Shenzhen_%E5%85%89%E6%98%8E%E6%96%B0%E5%8D%80_Guangming_%E9%B3%B3%E5%87%B0%E8%8B%B1%E8%96%88%E5%9F%8E_Phoenix_Yinghui_Town_Mall_shop_%E9%B6%B4%E7%A5%A5%E5%AE%AE%E5%BD%B1%E9%99%A2%E5%BC%8F%E8%B6%B3%E9%81%93SPA%E9%A4%8A%E7%94%9F%E9%A4%A8_HeXiang_Palace_Film_and_SPA_Foot_Massage_November_2025_R12S_04.jpg",
+  "amap": "富侨养生"
+ },
+ "dayanggou": {
+  "name": "Dayanggou market",
+  "lat": 29.5628,
+  "lng": 106.5468,
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Sichuan_Peppercorn_%2851076629%29.jpg/960px-Sichuan_Peppercorn_%2851076629%29.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Sichuan_Peppercorn_%2851076629%29.jpg",
+  "amap": "大阳沟菜市场"
+ },
+ "liangshanji": {
+  "name": "Liziba Liangshan chicken",
+  "lat": 29.5562,
+  "lng": 106.5347,
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Chongqing_chicken_%289322465494%29.jpg/960px-Chongqing_chicken_%289322465494%29.jpg",
+  "imgpage": "https://commons.wikimedia.org/wiki/File:Chongqing_chicken_%289322465494%29.jpg",
+  "amap": "李子坝梁山鸡"
  }
 }

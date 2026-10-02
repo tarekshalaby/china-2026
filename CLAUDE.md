@@ -140,7 +140,7 @@ hutong or on a train, which separate pages would not.
 | **Map** | One Leaflet map per city, lazy-loaded. Pin numbers match the Plan numbers. |
 | **Tickets** | Booking rows, filterable by status. Tap any reference to copy it. |
 | **Travel** | Hotels, trains, flights, before you fly — hotels first, because the address is the thing you need in a hurry. |
-| **Stories** | An index of all 88 stories. Tapping one opens the same sheet the Plan does. |
+| **Stories** | An index of all 91 stories. Tapping one opens the same sheet the Plan does. |
 
 A stop is a **compact row** on a phone (84px photo, slot, title, one-liner) and the same DOM
 becomes a **photo card** in a grid at ≥820px. Tapping a stop opens a **full-screen sheet** with
@@ -236,7 +236,10 @@ matching the map pins. When you move a stop between days, move the block too.
 
 Every stop needs: a Wikimedia Commons photo, coordinates, a Chinese name in the title, and a
 plain-English story with real dates and names. Fetch photos from the Commons API with a
-descriptive User-Agent and strip `?utm_source=` from thumb URLs.
+descriptive User-Agent and strip `?utm_source=` from thumb URLs. The Commons API rate-limits
+this container after two or three calls; space them 15–20 seconds apart, or skip the API for a
+file whose name you know and build the thumb URL from the MD5 of the name
+(`upload.wikimedia.org/wikipedia/commons/thumb/{h[0]}/{h[:2]}/{name}/960px-{name}`).
 
 ### Gotcha: apostrophe escaping in `data.py` is inconsistent
 
@@ -411,6 +414,17 @@ what the group actually did, not what was planned. Keep it that way when Tarek r
   西南酒店用品批发城, all within a few minutes' walk), **Yutian for lunch** (twice-cooked pork;
   it moved from dinner), a rest, and **Bashu Dazhaimen hotpot** 清江东路 for dinner, with
   Longsenyuan 龙森园 on Qintai Road as the easy fallback in the same stop. No bathhouse that night.
+- **Fri 2 Oct, Chongqing, the last day: the Industrial Museum dropped** (the group was not
+  interested), and with it the Dadukou lunch, the Jiaotong Teahouse, the Three Gorges Museum,
+  Chaotianmen, Nanbin Road and the MAO night — Tarek's words were "we won't have time for any of
+  this". The day he chose: Hua Shi xiaomian, the **Three Gorges Antiques City** 三峡古玩城 (its
+  Friday hundred-stall market) and **Dayanggou market** across the road, the **Eling skybridge**
+  from Fotuguan down to Liziba, Liangshan chicken for lunch, **The Ring**'s indoor rainforest in
+  Liangjiang, a foot massage for May at **Fuqiao** by Jiefangbei, and **Dongting** cave hotpot.
+  Back at the hotel by 21:30, car at 22:30. He asked that the day show breakfast, lunch and
+  dinner; keep every day planned that way. Dongting is at Lianglukou, not "near the hotel" as an
+  older tip said. Foreign passports cannot book the skybridge online: they register at the
+  visitor point by Fotuguan's south gate, three people to a booking.
 
 **Nora does not take lifts.** She is claustrophobic, so every room she is in has to be reachable
 on foot — ground floor, or a few flights of stairs at most — and so does the reception. Check
