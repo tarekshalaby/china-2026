@@ -1,3 +1,12 @@
 __pycache__/
 *.pyc
 China-Must-Do-List-Tarek.html
+
+# Trip film workspace: original footage, transcripts, renders. Private, never committed.
+film/
+*.mov
+*.MOV
+*.mp4
+*.MP4
+*.heic
+*.HEIC
